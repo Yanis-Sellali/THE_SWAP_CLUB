@@ -45,3 +45,4 @@ class JerseysController < ApplicationController
     params.require(:jersey).permit(:name, :flocking, :year, :description, :image, :team_id, :size, :condition)
   end
 end
+end

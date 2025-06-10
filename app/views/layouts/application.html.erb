@@ -8,6 +8,8 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" %>
+    <%= stylesheet_link_tag "custom", media: "all" %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   </head>
 
   <body>
@@ -16,5 +18,15 @@
     <%= yield %>
 
     <%= render "shared/footer" %>
+
+    <!-- Animation dynamique du formulaire d'inscription -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var card = document.querySelector('.card');
+        if (card) {
+          card.classList.add('animate__animated', 'animate__fadeInUp');
+        }
+      });
+    </script>
   </body>
 </html>
