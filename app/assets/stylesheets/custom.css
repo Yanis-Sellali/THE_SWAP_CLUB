@@ -1,0 +1,15 @@
+body {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+}
+
+.btn-primary {
+  background-color: #1E88E5;
+  border-color: #1565C0;
+  transition: all 0.3s ease;
+}

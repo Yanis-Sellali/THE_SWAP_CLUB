@@ -328,7 +328,7 @@ jersey20 = Jersey.create!(
   flocking: "Doué",
   year: 2024,
   description: "Official PSG home jersey for the 2024 season.",
-  image: "jerseys/jersey-psg-home-2024-desiredoue.jpg",
+  image: "jersey-psg-home-2024-desiredoue.jpg",
   user: user2,
   team: team10,
   size: "M",
