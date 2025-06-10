@@ -1,2 +1,15 @@
-<h1>Exchanges#show</h1>
-<p>Find me in app/views/exchanges/show.html.erb</p>
+<h1>Détails de l'échange</h1>
+
+<p>
+  <strong>Propriétaire :</strong>
+  <%= @exchange.owner.nom %>
+</p>
+
+<p>
+  <strong>Maillot :</strong>
+  <%= @exchange.jersey.name %>
+</p>
+
+<p>
+  <%= link_to "Retour à la liste", exchanges_path %>
+</p>

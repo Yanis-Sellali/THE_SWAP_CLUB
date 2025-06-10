@@ -1,2 +1,14 @@
-<h1>Exchanges#new</h1>
-<p>Find me in app/views/exchanges/new.html.erb</p>
+<h1>Créer un nouvel échange</h1>
+
+<%= form_with model: @exchange, local: true do |form| %>
+  <div>
+    <%= form.label :jersey_id, "Choisir un maillot" %><br>
+    <%= form.collection_select :jersey_id, Jersey.all, :id, :name, prompt: "Sélectionnez un maillot" %>
+  </div>
+
+  <div>
+    <%= form.submit "Créer l'échange" %>
+  </div>
+<% end %>
+
+<%= link_to "Retour", exchanges_path %>

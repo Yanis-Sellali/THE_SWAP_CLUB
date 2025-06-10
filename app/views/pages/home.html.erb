@@ -1,2 +1,42 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container mt-5">
+
+  <h2 class="mb-4">Nos derniers maillots</h2>
+  <div id="jerseysCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <% @jerseys.each_with_index do |jersey, index| %>
+        <div class="carousel-item <%= 'active' if index == 0 %>">
+          <div class="d-flex justify-content-center">
+            <%= image_tag jersey.photo_url, class: "d-block", style: "height: 300px;" %>
+          </div>
+          <div class="text-center mt-2"><%= jersey.name %> - <%= jersey.year %></div>
+        </div>
+      <% end %>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#jerseysCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#jerseysCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+
+  <h2 class="mt-5 mb-4">Nos équipes</h2>
+  <div id="teamsCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <% @teams.each_with_index do |team, index| %>
+        <div class="carousel-item <%= 'active' if index == 0 %>">
+          <div class="text-center">
+            <h3><%= team.name %></h3>
+            <p><%= team.country %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#teamsCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#teamsCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</div>

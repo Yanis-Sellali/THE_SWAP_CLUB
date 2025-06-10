@@ -1,28 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
-  get 'messages/create'
-  get 'chats/show'
-  get 'exchanges/index'
-  get 'exchanges/show'
-  get 'exchanges/new'
-  get 'exchanges/create'
-  get 'teams/index'
-  get 'teams/show'
-  get 'teams/new'
-  get 'teams/create'
-  get 'teams/edit'
-  get 'teams/update'
-  get 'teams/destroy'
-  get 'jerseys/index'
-  get 'jerseys/show'
-  get 'jerseys/new'
-  get 'jerseys/create'
-  get 'jerseys/edit'
-  get 'jerseys/update'
-  get 'jerseys/destroy'
-  get 'users/show'
-  get 'users/index'
+
   root to: "pages#home"
+
+  resources :users, only: [:index, :show]
+  resources :jerseys
+  resources :teams
+  resources :exchanges, only: [:index, :show, :new, :create]
+  resources :chats, only: [:show] do
+    resources :messages, only: [:create]
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

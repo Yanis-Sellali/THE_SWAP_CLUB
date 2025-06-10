@@ -1,2 +1,20 @@
-<h1>Chats#show</h1>
-<p>Find me in app/views/chats/show.html.erb</p>
+<h1>Discussion</h1>
+
+<div class="chat-box" style="border: 1px solid #ccc; padding: 1rem; max-height: 400px; overflow-y: auto;">
+  <% @messages.each do |message| %>
+    <div style="margin-bottom: 0.5rem;">
+      <strong><%= message.user.email %></strong> :
+      <%= message.content %>
+      <small style="color: grey;"><%= message.created_at.strftime("%H:%M") %></small>
+    </div>
+  <% end %>
+</div>
+
+<%= form_with model: [@chat, @message], local: true do |form| %>
+  <div class="field">
+    <%= form.text_area :content, rows: 2, placeholder: "Écris ton message..." %>
+  </div>
+  <div class="actions">
+    <%= form.submit "Envoyer", class: "btn btn-primary" %>
+  </div>
+<% end %>
