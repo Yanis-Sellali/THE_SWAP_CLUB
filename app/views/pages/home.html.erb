@@ -6,7 +6,7 @@
       <% @jerseys.each_with_index do |jersey, index| %>
         <div class="carousel-item <%= 'active' if index == 0 %>">
           <div class="d-flex justify-content-center">
-            <%= image_tag jersey.photo_url, class: "d-block", style: "height: 300px;" %>
+            <%= image_tag "/assets/jerseys/#{jersey.image}", class: "d-block", style: "height: 300px;" %>
           </div>
           <div class="text-center mt-2"><%= jersey.name %> - <%= jersey.year %></div>
         </div>

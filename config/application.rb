@@ -13,6 +13,8 @@ module TheSwapClub
       generate.assets false
       generate.helper false
       generate.test_framework :test_unit, fixture: false
+      config.assets.paths << Rails.root.join("app", "assets", "images")
+
     end
 
     # Initialize configuration defaults for originally generated Rails version.
