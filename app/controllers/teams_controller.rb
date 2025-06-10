@@ -1,22 +1,18 @@
 class TeamsController < ApplicationController
+  before_action :set_team, only: [:show]
+
   def index
+    @teams = Team.all.order(:name)
   end
 
   def show
+    @team
   end
 
-  def new
-  end
+  private
 
-  def create
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
+  def set_team
+    @team = Team.find(params[:id])
   end
 end
+

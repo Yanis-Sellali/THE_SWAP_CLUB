@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-4">
+  <a class="navbar-brand fw-bold" href="/">THE SWAP CLUB</a>
+
+  <div class="ms-auto">
+    <% if user_signed_in? %>
+      <div class="dropdown">
+        <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+          Mon profil
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><%= link_to "Modifier mon profil", edit_user_registration_path, class: "dropdown-item" %></li>
+          <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+        </ul>
+      </div>
+    <% else %>
+      <%= link_to "Connexion", new_user_session_path, class: "btn btn-outline-primary me-2" %>
+      <%= link_to "Inscription", new_user_registration_path, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</nav>

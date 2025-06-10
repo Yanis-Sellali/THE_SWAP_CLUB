@@ -1,2 +1,22 @@
-<h1>Exchanges#index</h1>
-<p>Find me in app/views/exchanges/index.html.erb</p>
+<h1>Liste des échanges</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Propriétaire</th>
+      <th>Maillot</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @exchanges.each do |exchange| %>
+      <tr>
+        <td><%= exchange.owner.nom %></td>
+        <td><%= exchange.jersey.name %></td>
+        <td><%= link_to "Voir", exchange_path(exchange) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Créer un nouvel échange", new_exchange_path %>
