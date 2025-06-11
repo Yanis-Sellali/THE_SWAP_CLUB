@@ -2,11 +2,12 @@ class TeamsController < ApplicationController
   before_action :set_team, only: [:show]
 
   def index
-    @teams = Team.all.order(:name)
+    @teams = Team.all
   end
 
   def show
-    @team
+     @team = Team.find(params[:id])
+    @jerseys = @team.jerseys
   end
 
   private
@@ -15,4 +16,3 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
   end
 end
-

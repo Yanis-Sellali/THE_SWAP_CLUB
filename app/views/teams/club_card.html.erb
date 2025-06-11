@@ -1,0 +1,7 @@
+<div class="card position-relative shadow-sm h-100" style="border-radius: 22px; overflow: hidden;">
+  <%= image_tag club.background_image_url, class: "w-100 h-100", style: "object-fit:cover; filter: brightness(0.55); min-height:200px;" %>
+  <div class="position-absolute top-50 start-50 translate-middle text-white w-100 text-center">
+    <%= image_tag club.logo_url, height: 56, class: "mb-2" if club.logo_url.present? %>
+    <div class="fw-bold fs-4 text-uppercase" style="text-shadow: 1px 1px 5px #000;"><%= club.name %></div>
+  </div>
+</div>

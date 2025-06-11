@@ -1,0 +1,13 @@
+<div class="card h-100 shadow-sm">
+  <% if jersey.image.present? %>
+  <%= image_tag jersey.image, class: "card-img-top", style: "height: 180px; object-fit: cover;" %>
+<% else %>
+  <%= image_tag "psg-2001.jpg", class: "card-img-top", style: "height: 180px; object-fit: cover;" %>
+<% end %>
+
+  <div class="card-body text-center">
+    <h5 class="card-title mb-1 fw-bold"><%= jersey.name %></h5>
+    <p class="text-muted mb-1"><%= jersey.team&.name || "Équipe inconnue" %></p>
+    <p class="small text-secondary"><%= jersey.year %></p>
+  </div>
+</div>

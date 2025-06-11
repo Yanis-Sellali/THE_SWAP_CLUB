@@ -192,30 +192,6 @@ jersey8 = Jersey.create!(
   condition: "Used"
 )
 
-jersey9 = Jersey.create!(
-  name: "Inter Milan Home Jersey",
-  flocking: "Thuram",
-  year: 2023,
-  description: "Official Inter Milan home jersey for the 2023 season.",
-  image: "jersey-intermilan-home-2023-thuram.jpg",
-  user: user3,
-  team: team9,
-  size: "L",
-  condition: "New"
-)
-
-jersey10 = Jersey.create!(
-  name: "Chelsea Away Jersey",
-  flocking: "Sterling",
-  year: 2023,
-  description: "Official Chelsea away jersey for the 2023 season.",
-  image: "jersey-chelsea-away-2023-sterling.jpg",
-  user: user1,
-  team: team10,
-  size: "M",
-  condition: "Used"
-)
-
 jersey11 = Jersey.create!(
   name: "PSG Third Jersey",
   flocking: "Neymar",
@@ -243,94 +219,45 @@ jersey12 = Jersey.create!(
 jersey13 = Jersey.create!(
   name: "Liverpool Away Jersey",
   flocking: "Van Dijk",
-  year: 2023,
-  description: "Official Liverpool third jersey for the 2023 season.",
-  image: "jersey-liverpool-third-2023-virgil.jpg",
+  year: 2019,
+  description: "Official Liverpool third jersey for the 2019 season.",
+  image: "jersey-liverpool-third-2019-virgil.jpg",
   user: user1,
   team: team3,
   size: "XL",
   condition: "New"
 )
 
-jersey14 = Jersey.create!(
-  name: "AC Milan Home Jersey",
-  flocking: "Tonali",
-  year: 2023,
-  description: "Official AC Milan home jersey for the 2023 season.",
-  image: "jersey-acmilan-home-2023-tonali.jpg",
-  user: user2,
-  team: team4,
-  size: "L",
-  condition: "Used"
-)
-
-jersey15 = Jersey.create!(
-  name: "Manchester City Third Jersey",
-  flocking: "De Bruyne",
-  year: 2024,
-  description: "Official Manchester City third jersey for the 2024 season.",
-  image: "jersey-mancity-third-2024-debruyne.jpg",
-  user: user3,
-  team: team5,
-  size: "M",
-  condition: "New"
-)
-jersey16 = Jersey.create!(
-  name: "Bayern Munich Away Jersey",
-  flocking: "Kimmich",
-  year: 2022,
-  description: "Official Bayern Munich away jersey for the 2022 season.",
-  image: "jersey-bayernmunich-home-2022-kimmich.jpg",
-  user: user1,
-  team: team6,
-  size: "L",
-  condition: "Used"
-)
-
-jersey17 = Jersey.create!(
-  name: "Barcelona Away Jersey",
-  flocking: "Pedri",
-  year: 2023,
-  description: "Official Barcelona away jersey for the 2023 season.",
-  image: "jersey-barca-away-2023-pedri.jpg",
-  user: user2,
-  team: team7,
-  size: "M",
-  condition: "New"
-)
-
-jersey18 = Jersey.create!(
-  name: "Juventus Home Jersey",
-  flocking: "Chiesa",
-  year: 2023,
-  description: "Official Juventus home jersey for the 2023 season.",
-  image: "jersey-juventus-home-2023-chiesa.jpg",
-  user: user3,
-  team: team8,
-  size: "XL",
-  condition: "Used"
-)
 
 jersey19 = Jersey.create!(
   name: "Inter Milan Away Jersey",
-  flocking: "Martinez",
-  year: 2023,
-  description: "Official Inter Milan away jersey for the 2023 season.",
-  image: "jersey-intermilan-away-2023-lautaro.jpeg",
+  flocking: "Milito",
+  year: 2010,
+  description: "Official Inter Milan away jersey for the 2010 season.",
+  image: "jersey-intermilan-away-2010-milito.jpeg",
   user: user1,
   team: team9,
   size: "L",
   condition: "New"
 )
 
-jersey20 = Jersey.create!(
-  name: "PSG Home Jersey",
-  flocking: "Doué",
-  year: 2024,
-  description: "Official PSG home jersey for the 2024 season.",
-  image: "jersey-psg-home-2024-desiredoue.jpg",
-  user: user2,
-  team: team10,
-  size: "M",
-  condition: "Used"
+Team.destroy_all
+Jersey.destroy_all
+
+real = Team.create!(name: "REAL MADRID", image_url: "real.jpg")
+psg = Team.create!(name: "PARIS SAINT GERMAIN", image_url: "psg.jpg")
+milan = Team.create!(name: "AC MILAN", image_url: "milan.jpg")
+
+Jersey.create!(
+name: "Maillot Zidane 10",
+club: "France",
+year: 1998,
+image_url: "france-zidane.jpg"
+)
+
+Jersey.create!(
+name: "Maillot Mbappé",
+club: "REAL MADRID",
+year: 2024,
+image_url: "madrid-mbappe.jpg"
 )
