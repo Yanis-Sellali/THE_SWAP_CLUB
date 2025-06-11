@@ -70,7 +70,7 @@ team10 = Team.create!(
 
 # USERS
 user1 = User.create!(
-  email: "david.b@example.com",
+  email: "fake@fake.fr",
   password: "password",
   password_confirmation: "password",
   nom: "David B",
@@ -102,7 +102,7 @@ jersey1 = Jersey.create!(
   flocking: "Mbappe",
   year: 2023,
   description: "Official PSG home jersey for the 2023 season.",
-  image: "jersey-psg-home-2023-mbappe.jpg",
+  image: "maillot-mbappe-equipe-de-france-domicile-2024.jpg",
   user: user1,
   team: team1,
   size: "L",

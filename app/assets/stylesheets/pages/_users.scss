@@ -1,0 +1,68 @@
+// Specific CSS for your home-page
+.user-page {
+  .page-title {
+    font-family: "BakbakOne-Regular", sans-serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: #000;
+  }
+
+  .user-avatar {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .user-name {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: "Inter-ExtraBold", sans-serif;
+    color: #000;
+  }
+
+  .user-info {
+    font-size: 1rem;
+    color: #555;
+
+    .rating {
+      color: #ffb90b;
+    }
+
+    .location {
+      color: #333;
+    }
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    font-family: "Inter-ExtraBold", sans-serif;
+  }
+
+  .jersey-card {
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .add-jersey {
+    border: 2px dashed rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    background: #fff;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: #f9f9f9;
+    }
+
+    i {
+      color: #666;
+    }
+
+    .fw-bold {
+      font-size: 1rem;
+    }
+  }
+}

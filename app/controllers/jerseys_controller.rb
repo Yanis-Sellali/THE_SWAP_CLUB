@@ -38,6 +38,7 @@ class JerseysController < ApplicationController
     @jersey.destroy
     redirect_to jerseys_path
   end
+   
 
   private
 
