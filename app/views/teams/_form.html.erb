@@ -1,0 +1,13 @@
+<%= form_with model: team, local: true do |f| %>
+  <div class="mb-4">
+    <%= f.label :name, "Nom de l’équipe", class: "block mb-1" %>
+    <%= f.text_field :name, class: "form-control w-full mb-2" %>
+  </div>
+  <div class="mb-4">
+    <%= f.label :logo, "Logo (URL)", class: "block mb-1" %>
+    <%= f.text_field :logo, class: "form-control w-full mb-2" %>
+  </div>
+  <div class="flex justify-end mt-6">
+    <%= f.submit team.persisted? ? "Mettre à jour" : "Créer l’équipe", class: "btn btn-success px-6 py-2 font-bold" %>
+  </div>
+<% end %>

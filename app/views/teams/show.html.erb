@@ -1,2 +1,40 @@
 <h1>Teams#show</h1>
 <p>Find me in app/views/teams/show.html.erb</p>
+<div class="max-w-lg mx-auto bg-white p-6 rounded-xl shadow">
+  <% if @team.logo.present? %>
+    <div class="flex justify-center mb-4">
+      <img src="<%= @team.logo %>" alt="Logo" class="w-24 h-24 rounded-full object-contain border bg-white">
+    </div>
+  <% end %>
+  <h1 class="text-2xl font-bold mb-2"><%= @team.name %></h1>
+
+  <%# Affichage des maillots de l’équipe %>
+  <h2 class="text-xl font-semibold mt-8 mb-3">Maillots de cette équipe :</h2>
+  <% if @team.jerseys.any? %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <% @team.jerseys.each do |jersey| %>
+        <div class="bg-gray-50 p-3 rounded-xl shadow flex flex-col items-center">
+          <% if defined?(jersey.photo) && jersey.photo.attached? %>
+            <%= image_tag jersey.photo.variant(resize: "80x80"), class: "rounded-lg mb-1" %>
+          <% else %>
+            <span class="block w-20 h-20 bg-gray-100 rounded-lg mb-1 flex items-center justify-center">
+              <i class="fa fa-tshirt text-3xl text-gray-400"></i>
+            </span>
+          <% end %>
+          <div class="font-bold"><%= jersey.name %></div>
+          <div class="text-sm text-gray-600">Taille : <%= jersey.size %></div>
+          <div class="text-xs text-gray-500 mb-1">État : <%= jersey.condition %></div>
+          <%= link_to "Voir ce maillot", jersey_path(jersey), class: "btn btn-xs btn-primary mt-1" %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="text-gray-500 italic">Aucun maillot enregistré pour cette équipe.</div>
+  <% end %>
+
+  <div class="flex space-x-2 mt-8">
+    <%= link_to "Retour à la liste", teams_path, class: "btn btn-secondary" %>
+    <%= link_to "Éditer", edit_team_path(@team), class: "btn btn-warning" %>
+    <%= link_to "Supprimer", team_path(@team), method: :delete, data: { confirm: "Supprimer cette équipe ?" }, class: "btn btn-danger" %>
+  </div>
+</div>
