@@ -1,48 +1,49 @@
-<div class="container mt-5">
-  <h2 class="mb-4 text-center">Nos derniers maillots</h2>
-
-  <div id="jerseysCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <% @jerseys.each_with_index do |jersey, index| %>
-        <div class="carousel-item <%= index.zero? ? 'active' : '' %>">
-          <div class="d-flex justify-content-center">
-            <%= image_tag "/assets/jerseys/#{jersey.image}", class: "d-block img-fluid", style: "max-height: 300px;" %>
-          </div>
-          <div class="text-center mt-2 fw-bold"><%= jersey.name %> - <%= jersey.year %></div>
-        </div>
-      <% end %>
-    </div>
-
-    <button class="carousel-control-prev" type="button" data-bs-target="#jerseysCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-
-    <button class="carousel-control-next" type="button" data-bs-target="#jerseysCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button>
-  </div>
-
-  <h2 class="mt-5 mb-4 text-center">Nos équipes</h2>
-
-  <div id="teamsCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <% @teams.each_with_index do |team, index| %>
-        <div class="carousel-item <%= index.zero? ? 'active' : '' %>">
-          <div class="text-center">
-            <h3><%= team.name %></h3>
-            <p><%= team.country %></p>
-          </div>
-        </div>
-      <% end %>
-    </div>
-
-    <button class="carousel-control-prev" type="button" data-bs-target="#teamsCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-
-    <button class="carousel-control-next" type="button" data-bs-target="#teamsCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button>
+<!-- Hero Banner -->
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_url('banner-psg.jpg') %>); background-size: cover; background-position: center; height: 400px;">
+  <div class="container d-flex flex-column align-items-center justify-content-center h-100">
+    <%= image_tag "logo-banner.png" %>
+    <p class="text-white mt-3">Old shirts, new stories.</p>
   </div>
 </div>
-ls
+
+<!-- Maillots -->
+<section class="py-5">
+  <h2 class="text-center fw-bold mb-4">TOUS LES MAILLOTS</h2>
+  <div class="container-fluid px-5">
+    <div class="row flex-nowrap overflow-auto">
+      <% @jerseys.each do |jersey| %>
+        <div class="col-6 col-md-2">
+          <%= render 'jerseys/jersey_card', jersey: jersey %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- Clubs -->
+<section class="py-5 bg-white">
+  <h2 class="text-center fw-bold mb-4">LES CLUBS</h2>
+  <div class="container custom-clubs-grid">
+    <div class="row g-3">
+      <% @teams.each_with_index do |team, index| %>
+        <% size_class = case index
+          when 0, 3 then 'col-md-6 col-lg-4'
+          when 1, 2, 4, 5 then 'col-md-6 col-lg-4'
+          else 'col-6 col-md-4 col-lg-3'
+        end %>
+
+        <div class="<%= size_class %>">
+          <%= link_to team_path(team), class: "card team-card text-white border-0 shadow-sm h-100 position-relative" do %>
+            <%= image_tag team.background, class: "card-img h-100 w-100", style: "object-fit: cover; filter: brightness(0.5);" %>
+
+            <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center text-center">
+              <div class="team-logo-wrapper mb-2">
+                <%= image_tag team.logo, alt: team.name, class: "team-logo" %>
+              </div>
+              <h5 class="card-title text-uppercase fw-bold text-white team-name m-0"><%= team.name %></h5>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
