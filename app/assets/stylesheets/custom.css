@@ -1,6 +1,6 @@
 body {
   color: white;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Bakbak One', sans-serif !important;
 }
 
 .card {
@@ -12,4 +12,64 @@ body {
   background-color: #1E88E5;
   border-color: #1565C0;
   transition: all 0.3s ease;
+}
+h1, h2, h3, .titre-animée {
+    font-family: 'Bakbak One', sans-serif;
+    position: relative;
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: default;
+}
+
+h1:hover, h2:hover, h3:hover, .titre-animée:hover {
+    transform: translateY(-4px);
+    color: #f8d92f; /* Jaune doux, tu peux adapter */
+}
+
+.titre-underline {
+    font-family: 'Bakbak One', sans-serif;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.titre-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    height: 2px;
+    width: 0%;
+    background-color: #302e27;
+    transition: width 0.3s ease;
+}
+
+.titre-underline:hover::after {
+    width: 100%;
+}
+.footer-social {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #222; /* Couleur de fond ajustable */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+footer .fab {
+    font-size: 24px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+footer .fab:hover {
+    transform: translateY(-3px) scale(1.1);
+    color: #f8d92f; /* Tu peux mettre la couleur que tu veux */
 }

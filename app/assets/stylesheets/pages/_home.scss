@@ -31,4 +31,12 @@
 .card-img {
   filter: brightness(0.5);
 }
+  
+// Specific CSS for your home-page
+.avatar-hover {
+  transition: transform 0.3s ease-in-out;
+}
+
+.avatar-hover:hover {
+  transform: scale(1.1); 
 }
