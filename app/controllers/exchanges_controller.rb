@@ -19,12 +19,11 @@ class ExchangesController < ApplicationController
       redirect_to @exchange, notice: "Echange creer avec succès"
     else
       render :new, status: :unprocessable_entity
+    end
   end
-end
-
   private
 
   def exchange_params
-  params.require(:exchange).permit(:jersey_id)
+    params.require(:exchange).permit(:jersey_id)
   end
 end

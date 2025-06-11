@@ -31,6 +31,7 @@ class JerseysController < ApplicationController
       redirect_to @jersey
     else
       render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -44,5 +45,4 @@ class JerseysController < ApplicationController
   def jersey_params
     params.require(:jersey).permit(:name, :flocking, :year, :description, :image, :team_id, :size, :condition)
   end
-end
 end
