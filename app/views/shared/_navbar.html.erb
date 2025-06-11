@@ -1,20 +1,41 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light px-4">
-  <a class="navbar-brand fw-bold" href="/">THE SWAP CLUB</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
 
-  <div class="ms-auto">
-    <% if user_signed_in? %>
-      <div class="dropdown">
-        <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-          Mon profil
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <li><%= link_to "Modifier mon profil", edit_user_registration_path, class: "dropdown-item" %></li>
-          <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
-        </ul>
-      </div>
-    <% else %>
-      <%= link_to "Connexion", new_user_session_path, class: "btn btn-outline-primary me-2" %>
-      <%= link_to "Inscription", new_user_registration_path, class: "btn btn-primary" %>
-    <% end %>
+    <!-- Logo à gauche, version agrandie -->
+    <a class="navbar-brand" href="#">
+      <%= image_tag "logo.png", alt: "TI1ESWAP CLUB", style: "height: 60px"%>
+    </a>
+
+    <!-- Avatar du profil à droite -->
+    <div class="d-flex align-items-center order-lg-last">
+      <% if user_signed_in? %>
+        <%= link_to user_path(current_user), class: "text-decoration-none d-flex align-items-center" do %>
+          <% if current_user.avatar.attached? %>
+            <%= image_tag current_user.avatar, class: "rounded-circle border border-light avatar-hover",
+                          style: "width:40px; height:40px; object-fit:cover;" %>
+          <% else %>
+            <%= image_tag "default_avatar.jpg", class: "rounded-circle border border-light avatar-hover",
+                          style: "width:40px; height:40px; object-fit:cover;" %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= link_to "Se connecter", new_user_session_path, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+
+    <!-- Bouton burger placé après l'avatar -->
+    <button class="navbar-toggler order-last ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Liens centrés avec espacement équilibré -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav w-100 d-flex justify-content-evenly">
+        <li class="nav-item"><%= link_to 'Accueil', root_path, class: 'nav-link' %></li>
+        <li class="nav-item"><%= link_to 'Clubs', teams_path, class: 'nav-link' %></li>
+        <li class="nav-item"><%= link_to 'Maillots', jerseys_path, class: 'nav-link' %></li>
+      </ul>
+    </div>
+
   </div>
 </nav>
