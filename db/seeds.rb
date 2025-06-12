@@ -3,8 +3,9 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
 # Example:
-Team.destroy_all
+# Team.destroy_all
 User.destroy_all
+Team.destroy_all
 Jersey.destroy_all
 
 # TEAMS
@@ -123,8 +124,8 @@ jersey1 = Jersey.create!(
   year: 2023,
   description: "Official PSG home jersey for the 2023 season.",
   image: "jersey-psg-home-2023-mbappe.jpg",
-  user: user1,
-  team: team1,
+  user_id: user1.id,
+  team_id: team1.id,
   size: "L",
   condition: "New"
 )
@@ -135,8 +136,8 @@ jersey2 = Jersey.create!(
   year: 2023,
   description: "Official Real Madrid away jersey for the 2023 season.",
   image: "jersey-realmadrid-away-2023-benzema.jpg",
-  user: user2,
-  team: team2,
+  user_id: user2.id,
+  team_id: team2.id,
   size: "M",
   condition: "Used"
 )
@@ -147,8 +148,8 @@ jersey3 = Jersey.create!(
   year: 2023,
   description: "Official Liverpool home jersey for the 2023 season.",
   image: "jersey-liverpool-home-2023-salah.jpg",
-  user: user3,
-  team: team3,
+  user_id: user3.id,
+  team_id: team3.id,
   size: "XL",
   condition: "New"
 )
@@ -158,8 +159,8 @@ jersey4 = Jersey.create!(
   year: 2024,
   description: "Official AC Milan home jersey for the 2024 season.",
   image: "jersey-acmilan-home-2024-leao.jpg",
-  user: user1,
-  team: team4,
+  user_id: user1.id,
+  team_id: team4.id,
   size: "L",
   condition: "Used"
 )
@@ -170,8 +171,8 @@ jersey5 = Jersey.create!(
   year: 2023,
   description: "Official Manchester City home jersey for the 2023 season.",
   image: "jersey-mancity-home-2023-haaland.jpg",
-  user: user2,
-  team: team5,
+  user_id: user2.id,
+  team_id: team5.id,
   size: "M",
   condition: "New"
 )
@@ -182,8 +183,8 @@ jersey6 = Jersey.create!(
   year: 2023,
   description: "Official Bayern Munich away jersey for the 2023 season.",
   image: "jersey-bayernmunich-away-2023-muller.jpeg",
-  user: user3,
-  team: team6,
+  user_id: user3.id,
+  team_id: team6.id,
   size: "L",
   condition: "Used"
 )
@@ -194,8 +195,8 @@ jersey7 = Jersey.create!(
   year: 2023,
   description: "Official Barcelona home jersey for the 2023 season.",
   image: "jersey-barca-home-2023-lewandowski.jpg",
-  user: user1,
-  team: team7,
+  user_id: user1.id,
+  team_id: team7.id,
   size: "M",
   condition: "New"
 )
@@ -206,8 +207,8 @@ jersey8 = Jersey.create!(
   year: 2023,
   description: "Official Juventus away jersey for the 2023 season.",
   image: "jersey-juventus-away-2023-vlahovic.jpg",
-  user: user2,
-  team: team8,
+  user_id: user2.id,
+  team_id: team8.id,
   size: "XL",
   condition: "Used"
 )
@@ -218,8 +219,8 @@ jersey11 = Jersey.create!(
   year: 2023,
   description: "Official PSG third jersey for the 2023 season.",
   image: "jersey-psg-third-2023-neymar.jpg",
-  user: user2,
-  team: team1,
+  user_id: user2.id,
+  team_id: team1.id,
   size: "L",
   condition: "New"
 )
@@ -230,8 +231,8 @@ jersey12 = Jersey.create!(
   year: 2023,
   description: "Official Real Madrid home jersey for the 2023 season.",
   image: "jersey-realmadrid-home-2023-vinicius.jpeg",
-  user: user3,
-  team: team2,
+  user_id: user3.id,
+  team_id: team2.id,
   size: "M",
   condition: "Used"
 )
@@ -240,37 +241,23 @@ jersey13 = Jersey.create!(
   name: "Liverpool Away Jersey",
   flocking: "Van Dijk",
   year: 2019,
-  description: "Official Liverpool third jersey for the 2019 season.",
-  image: "jersey-liverpool-third-2019-virgil.jpg",
-  user: user1,
-  team: team3,
+  description: "Official Liverpool third jersey for the 2023 season.",
+  image: "jersey-liverpool-third-2023-virgil.jpg",
+  user_id: user1.id,
+  team_id: team3.id,
   size: "XL",
   condition: "New"
 )
 
 
 jersey19 = Jersey.create!(
-  name: "Inter Milan Away Jersey",
-  flocking: "Milito",
+  name: "Inter Milan home Jersey",
+  flocking: "Thuram",
   year: 2010,
-  description: "Official Inter Milan away jersey for the 2010 season.",
-  image: "jersey-intermilan-away-2010-milito.jpeg",
-  user: user1,
-  team: team9,
+  description: "Official Inter Milan away jersey for the 2023 season.",
+  image: "jersey-intermilan-home-2023-thuram.jpg",
+  user_id: user1.id,
+  team_id: team9.id,
   size: "L",
   condition: "New"
-)
-
-Jersey.create!(
-name: "Maillot Zidane 10",
-club: "France",
-year: 1998,
-image_url: "france-zidane.jpg"
-)
-
-Jersey.create!(
-name: "Maillot Mbappé",
-club: "REAL MADRID",
-year: 2024,
-image_url: "madrid-mbappe.jpg"
 )
