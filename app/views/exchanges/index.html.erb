@@ -1,22 +1,36 @@
-<h1>Liste des échanges</h1>
+<h1>Échanges en attente</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Propriétaire</th>
-      <th>Maillot</th>
+      <th>Proposé par</th>
+      <th>Maillot envoyé</th>
+      <th>Maillot demandé</th>
+      <th>Destinataire</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @exchanges.each do |exchange| %>
       <tr>
-        <td><%= exchange.owner.nom %></td>
-        <td><%= exchange.jersey.name %></td>
-        <td><%= link_to "Voir", exchange_path(exchange) %></td>
+        <td><%= exchange.sender.nom %></td>
+        <td><%= exchange.sender_jersey.team.name %> (<%= exchange.sender_jersey.size %>)</td>
+        <td><%= exchange.receiver_jersey.team.name %> (<%= exchange.receiver_jersey.size %>)</td>
+        <td><%= exchange.receiver.nom %></td>
+        <td>
+          <%= link_to "Voir l’échange", exchange_path(exchange), class: "btn btn-primary mb-1" %>
+          <% if exchange.receiver == current_user %>
+            <%= form_with url: accept_exchange_path(exchange), method: :patch, local: true, class: "d-inline" do %>
+              <%= submit_tag "Accepter", class: "btn btn-success mb-1" %>
+            <% end %>
+            <%= form_with url: refuse_exchange_path(exchange), method: :patch, local: true, class: "d-inline" do %>
+              <%= submit_tag "Refuser", class: "btn btn-danger mb-1" %>
+            <% end %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to "Créer un nouvel échange", new_exchange_path %>
+<%= link_to "Créer un nouvel échange", new_exchange_path, class: "btn btn-secondary mt-3" %>

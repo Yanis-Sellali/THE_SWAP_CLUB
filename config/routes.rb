@@ -6,7 +6,12 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
   resources :jerseys
   resources :teams, only: [:index, :show]
-  resources :exchanges, only: [:index, :show, :new, :create]
+  resources :exchanges, only: [:index, :show, :new, :create] do
+    member do
+      patch :accept
+      patch :refuse
+    end
+  end
   resources :chats, only: [:show] do
     resources :messages, only: [:create]
   end
