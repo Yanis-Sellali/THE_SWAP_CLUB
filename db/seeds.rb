@@ -4,8 +4,9 @@
 #
 # Example:
 # Team.destroy_all
-# User.destroy_all
-# Jersey.destroy_all
+User.destroy_all
+Team.destroy_all
+Jersey.destroy_all
 
 # TEAMS
 team1 = Team.create!(
@@ -241,8 +242,7 @@ jersey19 = Jersey.create!(
   condition: "New"
 )
 
-Team.destroy_all
-Jersey.destroy_all
+
 
 real = Team.create!(name: "REAL MADRID", image_url: "real.jpg")
 psg = Team.create!(name: "PARIS SAINT GERMAIN", image_url: "psg.jpg")
