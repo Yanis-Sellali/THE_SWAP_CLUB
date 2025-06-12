@@ -1,14 +1,17 @@
 <h1>Créer un nouvel échange</h1>
 
-<%= form_with model: @exchange, local: true do |form| %>
+<%= form_with(model: @exchange, url: exchanges_path, method: :post) do |form| %>
   <div>
-    <%= form.label :jersey_id, "Choisir un maillot" %><br>
-    <%= form.collection_select :jersey_id, Jersey.all, :id, :name, prompt: "Sélectionnez un maillot" %>
+    <label>Ton maillot :</label>
+    <%= form.collection_select(:sender_jersey_id, @user_jerseys, :id, :name) %>
   </div>
 
   <div>
-    <%= form.submit "Créer l'échange" %>
+    <label>Maillot que tu veux échanger :</label>
+    <%= form.collection_select(:receiver_jersey_id, @available_jerseys, :id, :name) %>
   </div>
+
+  <%= form.submit "Proposer l’échange", class: "btn btn-primary" %>
 <% end %>
 
-<%= link_to "Retour", exchanges_path %>
+<%= link_to "Retour aux échanges", exchanges_path, class: "btn btn-secondary" %>

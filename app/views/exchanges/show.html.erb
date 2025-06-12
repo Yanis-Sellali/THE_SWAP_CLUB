@@ -1,15 +1,17 @@
-<h1>Détails de l'échange</h1>
+<h1>Échange proposé par <%= @exchange.sender.nom %></h1>
 
-<p>
-  <strong>Propriétaire :</strong>
-  <%= @exchange.owner.nom %>
-</p>
+<p><strong>Maillot envoyé :</strong> <%= @exchange.sender_jersey.team.name %> (<%= @exchange.sender_jersey.size %>)</p>
+<p><strong>Maillot demandé :</strong> <%= @exchange.receiver_jersey.team.name %> (<%= @exchange.receiver_jersey.size %>)</p>
+<p><strong>Statut :</strong> <%= @exchange.status %></p>
 
-<p>
-  <strong>Maillot :</strong>
-  <%= @exchange.jersey.name %>
-</p>
+<% if @exchange.receiver == current_user %>
+  <%= form_with url: accept_exchange_path(@exchange), method: :patch, class: "d-inline" do %>
+    <%= submit_tag "Accepter l’échange", class: "btn btn-success mb-1" %>
+  <% end %>
 
-<p>
-  <%= link_to "Retour à la liste", exchanges_path %>
-</p>
+  <%= form_with url: refuse_exchange_path(@exchange), method: :patch, class: "d-inline" do %>
+    <%= submit_tag "Refuser l’échange", class: "btn btn-danger mb-1" %>
+  <% end %>
+<% end %>
+
+<%= link_to "Retour aux échanges", exchanges_path, class: "btn btn-secondary mt-3" %>
