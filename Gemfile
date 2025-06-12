@@ -75,3 +75,7 @@ end
 
 #gem devise
 gem "devise"
+
+# Gem Cloudinary
+gem "cloudinary"
+gem "activestorage-cloudinary-service"
