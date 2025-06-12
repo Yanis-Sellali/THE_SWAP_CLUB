@@ -221,8 +221,8 @@ jersey13 = Jersey.create!(
   name: "Liverpool Away Jersey",
   flocking: "Van Dijk",
   year: 2019,
-  description: "Official Liverpool third jersey for the 2019 season.",
-  image: "jersey-liverpool-third-2019-virgil.jpg",
+  description: "Official Liverpool third jersey for the 2023 season.",
+  image: "jersey-liverpool-third-2023-virgil.jpg",
   user_id: user1.id,
   team_id: team3.id,
   size: "XL",
@@ -231,11 +231,11 @@ jersey13 = Jersey.create!(
 
 
 jersey19 = Jersey.create!(
-  name: "Inter Milan Away Jersey",
-  flocking: "Milito",
+  name: "Inter Milan home Jersey",
+  flocking: "Thuram",
   year: 2010,
-  description: "Official Inter Milan away jersey for the 2010 season.",
-  image: "jersey-intermilan-away-2010-milito.jpeg",
+  description: "Official Inter Milan away jersey for the 2023 season.",
+  image: "jersey-intermilan-home-2023-thuram.jpg",
   user_id: user1.id,
   team_id: team9.id,
   size: "L",
