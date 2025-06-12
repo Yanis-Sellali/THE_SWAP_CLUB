@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
   end
   resources :chats, only: [:show] do
-    resources :messages, only: [:create]
+  resources :messages, only: [:create]
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

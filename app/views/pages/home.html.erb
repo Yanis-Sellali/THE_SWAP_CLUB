@@ -7,13 +7,15 @@
 </div>
 
 <!-- Maillots -->
-<section class="py-5">
+<section class="py-5 bg-white">
   <h2 class="text-center fw-bold mb-4">TOUS LES MAILLOTS</h2>
   <div class="container-fluid px-5">
     <div class="row flex-nowrap overflow-auto">
       <% @jerseys.each do |jersey| %>
         <div class="col-6 col-md-2">
-          <%= render 'jerseys/jersey_card', jersey: jersey %>
+          <%= link_to jersey_path(jersey), class: "text-decoration-none text-dark" do %>
+            <%= render 'jerseys/jersey_card', jersey: jersey %>
+          <% end %>
         </div>
       <% end %>
     </div>
