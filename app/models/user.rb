@@ -7,4 +7,7 @@ class User < ApplicationRecord
   has_many :jerseys
   has_many :exchanges
 
+  has_many :jerseys, dependent: :destroy
+  references :user, foreign_key: true
+
 end
