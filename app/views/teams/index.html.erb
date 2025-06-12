@@ -1,2 +1,26 @@
-<h1>Teams#index</h1>
-<p>Find me in app/views/teams/index.html.erb</p>
+<section class="py-5 bg-white">
+  <h2 class="text-center fw-bold mb-4">LES CLUBS</h2>
+  <div class="container custom-clubs-grid">
+    <div class="row g-3">
+      <% @teams.each_with_index do |team, index| %>
+        <% size_class = case index
+          when 0, 3 then 'col-md-6 col-lg-4'
+          when 1, 2, 4, 5 then 'col-md-6 col-lg-4'
+          else 'col-6 col-md-4 col-lg-3'
+        end %>
+
+        <div class="<%= size_class %>">
+          <%= link_to team_path(team), class: "card team-card text-white border-0 shadow-sm h-100 position-relative" do %>
+            <%= image_tag team.background, class: "card-img h-100 w-100", style: "object-fit: cover; filter: brightness(0.5);" %>
+
+            <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center text-center">
+              <div class="team-logo-wrapper mb-2">
+                <%= image_tag team.logo, alt: team.name, class: "team-logo" %>
+              </div>
+              <h5 class="card-title text-uppercase fw-bold text-white team-name m-0"><%= team.name %></h5>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
