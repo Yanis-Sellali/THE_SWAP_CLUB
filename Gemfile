@@ -76,6 +76,11 @@ end
 #gem devise
 gem "devise"
 
+<<<<<<< HEAD
 # Gem Cloudinary
 gem "cloudinary"
 gem "activestorage-cloudinary-service"
+=======
+#gem coudinary
+gem "cloudinary"
+>>>>>>> 88eee511cede8063dbe67f0385387587b169e352
