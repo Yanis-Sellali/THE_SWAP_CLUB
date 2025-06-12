@@ -1,6 +1,6 @@
 class Team < ApplicationRecord
   has_many :jerseys
-  #has_one_attached :photo
+  has_one_attached :banner
 
 def logo
   "logos/#{name.parameterize}.png"
