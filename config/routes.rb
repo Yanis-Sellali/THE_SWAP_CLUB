@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show, :edit, :update]
   resources :jerseys
   resources :teams, only: [:index, :show]
   resources :exchanges, only: [:index, :show, :new, :create] do

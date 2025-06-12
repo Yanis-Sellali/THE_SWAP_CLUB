@@ -1,0 +1,19 @@
+<div class="container mt-5">
+  <h2>Modifier mes informations</h2>
+
+  <%= form_with model: @user, local: true do |f| %>
+    <div class="mb-3">
+      <%= f.label :nom, "Nom" %>
+      <%= f.text_field :nom, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :localisation, "Localisation" %>
+      <%= f.text_field :localisation, class: "form-control" %>
+    </div>
+
+    <%= f.submit "Enregistrer", class: "btn btn-primary" %>
+  <% end %>
+
+  <%= link_to "Annuler", user_path(@user), class: "btn btn-secondary mt-3" %>
+</div>

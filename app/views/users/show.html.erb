@@ -9,7 +9,8 @@
     <span class="location">📍 <%= @user.localisation %></span>
   </div>
 
-  <%= link_to "modifier mon profil", class: "btn btn-dark mt-3" %>
+<%= link_to "Modifier mon profil", edit_user_path(@user), class: "btn btn-dark mt-3" %>
+
 
 <h3 class="section-title mt-5 text-dark">Mes Maillots</h3>
 
