@@ -242,12 +242,6 @@ jersey19 = Jersey.create!(
   condition: "New"
 )
 
-
-
-real = Team.create!(name: "REAL MADRID", image_url: "real.jpg")
-psg = Team.create!(name: "PARIS SAINT GERMAIN", image_url: "psg.jpg")
-milan = Team.create!(name: "AC MILAN", image_url: "milan.jpg")
-
 Jersey.create!(
 name: "Maillot Zidane 10",
 club: "France",
