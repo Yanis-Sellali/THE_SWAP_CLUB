@@ -11,22 +11,24 @@
 
   <%= link_to "modifier mon profil", class: "btn btn-dark mt-3" %>
 
-  <h3 class="section-title mt-5 text-dark">Mes Maillots</h3>
+<h3 class="section-title mt-5 text-dark">Mes Maillots</h3>
 
-  <div class="row justify-content-center mt-4">
-    <% @user.jerseys.each do |jersey| %>
-      <div class="col-6 col-md-4 col-lg-3 mb-4">
-        <div class="jersey-card card shadow-sm">
-          <div class="card-body">
-            <%= image_tag(jersey.image, class: "card-img-top") %>
-            <h6 class="card-title mb-1 fw-bold"><%= jersey.team.name %></h6>
-            <p class="mb-0 small text-muted"><%= jersey.flocking %></p>
-            <p class="mb-0 small text-muted"><%= jersey.year %></p>
+<div class="row justify-content-center mt-4">
+  <% @jerseys.each do |jersey| %>
+    <div class="col-md-3 col-sm-6 mb-4">
+      <div class="card h-100 shadow-sm">
+        <%= link_to edit_jersey_path(jersey), class: "text-decoration-none text-dark" do %>
+          <%= image_tag jersey.image, class: "card-img-top", style: "height: 250px; object-fit: cover;" if jersey.image.present? %>
+          <div class="card-body text-center">
+            <h6 class="fw-bold"><%= jersey.team.name %></h6>
+            <p class="mb-0 text-muted"><%= jersey.flocking.presence || "-" %></p>
+            <p class="mb-0 text-muted"><%= jersey.year %></p>
           </div>
-        </div>
+        <% end %>
       </div>
-    <% end %>
-
+    </div>
+  <% end %>
+</div>
     <div class="col-6 col-md-4 col-lg-3 mb-4">
       <div class="add-jersey card h-100 d-flex justify-content-center align-items-center">
         <%= link_to new_jersey_path, class: "text-decoration-none text-muted text-center" do %>

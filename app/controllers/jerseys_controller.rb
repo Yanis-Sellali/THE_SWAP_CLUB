@@ -28,7 +28,7 @@ class JerseysController < ApplicationController
   def update
     @jersey = Jersey.find(params[:id])
     if @jersey.update(jersey_params)
-      redirect_to @jersey
+      redirect_to user_path(current_user), notice: "Maillot mis à jour avec succès."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -46,4 +46,3 @@ class JerseysController < ApplicationController
     params.require(:jersey).permit(:name, :flocking, :year, :description, :image, :team_id, :size, :condition)
   end
 end
-

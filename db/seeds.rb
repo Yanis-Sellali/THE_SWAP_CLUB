@@ -228,7 +228,6 @@ jersey13 = Jersey.create!(
   condition: "New"
 )
 
-
 jersey19 = Jersey.create!(
   name: "Inter Milan Away Jersey",
   flocking: "Milito",
