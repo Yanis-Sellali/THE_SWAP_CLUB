@@ -1,16 +1,16 @@
 class UsersController < ApplicationController
-
   before_action :authenticate_user!, only: [:index, :show]
 
   def show
-    @user = User.find_by(id: params[:id]) 
-  if@user.nil?
-    redirect_to root_path, alert: "Utilisateur non trouvé."
-  else
-    @jerseys = @user.jerseys
-    @exchanges = @user.exchanges
-  end
+    @user = User.find_by(id: params[:id])
 
+    if @user.nil?
+      redirect_to root_path, alert: "Utilisateur non trouvé."
+    else
+      @jerseys = @user.jerseys
+      @jerseys_number = @user.jerseys.count
+      @exchanges = @user.exchanges
+    end
   end
 
   def index

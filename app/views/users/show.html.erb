@@ -1,2 +1,42 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="user-page container text-center my-5">
+  <h1 class="page-title">Mon profil</h1>
+
+  <%= image_tag("default_avatar.jpg", class: "user-avatar") %>
+
+  <h2 class="user-name"><%= @user.nom %></h2>
+  <div class="user-info">
+    <span class="rating">⭐ <%= @user.rating %> (<%= @jerseys_number %> swaps)</span><br>
+    <span class="location">📍 <%= @user.localisation %></span>
+  </div>
+
+  <%= link_to "modifier mon profil", class: "btn btn-dark mt-3" %>
+
+  <h3 class="section-title mt-5 text-dark">Mes Maillots</h3>
+
+  <div class="row justify-content-center mt-4">
+    <% @user.jerseys.each do |jersey| %>
+      <div class="col-6 col-md-4 col-lg-3 mb-4">
+        <div class="jersey-card card shadow-sm">
+          <div class="card-body">
+            <%= image_tag(jersey.image, class: "card-img-top") %>
+
+            <h6 class="card-title mb-1 fw-bold"><%= jersey.team.name %></h6>
+            <p class="mb-0 small text-muted"><%= jersey.flocking %></p>
+            <p class="mb-0 small text-muted"><%= jersey.year %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="col-6 col-md-4 col-lg-3 mb-4">
+      <div class="add-jersey card h-100 d-flex justify-content-center align-items-center">
+        <%= link_to new_jersey_path, class: "text-decoration-none text-muted text-center" do %>
+          <div>
+            <i class="bi bi-plus-circle fs-1 mb-2"></i>
+            <div class="fw-bold">Ajouter un maillot</div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
