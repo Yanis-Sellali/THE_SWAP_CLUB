@@ -75,3 +75,6 @@ end
 
 #gem devise
 gem "devise"
+
+#gem coudinary
+gem "cloudinary"
