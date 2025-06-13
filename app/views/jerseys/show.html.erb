@@ -7,8 +7,12 @@
 
     <div class="row mt-4">
       <div class="col-md-5 text-center">
-        <%= image_tag @jersey.image, class: "img-fluid rounded", style: "max-height: 300px; object-fit: cover;" if @jersey.image.present? %>
-        <!-- Thumbnails optionnels -->
+        <% if @jersey.image.attached? %>
+          <%= image_tag url_for(@jersey.image), class: "img-fluid rounded", style: "max-height: 300px; object-fit: cover;" %>
+          <% else %>
+          <p>Aucune image disponible</p>
+        <% end %>
+        
         <div class="d-flex justify-content-center gap-2 mt-3">
           <% 3.times do %>
             <div class="bg-secondary" style="width: 50px; height: 50px;"></div>

@@ -1,0 +1,12 @@
+<%= form_with(model: jersey, local: true, html: { multipart: true }) do |form| %>
+  <!-- Champs existants -->
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <%= form.label :image %>
+  <%= form.file_field :image %>
+
+  <!-- Ajoute les autres champs comme flocking, year, etc. -->
+
+  <%= form.submit %>
+<% end %>

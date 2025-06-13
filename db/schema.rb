@@ -95,6 +95,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_12_135110) do
     t.datetime "updated_at", null: false
     t.text "description"
     t.string "background_image"
+    t.string "banner_filename"
   end
 
   create_table "users", force: :cascade do |t|
