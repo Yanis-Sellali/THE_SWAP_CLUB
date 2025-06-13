@@ -8,8 +8,8 @@
     <%= form_with model: @jersey, local: true, html: { multipart: true } do |f| %>
       <div class="row mt-4">
         <div class="col-md-5 text-center">
-          <% if @jersey.image.present? %>
-            <%= image_tag @jersey.image, class: "img-fluid rounded", style: "max-height: 300px; object-fit: cover;" %>
+          <% if @jersey.image.attached? %>
+            <%= image_tag url_for(@jersey.image), class: "img-fluid rounded", style: "max-height: 300px; object-fit: cover;" %>
           <% end %>
 
           <div class="mb-3 mt-3">
@@ -17,7 +17,6 @@
             <%= f.file_field :image, class: "form-control" %>
           </div>
         </div>
-
         <div class="col-md-7">
           <div class="mb-3">
             <%= f.label :size, "Taille du maillot", class: "form-label" %>
