@@ -13,7 +13,7 @@ team1 = Team.create!(
   name: "PSG",
   country: "France",
   logo: "psg.png",
-  description: "Le Paris Saint-Germain (PSG), couramment abrégé en Paris-SG, est un club de football français fondé en 1970. Il est basé à Paris et évolue à domicile au Parc des Princes, un stade de 48 583 places. Le club est connu pour être une puissance dominante du football français depuis son rachat en 2011 par QSI et pour avoir recruté des joueurs de renommée mondiale.",
+  description: "Né en 1970, le PSG s’est hissé au sommet du football mondial grâce à son ambition sans limites. Couronné champion d’Europe en 2025, le club parisien a réalisé son rêve ultime : conquérir la Ligue des Champions. Une victoire éclatante qui symbolise l’entrée définitive du PSG dans le cercle fermé des géants du football.",
   background_image: "psg.jpg"
 )
 
@@ -21,14 +21,14 @@ team2 = Team.create!(
   name: "Real Madrid",
   country: "Espagne",
   logo: "real-madrid.png",
-  description: "Le Real Madrid, fondé en 1902, est l'un des clubs les plus titrés au monde. Basé à Madrid, il évolue au stade Santiago-Bernabéu et est reconnu pour son palmarès exceptionnel en Liga et en Ligue des Champions.",
+  description: "Le roi d’Europe. Fondé en 1902, le Real Madrid est le club le plus titré de l’histoire de la Ligue des Champions avec 15 sacres. Son ADN est forgé dans la gloire, avec des icônes comme Di Stéfano, Zidane ou Cristiano Ronaldo. Le club incarne la réussite, l’élégance et la tradition du football de haut niveau.",
   background_image: "real-madrid.jpg"
 )
 team3 = Team.create!(
 name: "liverpool",
 country: "Angleterre",
 logo: "liverpool.png",
-description: "Liverpool FC, fondé en 1892, est l’un des clubs les plus emblématiques d’Angleterre. Il joue à Anfield, célèbre pour son atmosphère unique, et possède un palmarès riche en titres nationaux et européens.",
+description: "Avec ses 6 titres en C1 et l’envoûtant chant d’Anfield, Liverpool est un pilier du football anglais. Emmené récemment par Jürgen Klopp, le club a renoué avec son passé glorieux, mêlant passion populaire et jeu spectaculaire.Connus pour leur ferveur à Anfield et leur celebre chant You'll Never Walk Alone.",
 background_image: "liverpool.jpg")
 
 team4 = Team.create!(
@@ -43,7 +43,7 @@ team5 = Team.create!(
 name: "Manchester City",
 country: "Angleterre",
 logo: "manchester-city.png",
-description: "Manchester City, fondé en 1880, s’est imposé comme une puissance majeure du football moderne. Le club évolue à l’Etihad Stadium et est connu pour son style de jeu offensif et ses nombreux titres récents en Premier League.",
+description: "Manchester City, fondé en 1880, transformé par le projet émirati et l’arrivée de Pep Guardiola, City est devenu une référence moderne. Son jeu collectif fluide, son palmarès récent — dont une Ligue des Champions en 2023 — et sa domination nationale en font une puissance incontournable du football actuel.",
 background_image: "manchester.jpg"
 )
 
@@ -51,7 +51,8 @@ team6 = Team.create!(
 name: "Bayern Munich",
 country: "Allemagne",
 logo: "bayern-munich.png",
-description: "Le Bayern Munich, fondé en 1900, est le club le plus titré d’Allemagne. Il évolue à l’Allianz Arena et est réputé pour sa domination en Bundesliga et son héritage européen impressionnant.",
+description: "Dominateur en Bundesliga, le Bayern est un monument du football européen avec 6 C1 à son actif. Le club bavarois allie rigueur, stabilité et ambition, incarnant l’excellence allemande sur la scène internationale.
+Avec des légendes comme Franz Beckenbauer, Gerd Müller ou plus récemment Robert Lewandowski, le Bayern Munich est un symbole de réussite et de passion footballistique.",
 background_image: "bayern-munich.jpg"
 )
 
@@ -59,7 +60,8 @@ team7 = Team.create!(
 name: "Barcelona",
 country: "Espagne",
 logo: "barcelona.jpg",
-description: "Le FC Barcelone, fondé en 1899, est un symbole du football espagnol. Connu pour son style de jeu basé sur la possession, le club évolue au Camp Nou et a marqué l’histoire avec ses nombreux titres en Liga et en Europe.",
+description: "Icône du football romantique, le Barça est reconnu dans le monde entier pour son style unique et son école légendaire, La Masia. Fort de 5 Ligues des Champions, le club catalan a offert au monde des joueurs inoubliables et un football inimitable.
+Avec des légendes comme Messi, Xavi et Iniesta, le FC Barcelone incarne l’excellence et la passion du football.",
 background_image: "barcelona.png"
 )
 
@@ -67,7 +69,8 @@ team8 = Team.create!(
 name: "Juventus",
 country: "Italie",
 logo: "juventus.png",
-description: "La Juventus, fondée en 1897 à Turin, est le club le plus titré d’Italie. Elle joue au stade Allianz et est connue pour sa solidité défensive, son palmarès exceptionnel et ses grandes légendes du calcio.",
+description: "La Juventus, fondée en 1897 à Turin, club le plus titré d’Italie, est synonyme de régularité et de mentalité de gagnant. Malgré les vents contraires récents, la “Vieille Dame” reste un acteur majeur du football européen, toujours en quête de reconquête.
+Avec des légendes comme Alessandro Del Piero, Zinedine Zidane ou Chiellini, la Juve continue de fasciner par son histoire et sa passion.",
 background_image: "juventus.jpg"
 )
 
@@ -75,7 +78,8 @@ team9 = Team.create!(
 name: "Inter Milan",
 country: "Italie",
 logo: "inter-milan.png",
-description: "L’Inter Milan, fondé en 1908, est l’un des clubs les plus prestigieux d’Italie. Il joue au stade San Siro et s’est illustré par ses nombreux titres en Serie A et en compétitions européennes.",
+description: "L’Inter Milan, fondé en 1908, est l’un des clubs les plus prestigieux d’Italie. Il joue au stade San Siro et s’est illustré par ses nombreux titres en Serie A et en compétitions européennes.
+Avec une histoire riche et des rivalités intenses, l’Inter est un pilier du football italien.",
 background_image:"inter-milan.jpg"
 )
 
@@ -83,7 +87,8 @@ team10 = Team.create!(
 name: "Chelsea",
 country: "Angleterre",
 logo: "chelsea.png",
-description: "Chelsea FC, fondé en 1905, est un club emblématique de Londres. Il évolue à Stamford Bridge et s’est forgé un palmarès impressionnant en Premier League et en compétitions européennes ces dernières décennies.",
+description: "Propulsé dans une nouvelle ère au début des années 2000, Chelsea s’est rapidement imposé comme une force en Europe. Deux Ligues des Champions, une constance en Premier League, et une capacité à renaître saison après saison font du club londonien un adversaire redouté.
+Avec des stars comme Frank Lampard, Didier Drogba et Eden Hazard, Chelsea a su allier talent et détermination pour conquérir le cœur de ses supporters.",
 background_image: "chelsea.jpg"
 )
 
@@ -118,168 +123,127 @@ user3 = User.create!(
 # JERSEYS
 
 jersey = Jersey.new(
-  name: "PSG Home Jersey",
-  flocking: "Mbappe",
-  year: 2023,
-  description: "Official PSG home jersey for the 2023 season.",
+  name: "PSG 1995-96 Home Jersey",
+  flocking: "Rai",
+  year: 1996,
+  description: "Maillot domicile du PSG 1995-96 porté lors de la victoire en Coupe des Coupes.",
   user_id: user1.id,
   team_id: team1.id,
   size: "L",
-  condition: "New"
+  condition: "Vintage"
 )
-image_path = Rails.root.join("app/assets/images/jersey-psg-home-2023-mbappe.jpg")
-jersey.image.attach(io: File.open(image_path), filename: "jersey-psg-home-2023-mbappe.jpg", content_type: "image/jpg")
+image_path = Rails.root.join("app/assets/images/jersey-psg-1995-rai.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "jersey-psg-1995-rai.jpg", content_type: "image/jpg")
 jersey.save!
 
 jersey = Jersey.new(
-name: "Real Madrid Away Jersey",
-flocking: "Benzema",
-year: 2023,
-description: "Official Real Madrid away jersey for the 2023 season.",
-user_id: user2.id,
-team_id: team2.id,
-size: "M",
-condition: "Used"
+  name: "Real Madrid 2001-02 Home Jersey",
+  flocking: "Zidane",
+  year: 2002,
+  description: "Maillot porté lors de la 9e Ligue des Champions, but légendaire de Zidane en finale.",
+  user_id: user2.id,
+  team_id: team2.id,
+  size: "M",
+  condition: "Vintage"
 )
-image_path = Rails.root.join("app/assets/images/jersey-realmadrid-away-2023-benzema.jpg")
-jersey.image.attach(io: File.open(image_path), filename: "jersey-realmadrid-away-2023-benzema.jpg", content_type: "image/jpg")
+image_path = Rails.root.join("app/assets/images/jersey-realmadrid-2002-zidane.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "jersey-realmadrid-2002-zidane.jpg", content_type: "image/jpg")
 jersey.save!
 
 jersey = Jersey.new(
-name: "Liverpool Home Jersey",
-flocking: "Salah",
-year: 2023,
-description: "Official Liverpool home jersey for the 2023 season.",
-user_id: user3.id,
-team_id: team3.id,
-size: "XL",
-condition: "New"
+  name: "Liverpool 2004-05 Home Jersey",
+  flocking: "Gerrard",
+  year: 2005,
+  description: "Maillot mythique porté lors de la remontada en finale de LDC à Istanbul.",
+  user_id: user3.id,
+  team_id: team3.id,
+  size: "XL",
+  condition: "Bon état"
 )
-image_path = Rails.root.join("app/assets/images/jersey-liverpool-home-2023-salah.jpg")
-jersey.image.attach(io: File.open(image_path), filename: "jersey-liverpool-home-2023-salah.jpg", content_type: "image/jpg")
+image_path = Rails.root.join("app/assets/images/jersey-liverpool-2005-gerrard.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "jersey-liverpool-2005-gerrard.jpg", content_type: "image/jpg")
 jersey.save!
 
 jersey = Jersey.new(
-name: "AC Milan Home Jersey",
-flocking: "Leao",
-year: 2024,
-description: "Official AC Milan home jersey for the 2024 season.",
-user_id: user1.id,
-team_id: team4.id,
-size: "L",condition: "Used"
+  name: "AC Milan 2006-07 Home Jersey",
+  flocking: "Kaká",
+  year: 2007,
+  description: "Porté lors de la 7e victoire en Ligue des Champions, Kaká ballon d'or.",
+  user_id: user1.id,
+  team_id: team4.id,
+  size: "L",
+  condition: "Neuf"
 )
-image_path = Rails.root.join("app/assets/images/jersey-acmilan-home-2024-leao.jpg")
-jersey.image.attach(io: File.open(image_path), filename: "jersey-acmilan-home-2024-leao.jpg", content_type: "image/jpg")
+image_path = Rails.root.join("app/assets/images/jersey-acmilan-2007-kaka.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "jersey-acmilan-2007-kaka.jpg", content_type: "image/jpg")
 jersey.save!
 
 jersey = Jersey.new(
-name: "Manchester City Home Jersey",
-flocking: "Haaland",
-year: 2023,
-description: "Official Manchester City home jersey for the 2023 season.",
-user_id: user2.id,
-team_id: team5.id,
-size: "M",
-condition: "New"
+  name: "Manchester City 2011-12 Home Jersey",
+  flocking: "Aguero",
+  year: 2012,
+  description: "Maillot du titre historique arraché à la dernière seconde par le but d'Agüero.",
+  user_id: user2.id,
+  team_id: team5.id,
+  size: "M",
+  condition: "Etat correct"
 )
-image_path = Rails.root.join("app/assets/images/jersey-mancity-home-2023-haaland.jpg")
-jersey.image.attach(io: File.open(image_path), filename: "jersey-mancity-home-2023-haaland.jpg", content_type: "image/jpg")
+image_path = Rails.root.join("app/assets/images/jersey-mancity-2012-aguero.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "jersey-mancity-2012-aguero.jpg", content_type: "image/jpg")
 jersey.save!
 
 jersey = Jersey.new(
-name: "Bayern Munich Away Jersey",
-flocking: "Muller",
-year: 2023,
-description: "Official Bayern Munich away jersey for the 2023 season.",
-user_id: user3.id,
-team_id: team6.id,
-size: "L",
-condition: "Used"
+  name: "Bayern Munich 2012-13 Home Jersey",
+  flocking: "Robben",
+  year: 2013,
+  description: "Maillot de la saison du triplé historique avec Robben buteur en finale de C1.",
+  user_id: user3.id,
+  team_id: team6.id,
+  size: "L",
+  condition: "Neuf"
 )
-image_path = Rails.root.join("app/assets/images/jersey-bayernmunich-away-2023-muller.jpeg")
-jersey.image.attach(io: File.open(image_path), filename: "jersey-bayernmunich-away-2023-muller.jpg", content_type: "image/jpeg")
+image_path = Rails.root.join("app/assets/images/jersey-bayern-2013-robben.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "jersey-bayern-2013-robben.jpg", content_type: "image/jpg")
 jersey.save!
 
 jersey = Jersey.new(
-name: "Barcelona Home Jersey",
-flocking: "Lewandowski",
-year: 2023,
-description: "Official Barcelona home jersey for the 2023 season.",
-user_id: user1.id,
-team_id: team7.id,
-size: "M",
-condition: "New"
+  name: "Barcelona 2010-11 Home Jersey",
+  flocking: "Messi",
+  year: 2011,
+  description: "Maillot de la meilleure équipe de l'histoire dirigée par Guardiola, vainqueur de la C1.",
+  user_id: user1.id,
+  team_id: team7.id,
+  size: "M",
+  condition: "Neuf"
 )
-image_path = Rails.root.join("app/assets/images/jersey-barca-home-2023-lewandowski.jpg")
-jersey.image.attach(io: File.open(image_path), filename: "jersey-barca-home-2023-lewandowski.jpg", content_type: "image/jpg")
+image_path = Rails.root.join("app/assets/images/jersey-barcelona-2011-messi.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "jersey-barcelona-2011-messi.jpg", content_type: "image/jpg")
 jersey.save!
 
 jersey = Jersey.new(
-name: "Juventus Away Jersey",
-flocking: "Vlahovic",
-year: 2023,
-description: "Official Juventus away jersey for the 2023 season.",
-user_id: user2.id,
-team_id: team8.id,
-size: "XL",
-condition: "Used"
+  name: "Juventus 1996-97 Home Jersey",
+  flocking: "Del Piero",
+  year: 1997,
+  description: "Maillot porté après le sacre en Ligue des Champions 1996, génération Del Piero.",
+  user_id: user2.id,
+  team_id: team8.id,
+  size: "XL",
+  condition: "Bon état"
 )
-image_path = Rails.root.join("app/assets/images/jersey-juventus-away-2023-vlahovic.jpg")
-jersey.image.attach(io: File.open(image_path), filename: "jersey-juventus-away-2023-vlahovic.jpg", content_type: "image/jpg")
+image_path = Rails.root.join("app/assets/images/jersey-juventus-1997-delpiero.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "jersey-juventus-1997-delpiero.jpg", content_type: "image/jpg")
 jersey.save!
 
 jersey = Jersey.new(
-name: "PSG Third Jersey",
-flocking: "Neymar",
-year: 2023,
-description: "Official PSG third jersey for the 2023 season.",
-user_id: user2.id,
-team_id: team1.id,
-size: "L",
-condition: "New"
+  name: "Inter Milan 2009-10 Home Jersey",
+  flocking: "Milito",
+  year: 2010,
+  description: "Maillot du triplé historique sous Mourinho avec Milito décisif en finale de C1.",
+  user_id: user1.id,
+  team_id: team9.id,
+  size: "L",
+  condition: "Bon état"
 )
-image_path = Rails.root.join("app/assets/images/jersey-psg-third-2023-neymar.jpg")
-jersey.image.attach(io: File.open(image_path), filename: "jersey-psg-third-2023-neymar.jpg", content_type: "image/jpg")
-jersey.save!
-
-jersey = Jersey.new(
-name: "Real Madrid Home Jersey",
-flocking: "Vinicius Jr.",
-year: 2023,
-description: "Official Real Madrid home jersey for the 2023 season.",
-user_id: user3.id,
-team_id: team2.id,
-size: "M",
-condition: "Used"
-)
-image_path = Rails.root.join("app/assets/images/jersey-realmadrid-home-2023-vinicius.jpeg")
-jersey.image.attach(io: File.open(image_path), filename: "jersey-realmadrid-home-2023-vinicius.jpeg", content_type: "image/jpeg")
-jersey.save!
-
-jersey = Jersey.new(
-name: "Liverpool Away Jersey",
-flocking: "Van Dijk",
-year: 2019,
-description: "Official Liverpool third jersey for the 2023 season.",
-user_id: user1.id,
-team_id: team3.id,
-size: "XL",
-condition: "New"
-)
-image_path = Rails.root.join("app/assets/images/jersey-liverpool-third-2019-virgil.jpg")
-jersey.image.attach(io: File.open(image_path), filename: "jersey-liverpool-third-2019-virgil.jpg", content_type: "image/jpg")
-jersey.save!
-
-jersey = Jersey.new(
-name: "Inter Milan home Jersey",
-flocking: "Thuram",
-year: 2010,
-description: "Official Inter Milan away jersey for the 2023 season.",
-user_id: user1.id,
-team_id: team9.id,
-size: "L",
-condition: "New"
-)
-image_path = Rails.root.join("app/assets/images/jersey-intermilan-home-2023-thuram.jpg")
-jersey.image.attach(io: File.open(image_path), filename: "jersey-intermilan-home-2023-thuram.jpg", content_type: "image/jpg")
+image_path = Rails.root.join("app/assets/images/jersey-inter-2010-milito.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "jersey-inter-2010-milito.jpg", content_type: "image/jpg")
 jersey.save!
