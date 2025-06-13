@@ -1,4 +1,3 @@
-/* === RESET & BASE === */
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
 
 * {
@@ -49,7 +48,7 @@ a {
     text-align: center;
   }
 
-  .le-liverpool {
+  .description-team {
     position: absolute;
     width: 553px;
     top: 195px;
@@ -76,6 +75,16 @@ a {
     top: 437px;
     left: 43px;
     object-fit: cover;
+  }
+
+  .custom-separator {
+    position: absolute;
+    top: 437px;
+    left: 54px;
+    width: 185px;
+    height: 2px;
+    background-color: var(--black);
+    z-index: 2;
   }
 
   .overlap-group {
@@ -188,5 +197,26 @@ a {
     height: 34px;
     top: 303px;
     left: 284px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .posted-by {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    font-size: 10px;
+    color: var(--dark-grey);
+    font-family: "Inter", Helvetica, sans-serif;
+  }
+
+  .img-haut-gauche {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 600px;
+    height: auto;
+    object-fit: cover;
+    z-index: 1;
   }
 }

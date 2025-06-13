@@ -1,46 +1,67 @@
 <div class="DESKTOP-recherche">
   <div class="div">
+
+<% normalized_team_name = @team.name.to_s.parameterize %>
+<% banner_filename = "teams/#{normalized_team_name}-banner.jpg" %>
+
+<% if asset_exists?(banner_filename) %>
+  <%= image_tag banner_filename, class: "img-haut-gauche" %>
+<% else %>
+  <%= image_tag "teams/default-banner.jpg", class: "img-haut-gauche" %>
+<% end %>
+
     <div class="text-wrapper"><%= @team.name.upcase %></div>
+    <p class="description-team"><%= @team.description %></p>
 
-    <%# Description du club %>
-    <p class="le-liverpool"><%= @team.description %></p>
-
-    <%# Ligne et titre résultats %>
     <div class="text-wrapper-6">
       <%= pluralize(@team.jerseys.count, "résultat") %> de recherche
     </div>
 
-    <%# Affichage des maillots en 2 groupes (comme dans ton HTML) %>
-    <% jerseys_group1 = @team.jerseys.first(3) %>
-    <% jerseys_group2 = @team.jerseys.drop(3).first(3) %>
+    <div class="custom-separator"></div>
 
-    <%# Groupe du haut %>
+    <% jerseys_group1 = @team.jerseys.first(3) %>
     <% if jerseys_group1.any? %>
       <% jerseys_group1.each_with_index do |jersey, i| %>
-        <div class="component-<%= i + 5 %>">
-          <div class="PSG"><%= @team.name %></div>
-          <div class="text-wrapper-5"><%= jersey.year %></div>
-          <div class="text-wrapper-2"><%= jersey.name %></div>
-          <div class="text-wrapper-3">TAILLE <%= jersey.size %></div>
-          <%= image_tag jersey.image, class: "img-2" if jersey.image.present? %>
-          <img class="img-3" src="/assets/temp-imagebgi-d8a.png" />
-        </div>
+        <%= link_to team_jersey_path(@team, jersey) do %>
+          <div class="component-<%= i + 5 %>">
+            <div class="PSG"><%= @team.name %></div>
+            <div class="text-wrapper-5"><%= jersey.year %></div>
+            <div class="text-wrapper-2"><%= jersey.name %></div>
+            <div class="text-wrapper-3">TAILLE <%= jersey.size %></div>
+
+            <% if jersey.image.attached? %>
+              <%= image_tag jersey.image, class: "img-2" %>
+            <% end %>
+
+            <div class="posted-by">Posté par <%= jersey.user.nom %></div>
+            <%= image_tag(jersey.user.avatar.attached? ? url_for(jersey.user.avatar) : "default-avatar.jpg", class: "img-3") %>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
 
-    <%# Groupe du bas (dans overlap-group) %>
+    <% jerseys_group2 = @team.jerseys.drop(3).first(3) %>
     <% if jerseys_group2.any? %>
       <div class="overlap-group">
         <% jerseys_group2.each_with_index do |jersey, i| %>
-          <div class="component-<%= i + 2 %>">
-            <div class="PSG"><%= @team.name %></div>
-            <div class="<%= i == 0 ? 'element' : 'element-2' %>"><%= jersey.year %></div>
-            <div class="text-wrapper-2"><%= jersey.name %></div>
-            <div class="text-wrapper-4">TAILLE <%= jersey.size %></div>
-            <%= image_tag jersey.image, class: (i == 0 ? 'temp-image-de' : 'img') if jersey.image.present? %>
-          </div>
+          <%= link_to team_jersey_path(@team, jersey) do %>
+            <div class="component-<%= i + 2 %>">
+              <div class="PSG"><%= @team.name %></div>
+              <div class="<%= i == 0 ? 'element' : 'element-2' %>"><%= jersey.year %></div>
+              <div class="text-wrapper-2"><%= jersey.name %></div>
+              <div class="text-wrapper-4">TAILLE <%= jersey.size %></div>
+
+              <% if jersey.image.attached? %>
+                <%= image_tag jersey.image, class: (i == 0 ? 'temp-image-de' : 'img') %>
+              <% end %>
+
+              <div class="posted-by">Posté par <%= jersey.user.nom %></div>
+              <%= image_tag(jersey.user.avatar.attached? ? url_for(jersey.user.avatar) : "default-avatar.jpg", class: "img-3") %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     <% end %>
+
   </div>
 </div>
