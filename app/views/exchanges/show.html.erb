@@ -1,3 +1,4 @@
+<div class ="container mt-5 text-dark">
 <h1>Échange proposé par <%= @exchange.sender.nom %></h1>
 
 <p><strong>Maillot envoyé :</strong> <%= @exchange.sender_jersey.team.name %> (<%= @exchange.sender_jersey.size %>)</p>
@@ -15,3 +16,4 @@
 <% end %>
 
 <%= link_to "Retour aux échanges", exchanges_path, class: "btn btn-secondary mt-3" %>
+</div>
