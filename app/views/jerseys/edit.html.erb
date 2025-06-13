@@ -1,2 +1,51 @@
-<h1>Jerseys#edit</h1>
-<p>Find me in app/views/jerseys/edit.html.erb</p>
+<div class="maillot-detail-container">
+  <div class="card p-4 rounded-4 shadow bg-white position-relative" style="max-width: 900px; margin: auto;">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 class="fw-bold text-center w-100">Modifier <%= @jersey.name %></h2>
+      <%= link_to "", user_path(current_user), class: "btn-close position-absolute top-0 end-0 m-3" %>
+    </div>
+
+    <%= form_with model: @jersey, local: true, html: { multipart: true } do |f| %>
+      <div class="row mt-4">
+        <div class="col-md-5 text-center">
+          <% if @jersey.image.attached? %>
+            <%= image_tag url_for(@jersey.image), class: "img-fluid rounded", style: "max-height: 300px; object-fit: cover;" %>
+          <% end %>
+
+          <div class="mb-3 mt-3">
+            <%= f.label :image, "Changer l'image", class: "form-label" %>
+            <%= f.file_field :image, class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="mb-3">
+            <%= f.label :size, "Taille du maillot", class: "form-label" %>
+            <%= f.select :size, ["XS", "S", "M", "L", "XL"], {}, class: "form-select" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :condition, "Qualité du maillot", class: "form-label" %>
+            <%= f.select :condition, ["New", "Used"], {}, class: "form-select" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :flocking, "Flocage", class: "form-label" %>
+            <%= f.text_field :flocking, class: "form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :year, "Année", class: "form-label" %>
+            <%= f.number_field :year, class: "form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :description, "Description", class: "form-label" %>
+            <%= f.text_area :description, class: "form-control", rows: 4 %>
+          </div>
+
+          <%= f.submit "Enregistrer les modifications", class: "btn btn-dark mt-3" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -3,12 +3,17 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show, :edit, :update]
   resources :jerseys
   resources :teams, only: [:index, :show]
-  resources :exchanges, only: [:index, :show, :new, :create]
+  resources :exchanges, only: [:index, :show, :new, :create] do
+    member do
+      patch :accept
+      patch :refuse
+    end
+  end
   resources :chats, only: [:show] do
-    resources :messages, only: [:create]
+  resources :messages, only: [:create]
   end
 
   resources :teams do

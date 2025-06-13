@@ -1,6 +1,7 @@
 class Jersey < ApplicationRecord
   belongs_to :user
   belongs_to :team
+  has_one_attached :image
 
   has_one_attached :image
 

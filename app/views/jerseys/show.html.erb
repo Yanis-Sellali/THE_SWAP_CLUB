@@ -1,2 +1,38 @@
-<h1>Jerseys#show</h1>
-<p>Find me in app/views/jerseys/show.html.erb</p>
+<div class="maillot-detail-container">
+  <div class="card p-4 rounded-4 shadow bg-white position-relative" style="max-width: 900px; margin: auto;">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 class="fw-bold text-center w-100"> <%= @jersey.name.upcase %> </h2>
+      <%= link_to "", jerseys_path, class: "btn-close position-absolute top-0 end-0 m-3" %>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-5 text-center">
+        <% if @jersey.image.attached? %>
+          <%= image_tag url_for(@jersey.image), class: "img-fluid rounded", style: "max-height: 300px; object-fit: cover;" %>
+          <% else %>
+          <p>Aucune image disponible</p>
+        <% end %>
+        
+        <div class="d-flex justify-content-center gap-2 mt-3">
+          <% 3.times do %>
+            <div class="bg-secondary" style="width: 50px; height: 50px;"></div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-md-7">
+        <div class="mb-2"><strong>Taille du maillot :</strong> <%= @jersey.size %></div>
+        <div class="mb-2"><strong>Qualité du maillot :</strong> <%= @jersey.condition %></div>
+        <div class="mb-2"><strong>Flocage :</strong> <%= @jersey.flocking.presence || "Sans flocage" %></div>
+        <div class="mb-2"><strong>Année :</strong> <%= @jersey.year %></div>
+        <div class="mb-3"><strong>Ajouté par :</strong> <%= @jersey.user.nom if @jersey.user %></div>
+
+        <p class="text-muted">
+          <%= @jersey.description %>
+        </p>
+
+        <%= link_to "Demander un échange", new_exchange_path(jersey_id: @jersey.id), class: "btn btn-dark mt-3" %>
+      </div>
+    </div>
+  </div>
+</div>

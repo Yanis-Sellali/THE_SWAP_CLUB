@@ -1,12 +1,17 @@
 <div class="container mt-5">
-  <h2 class="mb-4 text-center">Tous les maillots disponibles</h2>
+  <h2 class="mb-4 text-center text-dark">Tous les maillots disponibles</h2>
 
   <div class="row">
     <% @jerseys.each do |jersey| %>
       <div class="col-md-4 mb-4">
         <div class="card shadow-lg">
           <div class="d-flex justify-content-center">
-            <%= image_tag "/assets/jerseys/#{jersey.image}", class: "card-img-top img-fluid", style: "max-height: 250px;" %>
+          <% if jersey.image.attached? %>
+            <%= image_tag url_for(jersey.image), class: "card-img-top img-fluid", style: "max-height: 250px;" %>
+          <% else %>
+            <p>Aucune image disponible</p>
+          <% end %>
+
           </div>
           <div class="card-body text-center">
             <h5 class="card-title"><%= jersey.name %></h5>
