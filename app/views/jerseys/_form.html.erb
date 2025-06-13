@@ -1,12 +1,62 @@
 <%= form_with(model: jersey, local: true, html: { multipart: true }) do |form| %>
+  <% if jersey.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% jersey.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <!-- Champs existants -->
-  <%= form.label :name %>
-  <%= form.text_field :name %>
+  <div class="mb-3">
+    <%= form.label :name, "Nom du Maillot", class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
 
-  <%= form.label :image %>
-  <%= form.file_field :image %>
+  <div class="mb-3">
+    <%= form.label :team_id, "Équipe", class: "form-label" %>
+    <%= form.collection_select :team_id, Team.all, :id, :name, { prompt: "Sélectionne une équipe" }, class: "form-select" %>
+  </div>
 
-  <!-- Ajoute les autres champs comme flocking, year, etc. -->
+  <div class="mb-3">
+    <%= form.label :description, "Description", class: "form-label" %>
+    <%= form.text_area :description, rows: 3, class: "form-control" %>
+  </div>
 
-  <%= form.submit %>
+  <div class="mb-3">
+    <%= form.label :size, "Taille du maillot", class: "form-label" %>
+    <%= form.select :size, ["S", "M", "L", "XL", "XXL"], { prompt: "Choisis une taille" }, class: "form-select" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :condition, "État du maillot", class: "form-label" %>
+    <%= form.select :condition, ["Neuf", "Très bon état", "Bon état", "Satisfaisant"], { prompt: "Choisis un état" }, class: "form-select" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :year, "Année" %>
+    <%= form.number_field :year, class: "form-control", min: 1900, max: Time.now.year %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :flocking, "Flocage" %>
+    <%= form.text_field :flocking, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :image, "Photo du maillot" %>
+    <% if jersey.image.attached? %>
+      <div class="mb-2">
+        <%= image_tag url_for(@jersey.image), class: "img-thumbnail", alt: jersey.name %>
+        <span class="text-muted small ms-2">(image actuelle)</span>
+      </div>
+    <% end %>
+    <%= form.file_field :image, class: "form-control", accept: "image/*" %>
+  </div>
+
+  <div class="mt-4 text-center">
+    <%= form.submit class: "btn btn-primary px-5" %>
+  </div>
 <% end %>

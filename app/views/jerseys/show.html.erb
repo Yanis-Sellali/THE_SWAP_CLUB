@@ -1,23 +1,17 @@
 <div class="maillot-detail-container">
   <div class="card p-4 rounded-4 shadow bg-white position-relative" style="max-width: 900px; margin: auto;">
     <div class="d-flex justify-content-between align-items-center">
-      <h2 class="fw-bold text-center w-100"> <%= @jersey.name.upcase %> </h2>
-      <%= link_to "", jerseys_path, class: "btn-close position-absolute top-0 end-0 m-3" %>
+      <h2 class="fw-bold text-center w-100"><%= @jersey.name.upcase %></h2>
+      <%= link_to "", jerseys_path, class: "btn-close position-absolute top-0 end-0 m-3", aria: { label: "Fermer" } %>
     </div>
 
     <div class="row mt-4">
       <div class="col-md-5 text-center">
         <% if @jersey.image.attached? %>
-          <%= image_tag url_for(@jersey.image), class: "img-fluid rounded", style: "max-height: 300px; object-fit: cover;" %>
-          <% else %>
-          <p>Aucune image disponible</p>
+          <%= image_tag url_for(@jersey.image), class: "img-fluid rounded", style: "max-height: 300px; object-fit: cover;", alt: @jersey.name %>
+        <% else %>
+          <%= image_tag "default_jersey.jpg", class: "img-fluid rounded", style: "max-height: 300px; object-fit: cover;", alt: "Image par défaut" %>
         <% end %>
-        
-        <div class="d-flex justify-content-center gap-2 mt-3">
-          <% 3.times do %>
-            <div class="bg-secondary" style="width: 50px; height: 50px;"></div>
-          <% end %>
-        </div>
       </div>
 
       <div class="col-md-7">
@@ -25,13 +19,16 @@
         <div class="mb-2"><strong>Qualité du maillot :</strong> <%= @jersey.condition %></div>
         <div class="mb-2"><strong>Flocage :</strong> <%= @jersey.flocking.presence || "Sans flocage" %></div>
         <div class="mb-2"><strong>Année :</strong> <%= @jersey.year %></div>
-        <div class="mb-3"><strong>Ajouté par :</strong> <%= @jersey.user.nom if @jersey.user %></div>
+        <div class="mb-3"><strong>Ajouté par :</strong> <%= @jersey.user&.nom %></div>
+        <p class="text-muted"><%= sanitize(@jersey.description) %></p>
 
-        <p class="text-muted">
-          <%= @jersey.description %>
-        </p>
-
-        <%= link_to "Demander un échange", new_exchange_path(jersey_id: @jersey.id), class: "btn btn-dark mt-3" %>
+        <% if @jersey.user == current_user %>
+          <div class="mt-3">
+            <%= link_to "Demander un échange", new_exchange_path(jersey_id: @jersey.id), class: "btn btn-dark mt-3" %>
+            <%= link_to "Modifier", edit_jersey_path(@jersey), class: "btn btn-outline-secondary btn-sm me-2" %>
+            <%= link_to "Supprimer", jersey_path(@jersey), method: :delete, data: { confirm: "Confirmer la suppression ?" }, class: "btn btn-outline-danger btn-sm" %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
