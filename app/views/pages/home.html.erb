@@ -14,13 +14,26 @@
       <% @jerseys.each do |jersey| %>
         <div class="col-6 col-md-2">
           <%= link_to jersey_path(jersey), class: "text-decoration-none text-dark" do %>
-            <%= render 'jerseys/jersey_card', jersey: jersey %>
+            <div class="card shadow-sm">
+              <% if jersey.image.attached? %>
+                <%= image_tag url_for(jersey.image), class: "card-img-top img-fluid", style: "max-height: 150px; object-fit: cover;" %>
+              <% else %>
+                <div class="d-flex align-items-center justify-content-center" style="height: 150px; background-color: #f0f0f0; color: #888; font-weight: bold;">
+                  Pas d'image disponible
+                </div>
+              <% end %>
+              <div class="card-body text-center">
+                <h6 class="card-title mb-1"><%= jersey.name %></h6>
+                <p class="card-text small"><strong>Année :</strong> <%= jersey.year %></p>
+              </div>
+            </div>
           <% end %>
         </div>
       <% end %>
     </div>
   </div>
 </section>
+
 
 <!-- Clubs -->
 <section class="py-5 bg-white">
