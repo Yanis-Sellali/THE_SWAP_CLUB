@@ -18,11 +18,11 @@ team1 = Team.create!(
 )
 
 team2 = Team.create!(
-name: "Real Madrid",
-country: "Espagne",
-logo: "real-madrid.png",
-description:"Le Real Madrid, fondé en 1902, est l'un des clubs les plus titrés au monde. Basé à Madrid, il évolue au stade Santiago-Bernabéu et est reconnu pour son palmarès exceptionnel en Liga et en Ligue des Champions.",
-background_image: "real-madrid.jpg"
+  name: "Real Madrid",
+  country: "Espagne",
+  logo: "real-madrid.png",
+  description: "Le Real Madrid, fondé en 1902, est l'un des clubs les plus titrés au monde. Basé à Madrid, il évolue au stade Santiago-Bernabéu et est reconnu pour son palmarès exceptionnel en Liga et en Ligue des Champions.",
+  background_image: "real-madrid.jpg"
 )
 team3 = Team.create!(
 name: "liverpool",

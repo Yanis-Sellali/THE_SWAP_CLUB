@@ -14,22 +14,19 @@ body {
   transition: all 0.3s ease;
 }
 h1, h2, h3, .titre-animée {
-    font-family: 'Bakbak One', sans-serif;
-    position: relative;
-    transition: transform 0.3s ease, color 0.3s ease;
-    cursor: default;
-}
-
-h1:hover, h2:hover, h3:hover, .titre-animée:hover {
-    transform: translateY(-4px);
-    color: #f8d92f; /* Jaune doux, tu peux adapter */
+  font-family: 'Bakbak One', sans-serif;
+  position: relative;
+  transition: transform 0.3s ease, color 0.3s ease;
+  cursor: default;
+  color: #000;
 }
 
 .titre-underline {
-    font-family: 'Bakbak One', sans-serif;
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
+  font-family: 'Bakbak One', sans-serif;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  color: #000;
 }
 
 .titre-underline::after {
@@ -56,7 +53,7 @@ h1:hover, h2:hover, h3:hover, .titre-animée:hover {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #222; /* Couleur de fond ajustable */
+    background-color: #222;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -71,5 +68,5 @@ footer .fab {
 
 footer .fab:hover {
     transform: translateY(-3px) scale(1.1);
-    color: #f8d92f; /* Tu peux mettre la couleur que tu veux */
+    color: #f8d92f;
 }
