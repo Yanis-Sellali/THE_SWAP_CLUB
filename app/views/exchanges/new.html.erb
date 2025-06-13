@@ -1,17 +1,20 @@
-<h1>Créer un nouvel échange</h1>
+<div class="exchange-form-container mx-auto my-5 p-4 shadow rounded-4 bg-white" style="max-width: 500px;">
+  <h1 class="mb-4 text-center">Créer un nouvel échange</h1>
 
-<%= form_with(model: @exchange, url: exchanges_path, method: :post) do |form| %>
-  <div>
-    <label>Ton maillot :</label>
-    <%= form.collection_select(:sender_jersey_id, @user_jerseys, :id, :name) %>
-  </div>
+  <%= form_with(model: @exchange, url: exchanges_path, method: :post, html: { class: "exchange-form" }) do |form| %>
+    <div class="mb-3">
+      <%= form.label :sender_jersey_id, "Ton maillot", class: "form-label fw-semibold" %>
+      <%= form.collection_select :sender_jersey_id, @user_jerseys, :id, :name, {}, { class: "form-select" } %>
+    </div>
 
-  <div>
-    <label>Maillot que tu veux échanger :</label>
-    <%= form.collection_select(:receiver_jersey_id, @available_jerseys, :id, :name) %>
-  </div>
+    <div class="mb-3">
+      <%= form.label :receiver_jersey_id, "Maillot que tu veux échanger", class: "form-label fw-semibold" %>
+      <%= form.collection_select :receiver_jersey_id, @available_jerseys, :id, :name, {}, { class: "form-select" } %>
+    </div>
 
-  <%= form.submit "Proposer l’échange", class: "btn btn-primary" %>
-<% end %>
-
-<%= link_to "Retour aux échanges", exchanges_path, class: "btn btn-secondary" %>
+    <div class="d-flex justify-content-center gap-2 mt-4">
+      <%= form.submit "Proposer l’échange", class: "btn btn-primary px-4" %>
+      <%= link_to "Retour aux échanges", exchanges_path, class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+</div>
