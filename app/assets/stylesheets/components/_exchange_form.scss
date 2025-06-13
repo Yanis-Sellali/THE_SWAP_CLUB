@@ -1,0 +1,54 @@
+.exchange-form-container {
+  background: #fff;
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 32px 24px;
+}
+
+.exchange-form {
+  .form-label {
+    font-weight: 600;
+    color: #19335a;
+    margin-bottom: 6px;
+    font-size: 1.05rem;
+  }
+
+  .form-select {
+    border-radius: 0.75rem;
+    padding: 10px 14px;
+    font-size: 1rem;
+    border: 1px solid #dedede;
+    transition: border-color 0.2s;
+    &:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 2px #e0eaff;
+    }
+  }
+
+  .btn-primary {
+    background: linear-gradient(90deg, #007bff 0%, #19335a 100%);
+    border: none;
+    font-weight: 600;
+    border-radius: 0.7rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+    transition: background 0.15s;
+    &:hover {
+      background: linear-gradient(90deg, #19335a 0%, #007bff 100%);
+    }
+  }
+
+  .btn-secondary {
+    border-radius: 0.7rem;
+    font-weight: 600;
+    background: #f6f6fa;
+    color: #19335a;
+    border: 1px solid #c8cbe2;
+    transition: background 0.12s;
+    &:hover {
+      background: #e4e8fa;
+      color: #007bff;
+    }
+  }
+}
