@@ -9,10 +9,11 @@ body {
 }
 
 .btn-primary {
-  background-color: #1E88E5;
+  background-color: #0d2340;
   border-color: #1565C0;
   transition: all 0.3s ease;
 }
+
 h1, h2, h3, .titre-animée {
   font-family: 'Bakbak One', sans-serif;
   position: relative;

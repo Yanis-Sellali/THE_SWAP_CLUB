@@ -1,10 +1,11 @@
 <%= form_with(model: jersey, local: true, html: { multipart: true }) do |form| %>
   <% if jersey.errors.any? %>
-    <div class="alert alert-danger">
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(jersey.errors.count, "erreur") %> empêchent ce maillot d’être sauvegardé :</h2>
       <ul>
-        <% jersey.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
+      <% jersey.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
       </ul>
     </div>
   <% end %>
@@ -12,12 +13,12 @@
   <!-- Champs existants -->
   <div class="mb-3">
     <%= form.label :name, "Nom du Maillot", class: "form-label" %>
-    <%= form.text_field :name, class: "form-control" %>
+    <%= form.text_field :name, class: "form-control", required: true %>
   </div>
 
   <div class="mb-3">
     <%= form.label :team_id, "Équipe", class: "form-label" %>
-    <%= form.collection_select :team_id, Team.all, :id, :name, { prompt: "Sélectionne une équipe" }, class: "form-select" %>
+    <%= form.collection_select :team_id, Team.all, :id, :name, { prompt: "Sélectionne une équipe" }, { class: "form-select", required: true } %>
   </div>
 
   <div class="mb-3">
@@ -27,12 +28,12 @@
 
   <div class="mb-3">
     <%= form.label :size, "Taille du maillot", class: "form-label" %>
-    <%= form.select :size, ["S", "M", "L", "XL", "XXL"], { prompt: "Choisis une taille" }, class: "form-select" %>
+    <%= form.select :size, ["S", "M", "L", "XL", "XXL"], { prompt: "Choisis une taille" }, { class: "form-select", required: true } %>
   </div>
 
   <div class="mb-4">
     <%= form.label :condition, "État du maillot", class: "form-label" %>
-    <%= form.select :condition, ["Neuf", "Très bon état", "Bon état", "Satisfaisant"], { prompt: "Choisis un état" }, class: "form-select" %>
+    <%= form.select :condition, ["Neuf", "Très bon état", "Bon état", "Satisfaisant"], { prompt: "Choisis un état" }, { class: "form-select", required: true } %>
   </div>
 
   <div class="mb-3">

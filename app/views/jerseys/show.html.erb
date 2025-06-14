@@ -29,6 +29,8 @@
             <%= link_to "Supprimer", jersey_path(@jersey), method: :delete, data: { confirm: "Confirmer la suppression ?" }, class: "btn btn-outline-danger btn-sm" %>
           </div>
         <% end %>
+        <%= link_to 'Retour à la liste', jerseys_path, class: "btn btn-outline-primary" %>
+
       </div>
     </div>
   </div>
