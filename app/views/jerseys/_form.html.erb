@@ -1,7 +1,7 @@
 <%= form_with(model: jersey, local: true, html: { multipart: true }) do |form| %>
   <% if jersey.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(jersey.errors.count, "erreur") %> empêchent ce maillot d’être sauvegardé :</h2>
+      <h2><%= pluralize(jersey.errors.count, "erreurs") %> empêchent ce maillot d’être sauvegardé :</h2>
       <ul>
       <% jersey.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -37,17 +37,17 @@
   </div>
 
   <div class="mb-3">
-    <%= form.label :year, "Année" %>
+    <%= form.label :year, "Année", class: "form-label" %>
     <%= form.number_field :year, class: "form-control", min: 1900, max: Time.now.year %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :flocking, "Flocage" %>
+    <%= form.label :flocking, "Flocage", class: "form-label" %>
     <%= form.text_field :flocking, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :image, "Photo du maillot" %>
+    <%= form.label :image, "Photo du maillot", class: "form-label" %>
     <% if jersey.image.attached? %>
       <div class="mb-2">
         <%= image_tag url_for(@jersey.image), class: "img-thumbnail", alt: jersey.name %>
