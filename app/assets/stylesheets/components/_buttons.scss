@@ -1,0 +1,13 @@
+.btn-primary {
+  @include button-style(#007bff, #19335a);
+}
+
+.btn-secondary {
+  @include button-style(#f6f6fa, #f6f6fa, #19335a);
+}
+
+.btn-primary {
+  background-color: #0d2340;
+  border-color: #1565C0;
+  transition: all 0.3s ease;
+}

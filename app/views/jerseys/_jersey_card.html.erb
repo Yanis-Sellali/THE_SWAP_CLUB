@@ -4,10 +4,18 @@
   <% else %>
     <%= image_tag "default_jersey.jpg", class: "card-img-top", alt: "Image par défaut", loading: "lazy", style: "max-height: 250px;" %>
   <% end %>
+
   <div class="card-body text-center">
     <h5 class="card-title mb-1 fw-bold"><%= jersey.name %></h5>
     <p class="text-muted mb-1"><%= jersey.team&.name || "Équipe inconnue" %></p>
     <p class="small text-secondary"><strong>Année :</strong> <%= jersey.year %></p>
+    <p class="small text-secondary"><strong>Taille :</strong> <%= jersey.size %></p>
+
+    <div class="posted-by">
+      <%= image_tag(jersey.user.avatar.attached? ? url_for(jersey.user.avatar) : "default-avatar.jpg", class: "avatar-bordered") %>
+      <p class="small text-secondary">Posté par : <%= jersey.user.nom %></p>
+    </div>
+
     <%= link_to "Voir le maillot", jersey_path(jersey), class: "btn btn-primary btn-sm mt-2" %>
   </div>
 </div>
