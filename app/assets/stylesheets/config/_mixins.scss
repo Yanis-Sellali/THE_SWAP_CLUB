@@ -1,13 +1,26 @@
-@mixin avatar($size: 40px, $shape: circle, $bordered: false) {
+// AVATAR
+@mixin avatar($size: 40px, $shape: circle, $bordered: false, $elevated: false) {
   width: $size;
   height: $size;
   border-radius: if($shape == circle, 50%, 0%);
+  object-fit: cover;
+
   @if $bordered {
     border: 1px solid white;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   }
+
+  @if $elevated {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  &:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
 }
 
+// BUTTON
 @mixin button-style($bg-start, $bg-end, $text-color: white, $hover-reverse: false) {
   background: linear-gradient(90deg, $bg-start 0%, $bg-end 100%);
   color: $text-color;
@@ -25,6 +38,7 @@
   }
 }
 
+// CARD
 @mixin card($radius: 10px, $bg: rgba(255, 255, 255, 0.95), $shadow: true) {
   background: $bg;
   border-radius: $radius;

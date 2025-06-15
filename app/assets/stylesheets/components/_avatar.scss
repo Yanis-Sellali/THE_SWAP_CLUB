@@ -3,11 +3,11 @@
 }
 
 .avatar-large {
-  @include avatar(56px);
+  @include avatar($size: 150px, $elevated: true);
 }
 
 .avatar-bordered {
-  @include avatar(40px, circle, true);
+  @include avatar($size: 40px, $shape: circle, $bordered: true);
 }
 
 .avatar-square {
