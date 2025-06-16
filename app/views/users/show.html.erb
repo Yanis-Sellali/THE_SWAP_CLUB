@@ -5,7 +5,7 @@
     <% if user.avatar.attached? %>
       <%= image_tag url_for(user.avatar), class: "user-avatar rounded-circle", style: "width: 150px; height: 150px; object-fit: cover;" %>
     <% else %>
-      <%= image_tag("default_avatar.png", class: "user-avatar rounded-circle", width: 150, height: 150) %>
+      <%= image_tag("default_avatar.jpg", class: "user-avatar rounded-circle", width: 150, height: 150) %>
     <% end %>
 
   <h2 class="user-name"><%= user.nom %></h2>
@@ -36,7 +36,7 @@
         </div>
       </div>
     <% end %>
-
+    
     <div class="col-6 col-md-4 col-lg-3 mb-4">
       <div class="add-jersey card h-100 d-flex justify-content-center align-items-center">
         <%= link_to new_jersey_path, class: "text-decoration-none text-muted text-center" do %>
