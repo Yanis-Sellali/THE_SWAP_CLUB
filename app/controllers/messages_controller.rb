@@ -1,6 +1,14 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @exchange = Exchange.find(params[:exchange_id])
+    @chat = @exchange.chat
+    @messages = @chat.messages.order(created_at: :asc)
+
+    render partial: 'messages/messages', locals: { messages: @messages }
+  end
+
   def create
     @exchange = Exchange.find(params[:exchange_id])
     @chat = @exchange.chat
@@ -55,13 +63,6 @@ class MessagesController < ApplicationController
     else
       redirect_to exchange_chat_path(message.chat.exchange, message.chat), notice: "🕓 En attente de la finalisation de l’autre utilisateur."
     end
-    
-  def index
-    @exchange = Exchange.find(params[:exchange_id])
-    @chat = @exchange.chat
-    @messages = @chat.messages.order(created_at: :asc)
-
-    render partial: 'messages/messages', locals: { messages: @messages }
   end
 
   private

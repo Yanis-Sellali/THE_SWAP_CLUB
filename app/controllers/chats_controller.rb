@@ -3,11 +3,9 @@ class ChatsController < ApplicationController
 
   def show
     @exchange = Exchange.find(params[:exchange_id])
-    @chat = @exchange.chat
-
+    @chat = @exchange.chat || @exchange.create_chat
     @messages = @chat.messages.includes(:user).order(created_at: :asc)
     @message = Message.new
-
     @messages.where.not(user: current_user).where(read: [nil, false]).update_all(read: true)
 
     if @messages.count >= 10 && @messages.none?(&:trade_offer?)
@@ -21,7 +19,6 @@ class ChatsController < ApplicationController
 
       @messages = @chat.messages.includes(:user)
     end
-    
     @other_user = (@exchange.sender == current_user) ? @exchange.receiver : @exchange.sender
 
     @chat.messages
