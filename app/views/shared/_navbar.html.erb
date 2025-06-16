@@ -1,27 +1,31 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-     <!-- Logo à gauche, version agrandie -->
-    <a class="navbar-brand" href="#">
-      <%= image_tag "logo.png", alt: "TI1ESWAP CLUB", style: "height: 60px"%>
-    </a>
 
-  <!-- Avatar du profil à droite -->
-<div class="d-flex align-items-center order-lg-last gap-3">
-  <div class="d-flex align-items-center">
-    <% if user_signed_in? %>
-    <%= link_to user_path(current_user), class: "text-decoration-none d-flex align-items-center me-3" do %>
-      <% if current_user.avatar.attached? %>
-        <%= image_tag current_user.avatar, class: "rounded-circle border border-light avatar-hover", style: "width:40px; height:40px; object-fit:cover;" %>
-      <% else %>
-        <%= image_tag "default_avatar.jpg", class: "rounded-circle border border-light avatar-hover", style: "width:40px; height:40px; object-fit:cover;" %>
-      <% end %>
+    <!-- Logo à gauche, version agrandie -->
+    <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>
+      <%= image_tag "logo.png", alt: "The Swap Club logo", class: "logo-navbar", style: "height: 60px" %>
     <% end %>
-    <%= link_to "Se déconnecter", destroy_user_session_path, class: "btn btn-light", data: {turbo_method: :delete } %>
-  <% else %>
-  <%= link_to "Se connecter", new_user_session_path, class: "btn btn-primary" %>
-<% end %>
-  </div>
-</div>
+
+    <!-- Avatar du profil à droite -->
+    <div class="d-flex align-items-center order-lg-last gap-3">
+      <% if user_signed_in? %>
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <% if current_user.avatar.attached? %>
+              <%= image_tag current_user.avatar, class: "avatar-bordered border-light" %>
+            <% else %>
+              <%= image_tag "default_avatar.jpg", class: "avatar-bordered border-light" %>
+            <% end %>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><%= link_to "Mon profil", user_path(current_user), class: "dropdown-item" %></li>
+            <li><%= link_to "Se déconnecter", destroy_user_session_path, class: "dropdown-item", data: { turbo_method: :delete } %></li>
+          </ul>
+        </div>
+      <% else %>
+        <%= link_to "Se connecter", new_user_session_path, class: "btn btn-primary btn-sm ms-3" %>
+      <% end %>
+    </div>
 
     <!-- Bouton burger placé après l'avatar -->
     <button class="navbar-toggler order-last ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -34,8 +38,8 @@
         <li class="nav-item"><%= link_to 'Accueil', root_path, class: 'nav-link' %></li>
         <li class="nav-item"><%= link_to 'Clubs', teams_path, class: 'nav-link' %></li>
         <li class="nav-item"><%= link_to 'Maillots', jerseys_path, class: 'nav-link' %></li>
-
       </ul>
     </div>
+
   </div>
 </nav>

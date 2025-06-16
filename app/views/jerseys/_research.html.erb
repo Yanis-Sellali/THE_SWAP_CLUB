@@ -1,0 +1,19 @@
+<section class="research">
+  <div class="container">
+    <h2 class="headline">Recherches de maillots</h2>
+    <p class="description">Découvrez les derniers maillots recherchés par nos membres</p>
+
+    <div class="card-grid">
+      <% @searches.each do |search| %>
+        <div class="research-card">
+          <img src="<%= search.image_url %>" class="card-image" alt="maillot">
+          <div class="card-title"><%= search.title %></div>
+          <div class="card-description"><%= search.description %></div>
+          <div class="posted-by">Posté par <%= search.user.username %></div>
+          <img src="<%= search.user.avatar_url %>" class="avatar-bordered" alt="avatar">
+        </div>
+      <% end %>
+    </div>
+    
+  </div>
+</section>

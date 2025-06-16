@@ -3,16 +3,6 @@ body {
   font-family: 'Bakbak One', sans-serif !important;
 }
 
-.card {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 10px;
-}
-
-.btn-primary {
-  background-color: #1E88E5;
-  border-color: #1565C0;
-  transition: all 0.3s ease;
-}
 h1, h2, h3, .titre-animée {
   font-family: 'Bakbak One', sans-serif;
   position: relative;
@@ -42,31 +32,4 @@ h1, h2, h3, .titre-animée {
 
 .titre-underline:hover::after {
     width: 100%;
-}
-.footer-social {
-    display: flex;
-    gap: 15px;
-}
-
-.footer-social a {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #222;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-footer .fab {
-    font-size: 24px;
-    transition: transform 0.3s ease, color 0.3s ease;
-    cursor: pointer;
-}
-
-footer .fab:hover {
-    transform: translateY(-3px) scale(1.1);
-    color: #f8d92f;
 }
