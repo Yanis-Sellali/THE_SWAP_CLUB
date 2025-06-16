@@ -1,5 +1,11 @@
 <div class="exchange-form-container my-5 desktop-ajouter-un-maillot text-dark">
   <h2 class="mb-4 text-center">Modifier le maillot</h2>
-  <%= render "form", jersey: @jersey %>
-  <%= link_to "Annuler", jersey_path(@jersey), class: "btn btn-secondary mt-3" %>
+
+  <%= render "form", jersey: @jersey, submit_text: "Modifier le maillot" %>
+   <div class="mb-3 text-center">
+  <%= link_to "Annuler", jersey_path(@jersey), class: "btn btn-secondary mt-3 align-middle" %>
+  </div>
+   <div class="mt-4 text-center">
+  <%= link_to " 🗑️ Supprimer mon maillot", jersey_path(@jersey), data:{turbo_method: :delete, turbo_confirm: "Confirmer la suppression ?" }, class: "btn btn-outline-danger btn-sm" %>
+    </div>
 </div>
