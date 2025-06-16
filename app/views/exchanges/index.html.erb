@@ -1,4 +1,4 @@
-<h1 >Échanges en attente</h1>
+<h1>Échanges en attente</h1>
 
 <table class="table table-striped">
   <thead>
@@ -19,6 +19,7 @@
         <td><%= exchange.receiver.nom %></td>
         <td>
           <%= link_to "Voir l’échange", exchange_path(exchange), class: "btn btn-primary mb-1" %>
+
           <% if exchange.receiver == current_user %>
             <%= form_with url: accept_exchange_path(exchange), method: :patch, local: true, class: "d-inline" do %>
               <%= submit_tag "Accepter", class: "btn btn-success mb-1" %>
@@ -26,6 +27,10 @@
             <%= form_with url: refuse_exchange_path(exchange), method: :patch, local: true, class: "d-inline" do %>
               <%= submit_tag "Refuser", class: "btn btn-danger mb-1" %>
             <% end %>
+          <% end %>
+
+          <% if exchange.sender == current_user || exchange.receiver == current_user %>
+            <%= link_to "Discuter", exchange_chat_path(exchange), class: "btn btn-outline-primary mb-1" %>
           <% end %>
         </td>
       </tr>
