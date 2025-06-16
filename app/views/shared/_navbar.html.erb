@@ -13,11 +13,9 @@
         <div class="nav-item dropdown position-relative">
           <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="messageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-chat-dots-fill text-white fs-4"></i>
-            <% if current_user.unread_messages_count > 0 %>
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                <%= current_user.unread_messages_count %>
-              </span>
-            <% end %>
+            <span id="notifications-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" data-notifications="<%= current_user.unread_messages_count %>">
+              <%= current_user.unread_messages_count %>
+            </span>
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="messageDropdown" style="min-width: 300px;">
             <li class="dropdown-header">Nouveaux messages</li>
@@ -72,3 +70,22 @@
 
   </div>
 </nav>
+
+<script>
+function updateNotifications() {
+  fetch('/notifications/unread_count')
+    .then(response => response.json())
+    .then(data => {
+      const badge = document.getElementById("notifications-badge");
+      if (badge) {
+        badge.textContent = data.unread_count;
+        badge.setAttribute("data-notifications", data.unread_count);
+        badge.style.display = data.unread_count > 0 ? "inline-block" : "none";
+      }
+    })
+    .catch(error => console.error("Erreur mise à jour des notifications :", error));
+}
+
+setInterval(updateNotifications, 5000);
+document.addEventListener("DOMContentLoaded", updateNotifications);
+</script>

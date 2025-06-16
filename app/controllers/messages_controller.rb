@@ -1,6 +1,14 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @exchange = Exchange.find(params[:exchange_id])
+    @chat = @exchange.chat
+    @messages = @chat.messages.order(created_at: :asc)
+
+    render partial: 'messages/messages', locals: { messages: @messages }
+  end
+
 def create
   @exchange = Exchange.find(params[:exchange_id])
   @chat = @exchange.chat

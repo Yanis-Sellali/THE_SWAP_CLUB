@@ -1,0 +1,31 @@
+<% messages.each do |message| %>
+  <% if message.user.present? %>
+    <% is_current_user = (message.user == current_user) %>
+    <% sender = message.user %>
+
+    <div class="d-flex mb-3 <%= is_current_user ? 'justify-content-end' : 'justify-content-start' %>">
+      <% unless is_current_user %>
+        <% if sender.avatar.attached? %>
+          <%= image_tag url_for(sender.avatar), class: "rounded-circle me-2", alt: "Profil", style: "width: 40px; height: 40px; object-fit: cover;" %>
+        <% else %>
+          <%= image_tag "default_avatar.jpg", class: "rounded-circle me-2", width: 40, height: 40, alt: "Profil" %>
+        <% end %>
+      <% end %>
+
+      <div class="message-bubble px-3 py-2 rounded <%= is_current_user ? 'bg-primary text-white' : 'bg-light text-dark' %>" style="max-width: 70%;" data-message-id="<%= message.id %>">
+        <p class="mb-1" style="white-space: pre-wrap;"><%= message.content %></p>
+        <small class="text-muted"><%= message.user.nom.presence || message.user.email %></small>
+
+        <% if is_current_user %>
+          <small class="ms-2 text-muted" style="font-size: 0.75rem;">
+            <%= message.read ? "✔ Vu" : "✔ Envoyé" %>
+          </small>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <div class="message">
+      <em>Message d'un utilisateur inconnu</em>
+    </div>
+  <% end %>
+<% end %>
