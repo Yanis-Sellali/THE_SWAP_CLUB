@@ -12,7 +12,7 @@
   <div class="club-banner-text px-4 py-3 d-flex flex-column justify-content-center">
     <h1 class="fw-bold text-uppercase mb-3"><%= @team.name %></h1>
     <p class="lead text-muted"><%= @team.description %></p>
-    <p class="fw-semibold text-secondary mt-3">
+    <p class="fw-light text-secondary mt-3">
     <%= pluralize(@team.jerseys.count, "résultat") %> de recherche
     </p>
     <div class="separator-line my-2"></div>
@@ -22,7 +22,7 @@
   <%# MAILLOTS AFFICHÉS PAR GROUPE DE 3 %>
   <div class="container">
     <% @team.jerseys.each_slice(3).with_index do |group, index| %>
-      <div class="row mb-4">
+      <div class="row mb-4 g-3">
         <% group.each do |jersey| %>
           <div class="col-md-4">
             <%= link_to team_jersey_path(@team, jersey), class: "text-decoration-none text-dark" do %>
