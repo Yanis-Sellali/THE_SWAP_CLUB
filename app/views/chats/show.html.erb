@@ -36,6 +36,13 @@
             </small>
           <% end %>
         </div>
+        <% if is_current_user %>
+          <% if message.user.avatar.attached? %>
+            <%= image_tag url_for(message.user.avatar.variant(resize_to_limit: [40, 40])), class: "rounded-circle ms-2", alt: "Profil" %>
+          <% else %>
+            <%= image_tag "default_avatar.jpg", class: "rounded-circle ms-2", width: 40, height: 40, alt: "Profil" %>
+          <% end %>
+        <% end %>
       </div>
     <% end %>
   </div>
@@ -116,3 +123,9 @@ document.addEventListener("DOMContentLoaded", () => {
 setInterval(updateChat, 2000);
 document.addEventListener("DOMContentLoaded", scrollToBottom);
 </script>
+
+<style>
+  .message-bubble {
+    word-wrap: break-word;
+  }
+</style>

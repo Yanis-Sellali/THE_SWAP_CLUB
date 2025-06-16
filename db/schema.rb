@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_16_093947) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_16_154919) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -84,6 +84,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_16_093947) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "read", default: false
+    t.boolean "user1_accepted"
+    t.boolean "user2_accepted"
+    t.string "message_type"
+    t.integer "offer_jersey_user1_id"
+    t.integer "offer_jersey_user2_id"
+    t.boolean "finalized_by_user1"
+    t.boolean "finalized_by_user2"
+    t.boolean "user1_finalized"
+    t.boolean "user2_finalized"
     t.index ["chat_id"], name: "index_messages_on_chat_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end

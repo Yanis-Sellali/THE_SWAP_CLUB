@@ -1,0 +1,3 @@
+<div class="chat-message <%= message.user == current_user ? 'sent' : 'received' %>">
+  <p><strong><%= message.user.nom %>:</strong> <%= message.content %></p>
+</div>
