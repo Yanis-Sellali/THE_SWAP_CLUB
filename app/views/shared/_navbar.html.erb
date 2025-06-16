@@ -1,15 +1,44 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
 
-    <!-- Logo à gauche, version agrandie -->
+    <!-- Logo à gauche -->
     <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>
       <%= image_tag "logo.png", alt: "The Swap Club logo", class: "logo-navbar", style: "height: 60px" %>
     <% end %>
 
-    <!-- Avatar du profil à droite -->
+    <!-- Avatar à droite avec badge et notifications -->
     <div class="d-flex align-items-center order-lg-last gap-3">
       <% if user_signed_in? %>
-        <div class="nav-item dropdown">
+        <!-- Dropdown Messages -->
+        <div class="nav-item dropdown position-relative">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="messageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-chat-dots-fill text-white fs-4"></i>
+            <% if current_user.unread_messages_count > 0 %>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <%= current_user.unread_messages_count %>
+              </span>
+            <% end %>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="messageDropdown" style="min-width: 300px;">
+            <li class="dropdown-header">Nouveaux messages</li>
+            <% current_user.unread_messages.limit(5).each do |message| %>
+              <li>
+                <%= link_to exchange_chat_path(message.chat.exchange), class: "dropdown-item small" do %>
+                  <strong><%= message.user.nom.presence || message.user.email %>:</strong>
+                  <%= truncate(message.content, length: 40) %>
+                  <br>
+                  <small class="text-muted"><%= message.created_at.strftime('%d %b %H:%M') %></small>
+                <% end %>
+              </li>
+            <% end %>
+            <% if current_user.unread_messages.empty? %>
+              <li><span class="dropdown-item text-muted small">Aucun message non lu</span></li>
+            <% end %>
+          </ul>
+        </div>
+
+        <!-- Dropdown Profil -->
+        <div class="nav-item dropdown position-relative">
           <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <% if current_user.avatar.attached? %>
               <%= image_tag current_user.avatar, class: "avatar-bordered border-light" %>
@@ -27,12 +56,12 @@
       <% end %>
     </div>
 
-    <!-- Bouton burger placé après l'avatar -->
+    <!-- Burger -->
     <button class="navbar-toggler order-last ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Liens centrés avec espacement équilibré -->
+    <!-- Liens centraux -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav w-100 d-flex justify-content-evenly">
         <li class="nav-item"><%= link_to 'Accueil', root_path, class: 'nav-link' %></li>
