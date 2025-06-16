@@ -1,0 +1,8 @@
+.btn-primary-custom {
+  @include button-style(#007bff, #19335a);
+}
+
+.btn-secondary-custom {
+  @include button-style(#f6f6fa, #f6f6fa, #19335a, true);
+  border: 1px solid #c8cbe2;
+}

@@ -5,6 +5,9 @@ class ExchangesController < ApplicationController
 
   def show
     @exchange = Exchange.find(params[:id])
+    @chat = @exchange.chat || @exchange.create_chat
+    @messages = @chat.messages.includes(:user)
+    @message = Message.new
   end
 
   def new

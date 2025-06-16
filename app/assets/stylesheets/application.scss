@@ -2,6 +2,7 @@
 @import "config/fonts";
 @import "config/colors";
 @import "config/bootstrap_variables";
+@import "config/mixins";
 
 // External libraries
 @import "bootstrap";
@@ -10,33 +11,7 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
-@import "bootstrap";
 
+// Custom styles
 @import "teams";
 @import "custom";
-
-.custom-clubs-grid .card {
-  border-radius: 20px;
-  overflow: hidden;
-  min-height: 200px;
-}
-
-.team-logo-wrapper {
-  width: 80px;
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.team-logo {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-.team-name {
-  font-size: 1rem;
-  color: white;
-  text-shadow: 0px 1px 2px rgba(0,0,0,0.6);
-}

@@ -1,20 +1,70 @@
-<h1>Discussion</h1>
+<div class="container py-4" style="max-width: 700px;">
+  <!-- En-tête du chat -->
+  <div class="d-flex align-items-center mb-4 border-bottom pb-3">
+    <%# Image de profil de la personne avec qui on parle %>
+    <% if @exchange.receiver.avatar.attached? %>
+      <%= image_tag url_for(@exchange.receiver.avatar.variant(resize_to_limit: [50, 50])), class: "rounded-circle me-3", alt: "Profil" %>
+    <% else %>
+      <%= image_tag "default_avatar.jpg", class: "rounded-circle me-3", width: 50, height: 50, alt: "Profil" %>
+    <% end %>
+    <div>
+      <h5 class="mb-0"><%= @exchange.receiver.nom.presence || @exchange.receiver.email %></h5>
+      <small class="text-muted">En ligne</small> <!-- Tu peux adapter ce statut -->
+    </div>
+  </div>
 
-<div class="chat-box" style="border: 1px solid #ccc; padding: 1rem; max-height: 400px; overflow-y: auto;">
-  <% @messages.each do |message| %>
-    <div style="margin-bottom: 0.5rem;">
-      <strong><%= message.user.email %></strong> :
-      <%= message.content %>
-      <small style="color: grey;"><%= message.created_at.strftime("%H:%M") %></small>
+  <!-- Boîte de discussion -->
+  <div id="chat-box" class="border rounded p-3 mb-3" style="height: 400px; overflow-y: auto; background: #f9f9f9;">
+    <% @messages.each do |message| %>
+      <% is_current_user = message.user == current_user %>
+      <div class="d-flex mb-3 <%= is_current_user ? 'justify-content-end' : 'justify-content-start' %>">
+        <% unless is_current_user %>
+          <!-- Image profil de l'autre utilisateur à gauche -->
+          <% if message.user.avatar.attached? %>
+            <%= image_tag url_for(message.user.avatar.variant(resize_to_limit: [40, 40])), class: "rounded-circle me-2", alt: "Profil" %>
+          <% else %>
+            <%= image_tag "default_avatar.jpg", class: "rounded-circle me-2", width: 40, height: 40, alt: "Profil" %>
+          <% end %>
+        <% end %>
+
+        <div class="message-bubble px-3 py-2 rounded <%= is_current_user ? 'bg-primary text-white' : 'bg-light text-dark' %>" style="max-width: 70%;">
+          <p class="mb-1" style="white-space: pre-wrap;"><%= message.content %></p>
+          <small class="text-muted d-block text-end" style="font-size: 0.75rem;">
+            <%= message.created_at.strftime("%d %b %H:%M") %>
+          </small>
+        </div>
+
+        <% if is_current_user %>
+          <!-- Image profil à droite pour les messages envoyés -->
+          <% if message.user.avatar.attached? %>
+            <%= image_tag url_for(message.user.avatar.variant(resize_to_limit: [40, 40])), class: "rounded-circle ms-2", alt: "Profil" %>
+          <% else %>
+            <%= image_tag "default_avatar.jpg", class: "rounded-circle ms-2", width: 40, height: 40, alt: "Profil" %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Formulaire d'envoi -->
+  <%= form_with model: [@exchange, @chat, @message], local: true do |form| %>
+    <div class="input-group">
+      <%= form.text_area :content, class: "form-control", rows: 2, placeholder: "Écris ton message..." %>
+      <button class="btn btn-primary" type="submit">Envoyer</button>
     </div>
   <% end %>
 </div>
 
-<%= form_with model: [@chat, @message], local: true do |form| %>
-  <div class="field">
-    <%= form.text_area :content, rows: 2, placeholder: "Écris ton message..." %>
-  </div>
-  <div class="actions">
-    <%= form.submit "Envoyer", class: "btn btn-primary" %>
-  </div>
-<% end %>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const chatBox = document.getElementById("chat-box");
+    chatBox.scrollTop = chatBox.scrollHeight;
+  });
+</script>
+
+<style>
+  /* Style pour les bulles de messages */
+  .message-bubble {
+    word-wrap: break-word;
+  }
+</style>

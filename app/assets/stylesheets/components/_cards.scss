@@ -1,0 +1,101 @@
+.card {
+  @include card();
+}
+
+// TEAM CARD
+.team-card,
+.custom-clubs-grid .card {
+  @include card(20px, white);
+  overflow: hidden;
+  position: relative;
+  height: 250px;
+}
+
+.team-card {
+  height: 250px;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  .card-img {
+    filter: brightness(0.5);
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .team-logo {
+    max-height: 80px;
+    width: auto;
+    z-index: 2;
+  }
+}
+
+// TEAM LOGO
+.team-logo-wrapper {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.team-logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+// TEAM NAME
+.team-name {
+  font-size: 1rem;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+// === CUSTOM CLUBS GRID ===
+.custom-clubs-grid .card {
+  min-height: 200px;
+}
+
+// JERSEY CARDS
+.jersey-card {
+  @include card(16px, rgba(255, 255, 255, 0.98));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .jersey-image {
+    width: 100%;
+    max-width: 180px;
+    object-fit: contain;
+    margin-bottom: 0.75rem;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .jersey-name {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .jersey-meta {
+    font-size: 0.875rem;
+    color: #777;
+  }
+}
