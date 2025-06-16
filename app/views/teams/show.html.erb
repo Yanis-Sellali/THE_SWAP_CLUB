@@ -1,67 +1,53 @@
-<div class="DESKTOP-recherche">
-  <div class="div">
+<div class="team-page container-fluid p-0">
 
-<% normalized_team_name = @team.name.to_s.parameterize %>
-<% banner_filename = "teams/#{normalized_team_name}-banner.jpg" %>
+<%# === Bannière club : image à gauche, texte à droite === %>
+<div class="club-banner d-flex flex-wrap">
+  <% normalized_team_name = @team.name.parameterize %>
+  <% banner_filename = "teams/#{normalized_team_name}-banner.jpg" %>
 
-<% if asset_exists?(banner_filename) %>
-  <%= image_tag banner_filename, class: "img-haut-gauche" %>
-<% else %>
-  <%= image_tag "teams/default-banner.jpg", class: "img-haut-gauche" %>
-<% end %>
+  <div class="club-banner-image">
+    <%= image_tag asset_exists?(banner_filename) ? banner_filename : "teams/default-banner.jpg", class: "img-fluid w-100 h-100 object-fit-cover" %>
+  </div>
 
-    <div class="text-wrapper"><%= @team.name.upcase %></div>
-    <p class="description-team"><%= @team.description %></p>
+  <div class="club-banner-text px-4 py-3 d-flex flex-column justify-content-center">
+    <h1 class="fw-bold text-uppercase mb-3"><%= @team.name %></h1>
+    <p class="lead text-muted"><%= @team.description %></p>
+    <p class="fw-light text-secondary mt-3">
+    <%= pluralize(@team.jerseys.count, "résultat") %> de recherche
+    </p>
+    <div class="separator-line my-2"></div>
+  </div>
+</div>
 
-    <div class="text-wrapper-6">
-      <%= pluralize(@team.jerseys.count, "résultat") %> de recherche
-    </div>
+  <%# MAILLOTS AFFICHÉS PAR GROUPE DE 3 %>
+  <div class="container">
+    <% @team.jerseys.each_slice(3).with_index do |group, index| %>
+      <div class="row mb-4 g-3">
+        <% group.each do |jersey| %>
+          <div class="col-md-4">
+            <%= link_to team_jersey_path(@team, jersey), class: "text-decoration-none text-dark" do %>
+              <div class="card shadow-sm rounded-4 h-100">
+                <% if jersey.image.attached? %>
+                  <%= image_tag url_for(jersey.image), class: "card-img-top", style: "height: 300px; object-fit: cover;" %>
+                <% end %>
 
-    <div class="custom-separator"></div>
+                <div class="card-body">
+                  <h6 class="fw-bold mb-1"><%= @team.name.upcase %> <%= jersey.year %></h6>
+                  <p class="mb-1 text-muted"><%= jersey.name %></p>
+                  <p class="mb-2"><strong>TAILLE :</strong> <%= jersey.size %></p>
 
-    <% jerseys_group1 = @team.jerseys.first(3) %>
-    <% if jerseys_group1.any? %>
-      <% jerseys_group1.each_with_index do |jersey, i| %>
-        <%= link_to team_jersey_path(@team, jersey) do %>
-          <div class="component-<%= i + 5 %>">
-            <div class="PSG"><%= @team.name %></div>
-            <div class="text-wrapper-5"><%= jersey.year %></div>
-            <div class="text-wrapper-2"><%= jersey.name %></div>
-            <div class="text-wrapper-3">TAILLE <%= jersey.size %></div>
-
-            <% if jersey.image.attached? %>
-              <%= image_tag jersey.image, class: "img-2" %>
+                  <div class="d-flex align-items-center">
+                    <%= image_tag(jersey.user.avatar.attached? ? url_for(jersey.user.avatar) : "default-avatar.jpg",
+                                  class: "rounded-circle me-2",
+                                  style: "width: 30px; height: 30px; object-fit: cover;") %>
+                    <small class="text-muted">Posté par <%= jersey.user.nom %></small>
+                  </div>
+                </div>
+              </div>
             <% end %>
-
-            <div class="posted-by">Posté par <%= jersey.user.nom %></div>
-            <%= image_tag(jersey.user.avatar.attached? ? url_for(jersey.user.avatar) : "default-avatar.jpg", class: "img-3") %>
           </div>
-        <% end %>
-      <% end %>
-    <% end %>
-
-    <% jerseys_group2 = @team.jerseys.drop(3).first(3) %>
-    <% if jerseys_group2.any? %>
-      <div class="overlap-group">
-        <% jerseys_group2.each_with_index do |jersey, i| %>
-          <%= link_to team_jersey_path(@team, jersey) do %>
-            <div class="component-<%= i + 2 %>">
-              <div class="PSG"><%= @team.name %></div>
-              <div class="<%= i == 0 ? 'element' : 'element-2' %>"><%= jersey.year %></div>
-              <div class="text-wrapper-2"><%= jersey.name %></div>
-              <div class="text-wrapper-4">TAILLE <%= jersey.size %></div>
-
-              <% if jersey.image.attached? %>
-                <%= image_tag jersey.image, class: (i == 0 ? 'temp-image-de' : 'img') %>
-              <% end %>
-
-              <div class="posted-by">Posté par <%= jersey.user.nom %></div>
-              <%= image_tag(jersey.user.avatar.attached? ? url_for(jersey.user.avatar) : "default-avatar.jpg", class: "img-3") %>
-            </div>
-          <% end %>
         <% end %>
       </div>
     <% end %>
-
   </div>
 </div>

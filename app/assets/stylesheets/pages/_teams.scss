@@ -1,0 +1,44 @@
+.team-page .banner-image img {
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.team-page .card {
+  transition: transform 0.2s ease;
+}
+.team-page .card:hover {
+  transform: scale(1.02);
+}
+
+.club-banner {
+  display: flex;
+  min-height: 300px;
+  margin-bottom: 2rem;
+
+  .club-banner-image {
+    flex: 1;
+    max-width: 50%;
+    overflow: hidden;
+  }
+
+  .club-banner-text {
+    flex: 1;
+    max-width: 50%;
+    background-color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    .club-banner-image,
+    .club-banner-text {
+      max-width: 100%;
+    }
+  }
+}
+.separator-line {
+  border-top: 1px solid #333;
+  width: 100%;
+  border-top: 2px solid #333
+
+}

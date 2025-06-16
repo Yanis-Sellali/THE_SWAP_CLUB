@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
           user2_accepted: false
         )
       end
-      redirect_to exchange_chat_path(@exchange, @chat)
+      redirect_to exchange_chat_path(@exchange, @chat), notice: "Message envoyé."
     else
       redirect_to exchange_chat_path(@exchange, @chat), alert: "Erreur lors de l'envoi du message."
     end
@@ -55,6 +55,13 @@ class MessagesController < ApplicationController
     else
       redirect_to exchange_chat_path(message.chat.exchange, message.chat), notice: "🕓 En attente de la finalisation de l’autre utilisateur."
     end
+    
+  def index
+    @exchange = Exchange.find(params[:exchange_id])
+    @chat = @exchange.chat
+    @messages = @chat.messages.order(created_at: :asc)
+
+    render partial: 'messages/messages', locals: { messages: @messages }
   end
 
   private

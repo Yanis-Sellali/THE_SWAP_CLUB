@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     end
 
     resource :chat, only: [:show, :create] do
-      resources :messages, only: [:create]
+      resources :messages, only: [:index, :create]
     end
   end
 
@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   resources :teams do
     resources :jerseys, only: [:show]
   end
+
+  get '/notifications/unread_count', to: 'notifications#unread_count'
 
   get "up" => "rails/health#show", as: :rails_health_check
 end
