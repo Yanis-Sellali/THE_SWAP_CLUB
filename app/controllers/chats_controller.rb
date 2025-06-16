@@ -6,5 +6,7 @@ class ChatsController < ApplicationController
     @chat = @exchange.chat || @exchange.create_chat
     @messages = @chat.messages.includes(:user)
     @message = Message.new
+
+    @messages.where.not(user: current_user).where(read: [nil, false]).update_all(read: true)
   end
 end
