@@ -1,19 +1,19 @@
 <div class ="container mt-5 text-dark">
-<h1>Échange proposé par <%= @exchange.sender.nom %></h1>
+  <h1>Échange proposé par <%= @exchange.sender.nom %></h1>
 
-<p><strong>Maillot envoyé :</strong> <%= @exchange.sender_jersey.team.name %> (<%= @exchange.sender_jersey.size %>)</p>
-<p><strong>Maillot demandé :</strong> <%= @exchange.receiver_jersey.team.name %> (<%= @exchange.receiver_jersey.size %>)</p>
-<p><strong>Statut :</strong> <%= @exchange.status %></p>
+  <p><strong>Maillot envoyé :</strong> <%= @exchange.sender_jersey.team.name %> (<%= @exchange.sender_jersey.size %>)</p>
+  <p><strong>Maillot demandé :</strong> <%= @exchange.receiver_jersey.team.name %> (<%= @exchange.receiver_jersey.size %>)</p>
+  <p><strong>Statut :</strong> <%= @exchange.status %></p>
 
-<% if @exchange.receiver == current_user %>
-  <%= form_with url: accept_exchange_path(@exchange), method: :patch, class: "d-inline" do %>
-    <%= submit_tag "Accepter l’échange", class: "btn btn-success mb-1" %>
+  <% if @exchange.receiver == current_user %>
+    <%= form_with url: accept_exchange_path(@exchange), method: :patch, class: "d-inline" do %>
+      <%= submit_tag "Accepter l’échange", class: "btn btn-success mb-1" %>
+    <% end %>
+
+    <%= form_with url: refuse_exchange_path(@exchange), method: :patch, class: "d-inline" do %>
+      <%= submit_tag "Refuser l’échange", class: "btn btn-danger mb-1" %>
+    <% end %>
   <% end %>
 
-  <%= form_with url: refuse_exchange_path(@exchange), method: :patch, class: "d-inline" do %>
-    <%= submit_tag "Refuser l’échange", class: "btn btn-danger mb-1" %>
-  <% end %>
-<% end %>
-
-<%= link_to "Retour aux échanges", exchanges_path, class: "btn btn-secondary mt-3" %>
+  <%= link_to "Retour aux échanges", exchanges_path, class: "btn btn-secondary mt-3" %>
 </div>

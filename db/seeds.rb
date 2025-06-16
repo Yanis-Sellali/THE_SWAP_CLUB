@@ -132,7 +132,7 @@ jersey = Jersey.new(
   size: "L",
   condition: "Vintage"
 )
-image_path = Rails.root.join("app/assets/images/jersey-psg-1995-rai.jpg")
+image_path = Rails.root.join("app/assets/images/jerseys/jersey-psg-1995-rai.jpg")
 jersey.image.attach(io: File.open(image_path), filename: "jersey-psg-1995-rai.jpg", content_type: "image/jpg")
 jersey.save!
 
@@ -146,7 +146,7 @@ jersey = Jersey.new(
   size: "M",
   condition: "Vintage"
 )
-image_path = Rails.root.join("app/assets/images/jersey-realmadrid-2002-zidane.jpg")
+image_path = Rails.root.join("app/assets/images/jerseys/jersey-realmadrid-2002-zidane.jpg")
 jersey.image.attach(io: File.open(image_path), filename: "jersey-realmadrid-2002-zidane.jpg", content_type: "image/jpg")
 jersey.save!
 
@@ -160,7 +160,7 @@ jersey = Jersey.new(
   size: "XL",
   condition: "Bon état"
 )
-image_path = Rails.root.join("app/assets/images/jersey-liverpool-2005-gerrard.jpg")
+image_path = Rails.root.join("app/assets/images/jerseys/jersey-liverpool-2005-gerrard.jpg")
 jersey.image.attach(io: File.open(image_path), filename: "jersey-liverpool-2005-gerrard.jpg", content_type: "image/jpg")
 jersey.save!
 
@@ -174,7 +174,7 @@ jersey = Jersey.new(
   size: "L",
   condition: "Neuf"
 )
-image_path = Rails.root.join("app/assets/images/jersey-acmilan-2007-kaka.jpg")
+image_path = Rails.root.join("app/assets/images/jerseys/jersey-acmilan-2007-kaka.jpg")
 jersey.image.attach(io: File.open(image_path), filename: "jersey-acmilan-2007-kaka.jpg", content_type: "image/jpg")
 jersey.save!
 
@@ -188,7 +188,7 @@ jersey = Jersey.new(
   size: "M",
   condition: "Etat correct"
 )
-image_path = Rails.root.join("app/assets/images/jersey-mancity-2012-aguero.jpg")
+image_path = Rails.root.join("app/assets/images/jerseys/jersey-mancity-2012-aguero.jpg")
 jersey.image.attach(io: File.open(image_path), filename: "jersey-mancity-2012-aguero.jpg", content_type: "image/jpg")
 jersey.save!
 
@@ -202,7 +202,7 @@ jersey = Jersey.new(
   size: "L",
   condition: "Neuf"
 )
-image_path = Rails.root.join("app/assets/images/jersey-bayern-2013-robben.jpg")
+image_path = Rails.root.join("app/assets/images/jerseys/jersey-bayern-2013-robben.jpg")
 jersey.image.attach(io: File.open(image_path), filename: "jersey-bayern-2013-robben.jpg", content_type: "image/jpg")
 jersey.save!
 
@@ -216,7 +216,7 @@ jersey = Jersey.new(
   size: "M",
   condition: "Neuf"
 )
-image_path = Rails.root.join("app/assets/images/jersey-barcelona-2011-messi.jpg")
+image_path = Rails.root.join("app/assets/images/jerseys/jersey-barcelona-2011-messi.jpg")
 jersey.image.attach(io: File.open(image_path), filename: "jersey-barcelona-2011-messi.jpg", content_type: "image/jpg")
 jersey.save!
 
@@ -230,7 +230,7 @@ jersey = Jersey.new(
   size: "XL",
   condition: "Bon état"
 )
-image_path = Rails.root.join("app/assets/images/jersey-juventus-1997-delpiero.jpg")
+image_path = Rails.root.join("app/assets/images/jerseys/jersey-juventus-1997-delpiero.jpg")
 jersey.image.attach(io: File.open(image_path), filename: "jersey-juventus-1997-delpiero.jpg", content_type: "image/jpg")
 jersey.save!
 
@@ -244,6 +244,6 @@ jersey = Jersey.new(
   size: "L",
   condition: "Bon état"
 )
-image_path = Rails.root.join("app/assets/images/jersey-inter-2010-milito.jpg")
+image_path = Rails.root.join("app/assets/images/jerseys/jersey-inter-2010-milito.jpg")
 jersey.image.attach(io: File.open(image_path), filename: "jersey-inter-2010-milito.jpg", content_type: "image/jpg")
 jersey.save!
