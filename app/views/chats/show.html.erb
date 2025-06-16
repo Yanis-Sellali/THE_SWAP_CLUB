@@ -65,10 +65,10 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const chatBox = document.getElementById("chat-box");
-    chatBox.scrollTop = chatBox.scrollHeight;
-  });
+document.addEventListener("DOMContentLoaded", () => {
+  const chatBox = document.getElementById("chat-box");
+  if (chatBox) chatBox.scrollTop = chatBox.scrollHeight;
+});
 </script>
 
 <style>
