@@ -1,14 +1,13 @@
-<div class="container mt-5">
+<div class="container my-5">
   <h2 class="mb-4 text-center">Tous les maillots disponibles</h2>
+
   <% if @jerseys.any? %>
-    <div class="row">
-      <% @jerseys.each do |jersey| %>
-        <div class="col-md-4 mb-4">
-          <%= render partial: "jersey_card", locals: { jersey: jersey } %>
-        </div>
-      <% end %>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+      <%= render partial: "jersey_card", collection: @jerseys, as: :jersey %>
     </div>
   <% else %>
-    <p class="text-center">Aucun maillot disponible pour le moment.</p>
+    <div class="text-center py-5">
+      <p class="text-muted">Aucun maillot disponible pour le moment.</p>
+    </div>
   <% end %>
 </div>
