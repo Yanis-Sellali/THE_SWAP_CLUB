@@ -21,9 +21,10 @@
   <% @jerseys.each do |jersey| %>
     <div class="col-md-3 col-sm-6 mb-4">
       <div class="card h-100 shadow-sm">
-        <%= link_to edit_jersey_path(jersey), class: "text-decoration-none text-dark" do %>
+        <%= link_to jersey_path(jersey), class: "text-decoration-none text-dark" do %>
           <%= image_tag jersey.image, class: "card-img-top", style: "height: 250px; object-fit: cover;" if jersey.image.present? %>
           <div class="card-body text-center">
+            <h6 class="fw-bold"><%= jersey.name %></h6>
             <h6 class="fw-bold"><%= jersey.team.name %></h6>
             <p class="mb-0 text-muted"><%= jersey.flocking.presence || "-" %></p>
             <p class="mb-0 text-muted"><%= jersey.year %></p>
