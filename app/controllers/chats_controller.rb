@@ -1,12 +1,14 @@
 class ChatsController < ApplicationController
   before_action :authenticate_user!
 
-  def show
-    @exchange = Exchange.find(params[:exchange_id])
-    @chat = @exchange.chat || @exchange.create_chat
-    @messages = @chat.messages.includes(:user)
-    @message = Message.new
+def show
+  @exchange = Exchange.find(params[:exchange_id])
+  @chat = @exchange.chat
+  @messages = @chat.messages.includes(:user).order(created_at: :asc)
+  @message = Message.new
 
-    @messages.where.not(user: current_user).where(read: [nil, false]).update_all(read: true)
-  end
+  @other_user = (@exchange.sender == current_user) ? @exchange.receiver : @exchange.sender
+
+  @messages.where(user: @other_user, read: false).update_all(read: true)
+end
 end

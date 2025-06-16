@@ -1,43 +1,52 @@
 <div class="container py-4" style="max-width: 700px;">
   <!-- En-tête du chat -->
   <div class="d-flex align-items-center mb-4 border-bottom pb-3">
-    <%# Image de profil de la personne avec qui on parle %>
-    <% if @exchange.receiver.avatar.attached? %>
-      <%= image_tag url_for(@exchange.receiver.avatar.variant(resize_to_limit: [50, 50])), class: "rounded-circle me-3", alt: "Profil" %>
+    <% if @other_user.avatar.attached? %>
+      <%= image_tag url_for(@other_user.avatar), class: "rounded-circle me-3", alt: "Profil", style: "width: 50px; height: 50px; object-fit: cover;" %>
     <% else %>
       <%= image_tag "default_avatar.jpg", class: "rounded-circle me-3", width: 50, height: 50, alt: "Profil" %>
     <% end %>
     <div>
-      <h5 class="mb-0"><%= @exchange.receiver.nom.presence || @exchange.receiver.email %></h5>
-      <small class="text-muted">En ligne</small> <!-- Tu peux adapter ce statut -->
+      <h5 class="mb-0"><%= @other_user.nom.presence || @other_user.email %></h5>
+      <small class="text-muted">En ligne</small> <!-- À adapter si tu veux gérer le statut en ligne -->
     </div>
   </div>
 
   <!-- Boîte de discussion -->
   <div id="chat-box" class="border rounded p-3 mb-3" style="height: 400px; overflow-y: auto; background: #f9f9f9;">
     <% @messages.each do |message| %>
-      <% is_current_user = message.user == current_user %>
+      <% is_current_user = (message.user == current_user) %>
+      <% sender = message.user %>
       <div class="d-flex mb-3 <%= is_current_user ? 'justify-content-end' : 'justify-content-start' %>">
+
+        <%# Avatar à gauche pour les messages reçus %>
         <% unless is_current_user %>
-          <!-- Image profil de l'autre utilisateur à gauche -->
-          <% if message.user.avatar.attached? %>
-            <%= image_tag url_for(message.user.avatar.variant(resize_to_limit: [40, 40])), class: "rounded-circle me-2", alt: "Profil" %>
+          <% if sender.avatar.attached? %>
+            <%= image_tag url_for(sender.avatar), class: "rounded-circle me-2", alt: "Profil", style: "width: 40px; height: 40px; object-fit: cover;" %>
           <% else %>
             <%= image_tag "default_avatar.jpg", class: "rounded-circle me-2", width: 40, height: 40, alt: "Profil" %>
           <% end %>
         <% end %>
 
+        <!-- Bulle de message -->
         <div class="message-bubble px-3 py-2 rounded <%= is_current_user ? 'bg-primary text-white' : 'bg-light text-dark' %>" style="max-width: 70%;">
           <p class="mb-1" style="white-space: pre-wrap;"><%= message.content %></p>
-          <small class="text-muted d-block text-end" style="font-size: 0.75rem;">
-            <%= message.created_at.strftime("%d %b %H:%M") %>
-          </small>
+          <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted" style="font-size: 0.75rem;">
+              <%= message.created_at.strftime("%d %b %H:%M") %>
+            </small>
+            <% if is_current_user %>
+              <small class="ms-2" style="font-size: 0.75rem;">
+                <%= message.read ? "✔ Vu" : "✔ Envoyé" %>
+              </small>
+            <% end %>
+          </div>
         </div>
 
+        <%# Avatar à droite pour les messages envoyés %>
         <% if is_current_user %>
-          <!-- Image profil à droite pour les messages envoyés -->
-          <% if message.user.avatar.attached? %>
-            <%= image_tag url_for(message.user.avatar.variant(resize_to_limit: [40, 40])), class: "rounded-circle ms-2", alt: "Profil" %>
+          <% if sender.avatar.attached? %>
+            <%= image_tag url_for(sender.avatar), class: "rounded-circle ms-2", alt: "Profil", style: "width: 40px; height: 40px; object-fit: cover;" %>
           <% else %>
             <%= image_tag "default_avatar.jpg", class: "rounded-circle ms-2", width: 40, height: 40, alt: "Profil" %>
           <% end %>
@@ -63,7 +72,6 @@
 </script>
 
 <style>
-  /* Style pour les bulles de messages */
   .message-bubble {
     word-wrap: break-word;
   }
