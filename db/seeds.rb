@@ -25,7 +25,7 @@ team2 = Team.create!(
   background_image: "real-madrid.jpg"
 )
 team3 = Team.create!(
-name: "liverpool",
+name: "Liverpool FC",
 country: "Angleterre",
 logo: "liverpool.png",
 description: "Avec ses 6 titres en C1 et l’envoûtant chant d’Anfield, Liverpool est un pilier du football anglais. Emmené récemment par Jürgen Klopp, le club a renoué avec son passé glorieux, mêlant passion populaire et jeu spectaculaire.Connus pour leur ferveur à Anfield et leur celebre chant You'll Never Walk Alone.",
