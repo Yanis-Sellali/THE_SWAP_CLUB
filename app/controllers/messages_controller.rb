@@ -1,17 +1,18 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
 
-  def create
-    @chat = Chat.find(params[:id])
-    @message = @chat.message.build(message_params)
-    @message.user = current_user
+def create
+  @exchange = Exchange.find(params[:exchange_id])
+  @chat = @exchange.chat
+  @message = @chat.messages.build(message_params)
+  @message.user = current_user
 
-    if @message.save
-      redirect_to chat_path(@chat.exchange), notice: "Message envoyé."
-    else
-      redirect_to chat_path(@chat.exchange), alert: "Erreur lors de l'envoie du message."
-    end
+  if @message.save
+    redirect_to exchange_chat_path(@exchange), notice: "Message envoyé."
+  else
+    redirect_to exchange_chat_path(@exchange), alert: "Erreur lors de l'envoi du message."
   end
+end
 
   private
 
