@@ -10,6 +10,7 @@
       <th>Actions</th>
     </tr>
   </thead>
+
   <tbody>
     <% @exchanges.each do |exchange| %>
       <tr>
@@ -36,6 +37,7 @@
       </tr>
     <% end %>
   </tbody>
+  
 </table>
 
 <%= link_to "Créer un nouvel échange", new_exchange_path, class: "btn btn-secondary mt-3" %>

@@ -5,29 +5,63 @@
   </div>
 </div>
 
-<!-- Maillots -->
+<!-- Clubs -->
 <section class="py-5 bg-white">
-  <h2 class="text-center fw-bold mb-4">TOUS LES MAILLOTS</h2>
-  <div class="container-fluid px-5">
-    <div class="row flex-nowrap overflow-auto">
-      <% @jerseys.each do |jersey| %>
-        <div class="col-6 col-md-2">
-          <%= link_to jersey_path(jersey), class: "text-decoration-none text-dark" do %>
-            <div class="card shadow-sm">
-              <% if jersey.image.attached? %>
-                <%= image_tag url_for(jersey.image), class: "card-img-top img-fluid", style: "max-height: 150px; object-fit: cover;" %>
-              <% else %>
-                <div class="d-flex align-items-center justify-content-center" style="height: 150px; background-color: #f0f0f0; color: #888; font-weight: bold;">
-                  Pas d'image disponible
-                </div>
-              <% end %>
-              <div class="card-body text-center">
-                <h6 class="card-title mb-1"><%= jersey.name %></h6>
-                <p class="card-text small"><strong>Année :</strong> <%= jersey.year %></p>
+  <h2 class="text-center fw-bold mb-4">LES CLUBS</h2>
+  <div class="container custom-clubs-grid">
+    <div class="row g-3">
+      <% @teams.each_with_index do |team, index| %>
+        <% size_class = case index
+          when 0, 3 then 'col-md-6 col-lg-4'
+          when 1, 2, 4, 5 then 'col-md-6 col-lg-4'
+          else 'col-6 col-md-4 col-lg-3'
+        end %>
+
+        <div class="<%= size_class %>">
+          <%= link_to team_path(team), class: "card team-card text-white border-0 shadow-sm h-100 position-relative" do %>
+            <%= image_tag team.background, class: "card-img h-100 w-100", style: "object-fit: cover; filter: brightness(0.5);" %>
+
+            <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center text-center">
+              <div class="team-logo-wrapper mb-2">
+                <%= image_tag team.logo, alt: team.name, class: "team-logo" %>
               </div>
+              <h5 class="card-title text-uppercase fw-bold text-white team-name m-0"><%= team.name %></h5>
             </div>
           <% end %>
         </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- Maillots -->
+<section class="jerseys-carousel py-5 bg-white">
+  <h2 class="text-center fw-bold mb-4">TOUS LES MAILLOTS</h2>
+  <div class="container-fluid px-4">
+    <div class="jersey-scroll d-flex overflow-auto gap-4 pb-2">
+      <% @jerseys.each do |jersey| %>
+        <%= link_to jersey_path(jersey), class: "jersey-card text-dark text-decoration-none flex-shrink-0" do %>
+          <div class="card-custom">
+            <% if jersey.image.attached? %>
+              <%= image_tag jersey.image, class: "jersey-img" %>
+            <% else %>
+              <div class="jersey-img placeholder d-flex align-items-center justify-content-center">
+                Pas d’image
+              </div>
+            <% end %>
+
+            <div class="jersey-content p-3">
+              <div class="jersey-team"><%= jersey.team.name %></div>
+              <div class="jersey-name fw-bold"><%= jersey.name %></div>
+              <div class="jersey-year">Année : <%= jersey.year %></div>
+              <div class="jersey-size">Taille : <%= jersey.size %></div>
+              <div class="jersey-user">
+                Posté par <%= jersey.user.nom %>
+                <%= image_tag(jersey.user.avatar.attached? ? url_for(jersey.user.avatar) : "default-avatar.jpg", class: "user-avatar ms-2") %>
+              </div>
+            </div>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

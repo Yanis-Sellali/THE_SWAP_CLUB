@@ -1,0 +1,27 @@
+.footer-social {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+footer .fab {
+    font-size: 24px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+footer .fab:hover {
+    transform: translateY(-3px) scale(1.1);
+    color: #f8d92f;
+}

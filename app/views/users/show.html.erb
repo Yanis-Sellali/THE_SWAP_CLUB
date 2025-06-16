@@ -1,12 +1,15 @@
 <div class="user-page container text-center my-5">
   <h1 class="page-title">Mon profil</h1>
 
+
   <% user = User.find(@user.id) %>
     <% if user.avatar.attached? %>
       <%= image_tag url_for(user.avatar), class: "user-avatar rounded-circle", style: "width: 150px; height: 150px; object-fit: cover;" %>
     <% else %>
       <%= image_tag("default_avatar.png", class: "user-avatar rounded-circle", width: 150, height: 150) %>
     <% end %>
+
+ 
 
   <h2 class="user-name"><%= user.nom %></h2>
   <div class="user-info">
