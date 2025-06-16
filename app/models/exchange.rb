@@ -8,6 +8,10 @@ class Exchange < ApplicationRecord
 
   has_one :chat, dependent: :destroy
 
+  def offer_for(user)
+  offers.find_by(user: user)&.jersey
+  end
+
   validates :sender_jersey, presence: true
   validates :receiver_jersey, presence: true
 end

@@ -1,0 +1,34 @@
+<div class="container mt-5" style="max-width: 800px;">
+  <div class="text-center mb-5">
+    <h2 class="fw-bold">🎉 Swap validé !</h2>
+    <p class="text-muted">Voici un récapitulatif de votre Swap</p>
+  </div>
+
+  <div class="row text-center mb-4">
+    <div class="col-md-6">
+      <h5><%= @sender.nom.presence || @sender.email %></h5>
+      <p class="text-muted">Propose</p>
+      <% if @sender_jersey.image.attached? %>
+        <%= image_tag @sender_jersey.image, class: "img-fluid rounded", style: "max-height: 200px;" %>
+      <% end %>
+      <p class="mt-2"><strong><%= @sender_jersey.name %></strong></p>
+    </div>
+    <div class="col-md-6">
+      <h5><%= @receiver.nom.presence || @receiver.email %></h5>
+      <p class="text-muted">Propose</p>
+      <% if @receiver_jersey.image.attached? %>
+        <%= image_tag @receiver_jersey.image, class: "img-fluid rounded", style: "max-height: 200px;" %>
+      <% end %>
+      <p class="mt-2"><strong><%= @receiver_jersey.name %></strong></p>
+    </div>
+  </div>
+
+  <div class="alert alert-info text-center">
+    📍 Vous pouvez maintenant vous contacter et fixer le lieu du rendez-vous. <br>
+    Merci d’utiliser <strong>The Swap Club</strong> pour vos échanges 🙌
+  </div>
+
+  <div class="text-center mt-4">
+    <%= link_to "Retour à l'accueil", root_path, class: "btn btn-primary" %>
+  </div>
+</div>

@@ -9,40 +9,42 @@
     <% end %>
     <div>
       <h5 class="mb-0"><%= @exchange.receiver.nom.presence || @exchange.receiver.email %></h5>
-      <small class="text-muted">En ligne</small> <!-- Tu peux adapter ce statut -->
+      <small class="text-muted">En ligne</small>
     </div>
   </div>
 
   <!-- Boîte de discussion -->
   <div id="chat-box" class="border rounded p-3 mb-3" style="height: 400px; overflow-y: auto; background: #f9f9f9;">
     <% @messages.each do |message| %>
-      <% is_current_user = message.user == current_user %>
-      <div class="d-flex mb-3 <%= is_current_user ? 'justify-content-end' : 'justify-content-start' %>">
-        <% unless is_current_user %>
-          <!-- Image profil de l'autre utilisateur à gauche -->
-          <% if message.user.avatar.attached? %>
-            <%= image_tag url_for(message.user.avatar.variant(resize_to_limit: [40, 40])), class: "rounded-circle me-2", alt: "Profil" %>
-          <% else %>
-            <%= image_tag "default_avatar.jpg", class: "rounded-circle me-2", width: 40, height: 40, alt: "Profil" %>
+      <% if message.trade_offer? %>
+        <%= render "messages/trade_offer_card", message: message %>
+      <% else %>
+        <% is_current_user = message.user == current_user %>
+        <div class="d-flex mb-3 <%= is_current_user ? 'justify-content-end' : 'justify-content-start' %>">
+          <% unless is_current_user %>
+            <% if message.user.avatar.attached? %>
+              <%= image_tag url_for(message.user.avatar.variant(resize_to_limit: [40, 40])), class: "rounded-circle me-2", alt: "Profil" %>
+            <% else %>
+              <%= image_tag "default_avatar.jpg", class: "rounded-circle me-2", width: 40, height: 40, alt: "Profil" %>
+            <% end %>
           <% end %>
-        <% end %>
 
-        <div class="message-bubble px-3 py-2 rounded <%= is_current_user ? 'bg-primary text-white' : 'bg-light text-dark' %>" style="max-width: 70%;">
-          <p class="mb-1" style="white-space: pre-wrap;"><%= message.content %></p>
-          <small class="text-muted d-block text-end" style="font-size: 0.75rem;">
-            <%= message.created_at.strftime("%d %b %H:%M") %>
-          </small>
+          <div class="message-bubble px-3 py-2 rounded <%= is_current_user ? 'bg-primary text-white' : 'bg-light text-dark' %>" style="max-width: 70%;">
+            <p class="mb-1" style="white-space: pre-wrap;"><%= message.content %></p>
+            <small class="text-muted d-block text-end" style="font-size: 0.75rem;">
+              <%= message.created_at.strftime("%d %b %H:%M") %>
+            </small>
+          </div>
+
+          <% if is_current_user %>
+            <% if message.user.avatar.attached? %>
+              <%= image_tag url_for(message.user.avatar.variant(resize_to_limit: [40, 40])), class: "rounded-circle ms-2", alt: "Profil" %>
+            <% else %>
+              <%= image_tag "default_avatar.jpg", class: "rounded-circle ms-2", width: 40, height: 40, alt: "Profil" %>
+            <% end %>
+          <% end %>
         </div>
-
-        <% if is_current_user %>
-          <!-- Image profil à droite pour les messages envoyés -->
-          <% if message.user.avatar.attached? %>
-            <%= image_tag url_for(message.user.avatar.variant(resize_to_limit: [40, 40])), class: "rounded-circle ms-2", alt: "Profil" %>
-          <% else %>
-            <%= image_tag "default_avatar.jpg", class: "rounded-circle ms-2", width: 40, height: 40, alt: "Profil" %>
-          <% end %>
-        <% end %>
-      </div>
+      <% end %>
     <% end %>
   </div>
 
@@ -63,7 +65,6 @@
 </script>
 
 <style>
-  /* Style pour les bulles de messages */
   .message-bubble {
     word-wrap: break-word;
   }

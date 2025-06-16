@@ -57,7 +57,7 @@
               <div class="jersey-size">Taille : <%= jersey.size %></div>
               <div class="jersey-user">
                 Posté par <%= jersey.user.nom %>
-                <%= image_tag(jersey.user.avatar.attached? ? url_for(jersey.user.avatar) : "default-avatar.jpg", class: "user-avatar ms-2") %>
+                <%= image_tag(jersey.user.avatar.attached? ? url_for(jersey.user.avatar) : "default-avatar.jpg", class: "avatar-bordered ms-2") %>
               </div>
             </div>
           </div>
