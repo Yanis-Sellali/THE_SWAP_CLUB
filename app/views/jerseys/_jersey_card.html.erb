@@ -1,37 +1,38 @@
-<div class="col">
-  <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
-    <% if jersey.image.attached? %>
-      <%= image_tag url_for(jersey.image), class: "w-100", alt: jersey.name, loading: "lazy", style: "max-height: 320px; object-fit: cover;" %>
-    <% else %>
-      <%= image_tag "default_jersey.jpg", class: "w-100", alt: "Image par défaut", loading: "lazy", style: "max-height: 320px; object-fit: cover;" %>
-    <% end %>
+<div class="col-6 col-md-2">
+  <%= link_to jersey_path(jersey), class: "text-decoration-none text-dark" do %>
+    <div class="card shadow-sm h-100 d-flex flex-column">
+      <% if jersey.image.attached? %>
+        <%= image_tag url_for(jersey.image), class: "w-100", alt: jersey.name, loading: "lazy", style: "height: 300px; object-fit: cover;" %>
+      <% else %>
+        <%= image_tag "default_jersey.jpg", class: "w-100", alt: "Image par défaut", loading: "lazy", style: "height: 300px; object-fit: cover;" %>
+      <% end %>
 
-    <div class="card-body d-flex flex-column p-3">
-      <!-- Nom + équipe -->
-      <h6 class="fw-bold text-uppercase mb-1">
-        <%= jersey.team&.name || "Équipe inconnue" %> <%= jersey.year %>
-      </h6>
-      <p class="mb-1"><%= jersey.name %></p>
+      <div class="card-body d-flex flex-column flex-grow-1 p-3">
+        <!-- Nom + équipe -->
+        <h6 class="fw-bold text-uppercase mb-1">
+          <%= jersey.team&.name || "Équipe inconnue" %> <%= jersey.year %>
+        </h6>
+        <p class="mb-1"><%= jersey.name %></p>
 
-      <!-- Infos maillot -->
-      <p class="small mb-1">Taille : <%= jersey.size %></p>
-      <p class="small mb-1">Année : <%= jersey.year %></p>
-      <p class="small text-muted mb-1">Flocage : <%= jersey.flocking %></p>
+        <!-- Infos maillot -->
+        <p class="small mb-1">Taille : <%= jersey.size %></p>
+        <p class="small mb-1">Année : <%= jersey.year %></p>
+        <p class="small text-muted mb-1">Flocage : <%= jersey.flocking %></p>
 
-      <!-- Profil utilisateur -->
-      <div class="d-flex align-items-center mt-auto">
-        <%= image_tag(
-              jersey.user.avatar.attached? ? url_for(jersey.user.avatar) : "default-avatar.jpg",
-              class: "avatar-bordered me-2"
-            ) %>
-        <p class="small mb-0"><%= jersey.user.nom %></p>
+        <!-- Profil utilisateur -->
+        <div class="d-flex align-items-center mt-auto">
+          <%= image_tag(
+                jersey.user.avatar.attached? ? url_for(jersey.user.avatar) : "default-avatar.jpg",
+                class: "avatar-bordered me-2"
+              ) %>
+          <p class="small mb-0"><%= jersey.user.nom %></p>
+        </div>
+
+        <!-- Bouton -->
+        <div class="text-end mt-3">
+          <%= link_to "Voir le maillot", jersey_path(jersey), class: "btn btn-outline-primary btn-sm w-100", data: { turbo_frame: "_top" } %>
+        </div>
       </div>
-
-      <!-- Bouton -->
-      <div class="text-end mt-3">
-        <%= link_to "Voir le maillot", jersey_path(jersey), class: "btn btn-outline-primary btn-sm w-100", data: { turbo_frame: "_top" } %>
-      </div>
-
     </div>
-  </div>
+  <% end %>
 </div>
