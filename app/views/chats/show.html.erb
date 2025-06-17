@@ -1,5 +1,12 @@
 <div class="container py-4" style="max-width: 700px;">
-  <!-- En-tête du chat -->
+  <!-- Redirection auto vers la page de récap si l’échange est finalisé -->
+  <% if @finalized_trade_message %>
+    <script>
+      window.location.href = "<%= recap_trade_path(@finalized_trade_message) %>";
+    </script>
+  <% end %>
+
+  <!-- En tete du chat -->
   <div class="d-flex align-items-center mb-4 border-bottom pb-3">
     <% if @other_user.avatar.attached? %>
       <%= image_tag url_for(@other_user.avatar), class: "rounded-circle me-3", alt: "Profil", style: "width: 50px; height: 50px; object-fit: cover;" %>
@@ -7,22 +14,26 @@
       <%= image_tag "default_avatar.jpg", class: "rounded-circle me-3", width: 50, height: 50, alt: "Profil" %>
     <% end %>
     <div>
-      <h5 class="mb-0"><%= @exchange.receiver.nom.presence || @exchange.receiver.email %></h5>
+      <h5 class="mb-0"><%= @other_user.nom.presence || @other_user.email %></h5>
       <small class="text-muted">En ligne</small>
     </div>
   </div>
 
-	<%= turbo_stream_from @chat %>
-	<div id="messages">f
-		<% @chat.messages.each do |message| %>
-		 <% if message.trade_offer? %>
-			 <%= render "messages/trade_offer_card", message:message %>
-		 <% end %>
-			<%= render "messages/message", message: message, current_user: current_user %>
-		<% end %>
-	</div>
+  <!-- Turbo stream -->
+  <%= turbo_stream_from @chat %>
 
+  <!-- Messages -->
+  <div id="messages">
+    <% @chat.messages.each do |message| %>
+      <% if message.trade_offer? %>
+        <%= render "messages/trade_offer_card", message: message %>
+      <% else %>
+        <%= render "messages/message", message: message, current_user: current_user %>
+      <% end %>
+    <% end %>
+  </div>
 
+  <!-- Formulaire denvoi -->
   <%= form_with model: [@exchange, @chat, @message], local: true, data: { turbo: false }, id: "message-form" do |form| %>
     <div class="input-group">
       <%= form.text_area :content, class: "form-control", rows: 2, placeholder: "Écris ton message..." %>
@@ -30,3 +41,16 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const chatBox = document.getElementById("messages");
+    if (chatBox) chatBox.scrollTop = chatBox.scrollHeight;
+  });
+</script>
+
+<style>
+  .message-bubble {
+    word-wrap: break-word;
+  }
+</style>

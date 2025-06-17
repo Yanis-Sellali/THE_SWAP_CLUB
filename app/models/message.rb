@@ -3,7 +3,6 @@ class Message < ApplicationRecord
   belongs_to :user, optional: true
 
   enum message_type: { normal: "normal", trade_offer: "trade_offer", system: "system" }
-  after_create_commit -> { broadcast_append_to chat, target: "messages", partial: "messages/message", locals: { message: self, current_user: self.user } }
 
   belongs_to :offer_jersey_user1, class_name: "Jersey", optional: true
   belongs_to :offer_jersey_user2, class_name: "Jersey", optional: true
@@ -32,7 +31,10 @@ class Message < ApplicationRecord
     user1_accepted && user2_accepted
   end
 
+
   def finalized_by?(user)
+    return false unless chat&.exchange && user
+
     if user == chat.exchange.sender
       user1_finalized
     else

@@ -18,15 +18,16 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :messages do
-    member do
-      post :accept_offer
-      post :decline_offer
-      post :finalize_offer
-    end
+ resources :messages do
+  member do
+    post :accept_offer
+    post :decline_offer
+    post :finalize_offer
   end
+end
 
-  get "trades/:id/recap", to: "trades#recap", as: :recap_trade
+get "trades/:id/recap", to: "trades#recap", as: :recap_trade
+
 
   resources :teams do
     resources :jerseys, only: [:show]
