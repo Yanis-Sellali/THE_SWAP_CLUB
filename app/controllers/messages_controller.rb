@@ -55,7 +55,8 @@ class MessagesController < ApplicationController
     else
       redirect_to exchange_chat_path(message.chat.exchange, message.chat), notice: "🕓 En attente de la finalisation de l’autre utilisateur."
     end
-    
+  end
+
   def index
     @exchange = Exchange.find(params[:exchange_id])
     @chat = @exchange.chat

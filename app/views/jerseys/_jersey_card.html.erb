@@ -22,7 +22,7 @@
       <div class="d-flex align-items-center mt-auto">
         <%= image_tag(
               jersey.user.avatar.attached? ? url_for(jersey.user.avatar) : "default-avatar.jpg",
-              class: "rounded-circle me-2", style: "width: 32px; height: 32px; object-fit: cover;"
+              class: "avatar-bordered me-2"
             ) %>
         <p class="small mb-0"><%= jersey.user.nom %></p>
       </div>
