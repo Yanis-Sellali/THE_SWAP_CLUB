@@ -1,5 +1,5 @@
 <div class="container py-4" style="max-width: 700px;">
- 
+  <!-- En-tête du chat -->
   <div class="d-flex align-items-center mb-4 border-bottom pb-3">
     <% if @other_user.avatar.attached? %>
       <%= image_tag url_for(@other_user.avatar), class: "rounded-circle me-3", alt: "Profil", style: "width: 50px; height: 50px; object-fit: cover;" %>
@@ -12,39 +12,16 @@
     </div>
   </div>
 
-  <div id="chat-box" class="border rounded p-3 mb-3" style="height: 400px; overflow-y: auto; background: #f9f9f9;" data-exchange-id="<%= @exchange.id %>">
-    <% @messages.each do |message| %>
-      <% if message.trade_offer? %>
-        <%= render "messages/trade_offer_card", message: message %>
-      <% else %>
-        <% is_current_user = message.user == current_user %>
-        <div class="d-flex mb-3 <%= is_current_user ? 'justify-content-end' : 'justify-content-start' %>">
-          <% unless is_current_user %>
-            <% if message.user.avatar.attached? %>
-              <%= image_tag url_for(message.user.avatar.variant(resize_to_limit: [40, 40])), class: "rounded-circle me-2", alt: "Profil" %>
-            <% else %>
-              <%= image_tag "default_avatar.jpg", class: "rounded-circle me-2", width: 40, height: 40, alt: "Profil" %>
-            <% end %>
-          <% end %>
+	<%= turbo_stream_from @chat %>
+	<div id="messages">f
+		<% @chat.messages.each do |message| %>
+		 <% if message.trade_offer? %>
+			 <%= render "messages/trade_offer_card", message:message %>
+		 <% end %>
+			<%= render "messages/message", message: message, current_user: current_user %>
+		<% end %>
+	</div>
 
-          <div class="message-bubble px-3 py-2 rounded <%= is_current_user ? 'bg-primary text-white' : 'bg-light text-dark' %>" style="max-width: 70%;">
-            <p class="mb-1" style="white-space: pre-wrap;"><%= message.content %></p>
-            <small class="text-muted d-block text-end" style="font-size: 0.75rem;">
-              <%= message.created_at.strftime("%d %b %H:%M") %>
-            </small>
-          </div>
-
-          <% if is_current_user %>
-            <% if message.user.avatar.attached? %>
-              <%= image_tag url_for(message.user.avatar.variant(resize_to_limit: [40, 40])), class: "rounded-circle ms-2", alt: "Profil" %>
-            <% else %>
-              <%= image_tag "default_avatar.jpg", class: "rounded-circle ms-2", width: 40, height: 40, alt: "Profil" %>
-            <% end %>
-          <% end %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
 
   <%= form_with model: [@exchange, @chat, @message], local: true, data: { turbo: false }, id: "message-form" do |form| %>
     <div class="input-group">
@@ -53,70 +30,3 @@
     </div>
   <% end %>
 </div>
-
-<script>
-const chatBox = document.getElementById("chat-box");
-const exchangeId = chatBox ? chatBox.dataset.exchangeId : null;
-
-function scrollToBottom() {
-  setTimeout(() => {
-    if (chatBox) {
-      chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: "smooth" });
-    }
-  }, 300);
-}
-
-function updateChat() {
-  if (!exchangeId) {
-    console.error("Erreur : Exchange ID non trouvé !");
-    return;
-  }
-
-  fetch(`/exchanges/${exchangeId}/chat/messages`)
-    .then(response => response.text())
-    .then(data => {
-      if (chatBox) {
-        const previousScrollHeight = chatBox.scrollHeight;
-        chatBox.innerHTML = data;
-
-        if (chatBox.scrollTop + chatBox.clientHeight >= previousScrollHeight - 10) {
-          scrollToBottom();
-        }
-      }
-    })
-    .catch(error => console.error("Erreur dans le chat :", error));
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".message-bubble").forEach((message) => {
-    message.addEventListener("mouseenter", () => {
-      const messageId = message.dataset.messageId;
-      fetch(`/messages/${messageId}/read`, { method: "PATCH" });
-    });
-  });
-
-  const form = document.getElementById("message-form");
-  if (form) {
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const formData = new FormData(form);
-
-      fetch(form.action, {
-        method: "POST",
-        body: formData,
-        headers: { "X-Requested-With": "XMLHttpRequest" }
-      })
-      .then(response => response.text())
-      .then(() => {
-        form.reset();
-        updateChat();
-        scrollToBottom();
-      })
-      .catch(error => console.error("Erreur envoi message :", error));
-    });
-  }
-});
-
-setInterval(updateChat, 2000);
-document.addEventListener("DOMContentLoaded", scrollToBottom);
-</script>
