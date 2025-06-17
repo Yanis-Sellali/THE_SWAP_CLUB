@@ -29,7 +29,7 @@
 
       <!-- Bouton -->
       <div class="text-end mt-3">
-        <%= link_to "Voir le maillot", jersey_path(jersey), class: "btn btn-outline-primary btn-sm w-100" %>
+        <%= link_to "Voir le maillot", jersey_path(jersey), class: "btn btn-outline-primary btn-sm w-100", data: { turbo_frame: "_top" } %>
       </div>
 
     </div>
