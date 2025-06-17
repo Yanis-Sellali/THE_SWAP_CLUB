@@ -2,16 +2,16 @@
   <h5 class="fw-bold mb-4">📦 Proposition d’échange</h5>
 
   <div class="d-flex justify-content-center align-items-center gap-4 mb-4">
-    <div class="jersey">
+    <div>
       <% if message.offer_jersey_user1&.image&.attached? %>
         <%= image_tag message.offer_jersey_user1.image, class: "img-fluid rounded", style: "max-height: 160px;" %>
       <% end %>
       <p class="mt-2 fw-semibold"><%= message.offer_jersey_user1&.name %></p>
     </div>
 
-    <div class="exchange-icon display-5">🔁</div>
+    <div class="display-5">🔁</div>
 
-    <div class="jersey">
+    <div>
       <% if message.offer_jersey_user2&.image&.attached? %>
         <%= image_tag message.offer_jersey_user2.image, class: "img-fluid rounded", style: "max-height: 160px;" %>
       <% end %>
@@ -21,26 +21,26 @@
 
   <% if message.accepted_by?(current_user) %>
     <% if message.both_accepted? %>
-      <p class="text-success fw-bold">✅ Les deux utilisateurs ont accepté l’échange !</p>
-      <p class="text-muted fst-italic">Discutez ici pour fixer un lieu de rendez-vous et échanger vos coordonnées.</p>
-
-      <% unless message.finalized_by?(current_user) %>
-        <%= button_to "📍 Finaliser l’échange", finalize_offer_message_path(message), method: :post, class: "btn btn-outline-primary mt-3 px-4" %>
+      <% if message.both_finalized? %>
+        <p class="text-success fw-bold">✅ Échange finalisé par les deux utilisateurs.</p>
+        <%= link_to "Voir le récapitulatif", recap_trade_path(message), class: "btn btn-outline-primary px-4 mt-3" %>
       <% else %>
-        <% if message.both_finalized? %>
-          <p class="text-success mt-3 fw-bold">✅ Échange finalisé, redirection en cours...</p>
+        <p class="text-success fw-bold">✅ Les deux utilisateurs ont accepté l’échange !</p>
+        <p class="text-muted fst-italic">Discutez ici d’un point de rendez-vous avant de finaliser.</p>
+
+        <% if !message.finalized_by?(current_user) %>
+          <%= button_to "📍 Finaliser & accepter le Swap", finalize_offer_message_path(message), method: :post, class: "btn btn-outline-primary px-4 mt-2" %>
         <% else %>
-          <p class="text-warning mt-3">🕓 En attente de l’autre utilisateur pour finaliser.</p>
+          <p class="text-info mt-2">🕓 En attente que l'autre utilisateur finalise.</p>
         <% end %>
       <% end %>
     <% else %>
-      <p class="text-warning fw-bold">🕓 En attente de la réponse de l’autre utilisateur…</p>
+      <p class="text-warning fw-bold">🕓 En attente de l'autre utilisateur…</p>
     <% end %>
   <% else %>
     <div class="d-flex justify-content-center gap-3">
-      <%= button_to "✅ Accepter l’échange", accept_offer_message_path(message), method: :post, class: "btn btn-success px-4" %>
+      <%= button_to "✅ Accepter", accept_offer_message_path(message), method: :post, class: "btn btn-success px-4" %>
       <%= button_to "❌ Refuser", decline_offer_message_path(message), method: :post, class: "btn btn-danger px-4" %>
     </div>
   <% end %>
 </div>
-
