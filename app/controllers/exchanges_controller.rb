@@ -37,6 +37,7 @@ def create
   end
 
   if @exchange.save
+    @chat = Chat.create!(exchange_id: @exchange.id)
     redirect_to exchanges_path, notice: "Échange créé avec succès."
   else
     render :new, status: :unprocessable_entity
