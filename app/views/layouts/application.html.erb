@@ -28,7 +28,9 @@
   <body>
     <%= render "shared/navbar" %>
 
-    <%= yield %>
+    <main class="flex-grow-1">
+      <%= yield %>
+    </main>
 
     <%= render "shared/footer" %>
 
