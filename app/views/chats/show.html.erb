@@ -1,5 +1,5 @@
 <div class="container py-4" style="max-width: 700px;">
-  <!-- En-tête du chat -->
+ 
   <div class="d-flex align-items-center mb-4 border-bottom pb-3">
     <% if @other_user.avatar.attached? %>
       <%= image_tag url_for(@other_user.avatar), class: "rounded-circle me-3", alt: "Profil", style: "width: 50px; height: 50px; object-fit: cover;" %>
@@ -12,7 +12,6 @@
     </div>
   </div>
 
-  <!-- Boîte de discussion -->
   <div id="chat-box" class="border rounded p-3 mb-3" style="height: 400px; overflow-y: auto; background: #f9f9f9;" data-exchange-id="<%= @exchange.id %>">
     <% @messages.each do |message| %>
       <% if message.trade_offer? %>
@@ -47,7 +46,6 @@
     <% end %>
   </div>
 
-  <!-- Formulaire d'envoi -->
   <%= form_with model: [@exchange, @chat, @message], local: true, data: { turbo: false }, id: "message-form" do |form| %>
     <div class="input-group">
       <%= form.text_area :content, class: "form-control", rows: 2, placeholder: "Écris ton message..." %>
@@ -89,7 +87,6 @@ function updateChat() {
     .catch(error => console.error("Erreur dans le chat :", error));
 }
 
-// Marquer les messages comme "Vu" lorsqu'ils sont survolés
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".message-bubble").forEach((message) => {
     message.addEventListener("mouseenter", () => {
