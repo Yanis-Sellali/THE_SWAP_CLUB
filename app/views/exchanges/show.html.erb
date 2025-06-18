@@ -1,19 +1,49 @@
-<div class ="container mt-5 text-dark">
-  <h1>Échange proposé par <%= @exchange.sender.nom %></h1>
+<div class="container mt-5 text-dark">
+  <h1 class="text-center mb-4">Échange proposé par <%= @exchange.sender.nom %></h1>
 
-  <p><strong>Maillot envoyé :</strong> <%= @exchange.sender_jersey.team.name %> (<%= @exchange.sender_jersey.size %>)</p>
-  <p><strong>Maillot demandé :</strong> <%= @exchange.receiver_jersey.team.name %> (<%= @exchange.receiver_jersey.size %>)</p>
-  <p><strong>Statut :</strong> <%= @exchange.status %></p>
+  <div class="row justify-content-center">
+    <!-- Maillot envoyé -->
+    <div class="col-md-5 text-center mb-4">
+      <h6 class="text-muted mb-1">Proposé par</h6>
+      <h5 class="mb-2"><%= @exchange.sender.nom %></h5>
+
+      <% if @exchange.sender_jersey.image.attached? %>
+        <%= image_tag url_for(@exchange.sender_jersey.image), class: "img-fluid rounded shadow mb-2", style: "max-height: 250px; object-fit: cover;" %>
+      <% else %>
+        <%= image_tag "default_jersey.jpg", class: "img-fluid rounded shadow mb-2", style: "max-height: 250px; object-fit: cover;" %>
+      <% end %>
+      <p><strong><%= @exchange.sender_jersey.team.name %></strong> (<%= @exchange.sender_jersey.size %>)</p>
+    </div>
+
+    <!-- Maillot demandé -->
+    <div class="col-md-5 text-center mb-4">
+      <h6 class="text-muted mb-1">Appartient à</h6>
+      <h5 class="mb-2"><%= @exchange.receiver.nom %></h5>
+
+      <% if @exchange.receiver_jersey.image.attached? %>
+        <%= image_tag url_for(@exchange.receiver_jersey.image), class: "img-fluid rounded shadow mb-2", style: "max-height: 250px; object-fit: cover;" %>
+      <% else %>
+        <%= image_tag "default_jersey.jpg", class: "img-fluid rounded shadow mb-2", style: "max-height: 250px; object-fit: cover;" %>
+      <% end %>
+      <p><strong><%= @exchange.receiver_jersey.team.name %></strong> (<%= @exchange.receiver_jersey.size %>)</p>
+    </div>
+  </div>
+
+  <p class="text-center"><strong>Statut :</strong> <%= @exchange.status %></p>
 
   <% if @exchange.receiver == current_user %>
-    <%= form_with url: accept_exchange_path(@exchange), method: :patch, class: "d-inline" do %>
-      <%= submit_tag "Accepter l’échange", class: "btn btn-success mb-1" %>
-    <% end %>
+    <div class="text-center">
+      <%= form_with url: accept_exchange_path(@exchange), method: :patch, class: "d-inline" do %>
+        <%= submit_tag "Accepter l’échange", class: "btn btn-success mb-2" %>
+      <% end %>
 
-    <%= form_with url: refuse_exchange_path(@exchange), method: :patch, class: "d-inline" do %>
-      <%= submit_tag "Refuser l’échange", class: "btn btn-danger mb-1" %>
-    <% end %>
+      <%= form_with url: refuse_exchange_path(@exchange), method: :patch, class: "d-inline" do %>
+        <%= submit_tag "Refuser l’échange", class: "btn btn-danger mb-2" %>
+      <% end %>
+    </div>
   <% end %>
 
-  <%= link_to "Retour aux échanges", exchanges_path, class: "btn btn-secondary mt-3" %>
+  <div class="text-center">
+    <%= link_to "Retour aux échanges", exchanges_path, class: "btn btn-secondary mt-3" %>
+  </div>
 </div>

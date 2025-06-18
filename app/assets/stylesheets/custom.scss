@@ -33,3 +33,44 @@ h1, h2, h3, .titre-animée {
 .titre-underline:hover::after {
     width: 100%;
 }
+
+
+.trade-offer-card {
+  .jersey {
+    text-align: center;
+  }
+
+  .exchange-icon {
+    font-size: 2.5rem;
+  }
+}
+
+.chat-box {
+  background-color: #f8f9fa;
+}
+
+.mask-custom {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 1em;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  background-clip: padding-box;
+}
+
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.badge.text-decoration-none:hover {
+  background-color: #e2e6ea;
+}
+
+main {
+  flex: 1;
+}

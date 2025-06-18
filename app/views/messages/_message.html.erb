@@ -1,3 +1,13 @@
-<div class="chat-message <%= message.user == current_user ? 'sent' : 'received' %>">
-  <p><strong><%= message.user.nom %>:</strong> <%= message.content %></p>
+<% sent_by_current_user = message.user == current_user %>
+
+<div class="chat-message <%= sent_by_current_user ? 'sent' : 'received' %>">
+  <p>
+    <strong><%= message.user.nom %>:</strong> <%= message.content %>
+  </p>
+  <div class="text-muted small d-flex justify-content-between mt-1">
+    <span><%= message.created_at.strftime("%H:%M") %></span>
+    <% if sent_by_current_user %>
+      <span><%= message.read ? "Vu" : "Envoyé" %></span>
+    <% end %>
+  </div>
 </div>

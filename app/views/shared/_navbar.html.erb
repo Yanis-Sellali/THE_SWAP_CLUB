@@ -11,7 +11,7 @@
       <% if user_signed_in? %>
         <!-- Dropdown Messages -->
         <div class="nav-item dropdown position-relative">
-          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="messageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="messageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Messages
             <i class="bi bi-chat-dots-fill text-white fs-4"></i>
             <span id="notifications-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" data-notifications="<%= current_user.unread_messages_count %>">
               <%= current_user.unread_messages_count %>

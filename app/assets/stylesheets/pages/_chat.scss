@@ -1,0 +1,30 @@
+.message-bubble {
+  word-wrap: break-word;
+  border-radius: 0.75rem;
+}
+
+.bg-dark.text-white {
+  background-color: #000 !important;
+  color: white !important;
+}
+
+.chat-message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 70%;
+  word-wrap: break-word;
+  color: black;
+}
+
+.chat-message.sent {
+  background-color: #DCF8C6;
+  align-self: flex-end;
+  text-align: right;
+}
+
+.chat-message.received {
+  background-color: #F1F0F0;
+  align-self: flex-start;
+  text-align: left;
+}

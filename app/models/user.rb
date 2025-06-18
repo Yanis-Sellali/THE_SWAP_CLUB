@@ -21,5 +21,5 @@ class User < ApplicationRecord
            .where(read: false)
            .where.not(user_id: id) # messages pas envoyés par moi (donc reçus)
            .where('exchanges.sender_id = :id OR exchanges.receiver_id = :id', id: id)
-end
+  end
 end

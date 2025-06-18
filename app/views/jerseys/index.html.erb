@@ -1,14 +1,65 @@
-<div class="container mt-5">
+<div class="container my-5">
   <h2 class="mb-4 text-center">Tous les maillots disponibles</h2>
-  <% if @jerseys.any? %>
-    <div class="row">
-      <% @jerseys.each do |jersey| %>
-        <div class="col-md-4 mb-4">
-          <%= render partial: "jersey_card", locals: { jersey: jersey } %>
-        </div>
-      <% end %>
+
+  <!-- FILTRES -->
+  <div class="card p-3 mb-4 shadow-sm rounded-4">
+    <%= form_with url: jerseys_path, method: :get,
+      data: { controller: "auto-submit" },
+      class: "row g-3 align-items-end" do %>
+
+      <!-- Équipe -->
+      <div class="col-sm-6 col-md-3">
+        <%= label_tag :team_id, "Équipe", class: "form-label" %>
+        <%= select_tag :team_id,
+              options_from_collection_for_select(@teams, :id, :name, params[:team_id]),
+              include_blank: "Toutes les équipes",
+              class: "form-select" %>
+      </div>
+
+      <!-- Taille -->
+      <div class="col-sm-6 col-md-3">
+        <%= label_tag :size, "Taille", class: "form-label" %>
+        <%= select_tag :size,
+              options_for_select(@sizes, selected: params[:size]),
+              include_blank: "Toutes les tailles",
+              class: "form-select" %>
+      </div>
+
+      <!-- Année -->
+      <div class="col-sm-6 col-md-3">
+        <%= label_tag :year, "Année", class: "form-label" %>
+        <%= select_tag :year,
+              options_for_select(@years, selected: params[:year]),
+              include_blank: "Toutes les années",
+              class: "form-select" %>
+      </div>
+
+      <!-- Boutons -->
+      <div class="col-sm-6 col-md-3 d-flex gap-2">
+        <%= link_to "Réinitialiser", jerseys_path, class: "btn btn-secondary w-100" %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- SPINNER -->
+  <div id="loading-spinner" data-spinner-target="spinner" class="text-center my-4 d-none">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Chargement...</span>
     </div>
-  <% else %>
-    <p class="text-center">Aucun maillot disponible pour le moment.</p>
+  </div>
+
+  <!-- COMPTEUR -->
+  <%= turbo_frame_tag "jersey_count" do %>
+    <%= render partial: "jerseys/count", locals: {
+      count: @jerseys.count,
+      team: params[:team_id].presence && Team.find_by(id: params[:team_id]),
+      size: params[:size],
+      year: params[:year]
+    } %>
+  <% end %>
+
+  <!-- GRILLE DE MAILLOTS -->
+  <%= turbo_frame_tag "jersey_grid", data: { spinner_target: "grid" } do %>
+    <%= render "grid", jerseys: @jerseys %>
   <% end %>
 </div>

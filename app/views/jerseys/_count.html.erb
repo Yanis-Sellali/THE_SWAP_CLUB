@@ -1,0 +1,23 @@
+<% filter_parts = [] %>
+
+<% if size.present? %>
+  <% new_params = request.query_parameters.except(:size) %>
+  <% filter_parts << link_to("Taille #{size} ❌", jerseys_path(new_params), class: "badge bg-light text-dark me-1 text-decoration-none", data: { turbo_frame: "_top" }) %>
+<% end %>
+
+<% if team.present? %>
+  <% new_params = request.query_parameters.except(:team_id) %>
+  <% filter_parts << link_to("Équipe #{team.name} ❌", jerseys_path(new_params), class: "badge bg-light text-dark me-1 text-decoration-none", data: { turbo_frame: "_top" }) %>
+<% end %>
+
+<% if year.present? %>
+  <% new_params = request.query_parameters.except(:year) %>
+  <% filter_parts << link_to("Année #{year} ❌", jerseys_path(new_params), class: "badge bg-light text-dark me-1 text-decoration-none", data: { turbo_frame: "_top" }) %>
+<% end %>
+
+<p class="text-muted mb-3">
+  <strong><%= pluralize(count, "maillot") %></strong>
+  <% if filter_parts.any? %>
+    – <%= safe_join(filter_parts, " ") %>
+  <% end %>
+</p>

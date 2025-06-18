@@ -25,15 +25,14 @@
     </style>
   </head>
 
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <%= render "shared/navbar" %>
 
-    <%= yield %>
+    <main class="flex-grow-1">
+      <%= yield %>
+    </main>
 
     <%= render "shared/footer" %>
-
-    <!-- Bootstrap JS -->
-
 
     <!-- Animation dynamique du formulaire d'inscription -->
     <script>
@@ -44,5 +43,6 @@
         }
       });
     </script>
+    
   </body>
 </html>
