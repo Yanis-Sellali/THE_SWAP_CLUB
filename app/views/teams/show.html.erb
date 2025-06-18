@@ -1,5 +1,7 @@
 <div class="team-page container-fluid p-0">
+
   <!-- Bannière -->
+
   <div class="club-banner d-flex flex-wrap">
     <% normalized_team_name = @team.name.parameterize %>
     <% banner_filename = "teams/#{normalized_team_name}-banner.jpg" %>
@@ -16,6 +18,7 @@
       <hr class="my-2" />
     </div>
   </div>
+
 
   <!-- FILTRES -->
   <div class="container my-5">
@@ -69,6 +72,7 @@
 
 
   <!-- MAILLOTS -->
+
   <div class="container my-5">
     <% @team.jerseys.each_slice(3).with_index do |group, index| %>
       <div class="row mb-4 g-4">
@@ -101,3 +105,63 @@
       </div>
     <% end %>
   </div>
+
+
+  <!-- FILTRES -->
+  <div class="container my-5">
+    <div class="card p-3 mb-4 shadow-sm rounded-4">
+      <%= form_with url: team_path, method: :get,
+        data: { controller: "auto-submit" },
+        class: "row g-3 align-items-end" do %>
+
+        <!-- Taille -->
+        <div class="col-sm-6 col-md-3">
+          <%= label_tag :size, "Taille", class: "form-label" %>
+          <%= select_tag :size,
+                options_for_select(@sizes, selected: params[:size]),
+                include_blank: "Toutes les tailles",
+                class: "form-select" %>
+        </div>
+
+        <!-- Année -->
+        <div class="col-sm-6 col-md-3">
+          <%= label_tag :year, "Année", class: "form-label" %>
+          <%= select_tag :year,
+                options_for_select(@years, selected: params[:year]),
+                include_blank: "Toutes les années",
+                class: "form-select" %>
+        </div>
+
+        <!-- Bouton reset -->
+        <div class="col-sm-6 col-md-3 d-flex gap-2">
+          <%= link_to "Réinitialiser", team_path, class: "btn btn-secondary w-100" %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- SPINNER -->
+    <div id="loading-spinner" data-spinner-target="spinner" class="text-center my-4 d-none">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Chargement...</span>
+      </div>
+    </div>
+
+    <!-- COMPTEUR -->
+    <%= turbo_frame_tag "jersey_count" do %>
+      <%= render partial: "jerseys/count", locals: {
+        count: @jerseys.count,
+        team: params[:team_id].presence && Team.find_by(id: params[:team_id]),
+        size: params[:size],
+        year: params[:year]
+      } %>
+    <% end %>
+
+    <div class="separator-line my-2"></div>
+
+    <!-- GRILLE MAILLOTS -->
+    <%= turbo_frame_tag "jersey_grid", data: { spinner_target: "grid" } do %>
+      <%= render "jerseys/grid", jerseys: @jerseys %>
+    <% end %>
+  </div>
+</div>
+
