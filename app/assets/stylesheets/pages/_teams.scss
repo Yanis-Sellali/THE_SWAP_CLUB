@@ -5,9 +5,38 @@
 
 .team-page .card {
   transition: transform 0.2s ease;
+  border-radius: 1rem;
+  border: none;
 }
+
 .team-page .card:hover {
   transform: scale(1.02);
+}
+
+.team-page .card-img-top {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  object-fit: cover;
+}
+
+.team-page .card-body {
+  padding: 1rem;
+}
+
+.team-page .card-body h6 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+.team-page .card-body p {
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+}
+
+.team-page .card-body small {
+  font-size: 0.75rem;
 }
 
 .club-banner {
@@ -25,6 +54,17 @@
     flex: 1;
     max-width: 50%;
     background-color: #fff;
+    padding: 2rem;
+
+    h1 {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: #555;
+    }
   }
 
   @media (max-width: 768px) {
@@ -36,9 +76,9 @@
     }
   }
 }
-.separator-line {
-  border-top: 1px solid #333;
-  width: 100%;
-  border-top: 2px solid #333
 
+.separator-line {
+  border-top: 2px solid #333;
+  width: 100%;
+  margin: 1rem 0;
 }
