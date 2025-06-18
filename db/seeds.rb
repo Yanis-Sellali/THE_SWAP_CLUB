@@ -376,7 +376,7 @@ jersey = Jersey.new(
   name: "Liverpool Away Fernando",
   flocking: "Torres",
   year: 2008,
-  description: "Maillot rétro vintage liverpool Candy",
+  description: "Maillot extérieur blanc",
   user_id: user3.id,
   team_id: team3.id,
   size: "L",
@@ -474,4 +474,19 @@ jersey = Jersey.new(
 )
 image_path = Rails.root.join("app/assets/images/jerseys/jersey-inter-2010-milito.jpg")
 jersey.image.attach(io: File.open(image_path), filename: "jersey-inter-2010-milito.jpg", content_type: "image/jpg")
+jersey.save!
+
+# CHELSEA
+jersey = Jersey.new(
+  name: "Chelsea Home Blue Fernando",
+  flocking: "Torres",
+  year: 2011,
+  description: "Maillot Chelsea Fernando Torres",
+  user_id: user2.id,
+  team_id: team3.id,
+  size: "L",
+  condition: "Bon état"
+)
+image_path = Rails.root.join("app/assets/images/jerseys/chelsea-torres.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "chelsea-torres.jpg", content_type: "image/jpg")
 jersey.save!
