@@ -60,6 +60,6 @@
 
   <!-- GRILLE DE MAILLOTS -->
   <%= turbo_frame_tag "jersey_grid", data: { spinner_target: "grid" } do %>
-    <%= render "grid", jerseys: @jerseys %>
+    <%= render "jerseys/grid", jerseys: @jerseys %>
   <% end %>
 </div>
