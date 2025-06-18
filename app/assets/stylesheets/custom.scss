@@ -1,6 +1,14 @@
 body {
-  color: white;
+  background: linear-gradient(135deg, #525151, #dcdcdc, #ffffff) !important;
   font-family: 'Bakbak One', sans-serif !important;
+}
+
+html, body {
+background: linear-gradient(135deg, #1a1a1a, #dcdcdc, #ffffff);
+}
+
+.container {
+  background: transparent !important;
 }
 
 h1, h2, h3, .titre-animée {

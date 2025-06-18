@@ -28,3 +28,78 @@
   align-self: flex-start;
   text-align: left;
 }
+
+  .chat-container {
+    max-width: 740px;
+    margin: 100px auto 60px auto;
+    background: #f0f2f5;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.04);
+    min-height: 1000px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chat-messages {
+    flex: 1;
+    max-height: 700px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+  }
+
+  .message-container {
+    display: flex;
+    margin-bottom: 8px;
+  }
+
+  .message-left {
+    justify-content: flex-start;
+  }
+
+  .message-right {
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  .chat-input {
+    margin-top: auto;
+  }
+
+  .input-style {
+    border-radius: 12px !important;
+    resize: none;
+  }
+
+  .btn-send {
+    border-radius: 12px;
+    background-color: #212529 !important;
+    transition: background 0.2s ease;
+  }
+
+  .btn-send:hover {
+    background-color: #000000 !important;
+  }
+
+  .btn-dark {
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  .btn-dark:hover {
+    background-color: #000000;
+  }
+
+  .swap-footer {
+  margin-top: 20px; /* 👈 Ça évite qu’il colle à l’input */
+}
+
+  .chat-input {
+  margin-bottom: 5px; /* 👈 Ajoute un peu d’air entre l’input et Swap */
+}
+
+#messages {
+  max-height: 700px;
+  overflow-y: auto;
+  padding-right: 15px; /* 👈 Décale le scroll du texte */
+}
