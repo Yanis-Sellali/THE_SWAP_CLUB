@@ -25,32 +25,40 @@
 
   <h3 class="section-title mt-5 text-dark"> Maillots du profil</h3>
 
-  <div class="row justify-content-center mt-4">
+  <div class="row justify-content-center mt-4 g-4">
     <% @jerseys.each do |jersey| %>
-      <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card h-100 shadow-sm">
-          <%= link_to jersey_path(jersey), class: "text-decoration-none text-dark" do %>
-            <%= image_tag jersey.image, class: "card-img-top", style: "height: 250px; object-fit: cover;" if jersey.image.present? %>
-            <div class="card-body text-center">
-              <h6 class="fw-bold"><%= jersey.team.name %></h6>
-              <p class="mb-0 text-muted"><%= jersey.flocking.presence || "-" %></p>
-              <p class="mb-0 text-muted"><%= jersey.year %></p>
+      <div class="col-md-4">
+        <%= link_to jersey_path(jersey), class: "text-decoration-none text-dark" do %>
+          <div class="card shadow-sm border-0 rounded-4 h-100">
+            <% if jersey.image.attached? %>
+              <%= image_tag jersey.image, class: "card-img-top rounded-top-4", style: "height: 280px; object-fit: cover;" %>
+            <% end %>
+            <div class="card-body">
+              <h6 class="fw-bold text-uppercase mb-1"><%= jersey.team&.name %> <%= jersey.year %></h6>
+              <p class="mb-1 text-muted"><%= jersey.name %></p>
+              <p class="mb-2"><strong>TAILLE :</strong> <%= jersey.size %></p>
+              <div class="d-flex align-items-center mt-3">
+                <%= image_tag(jersey.user.avatar.attached? ? url_for(jersey.user.avatar) : "default-avatar.jpg",
+                              class: "rounded-circle me-2",
+                              style: "width: 28px; height: 28px; object-fit: cover;") %>
+                <small class="text-muted">Posté par <%= jersey.user.nom.presence || jersey.user.email %></small>
+              </div>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
     <% end %>
 
     <% if current_user == @user %>
-      <div class="col-6 col-md-4 col-lg-3 mb-4">
-        <div class="add-jersey card h-100 d-flex justify-content-center align-items-center">
-          <%= link_to new_jersey_path, class: "text-decoration-none text-muted text-center" do %>
+      <div class="col-md-4">
+        <%= link_to new_jersey_path, class: "text-decoration-none text-dark" do %>
+          <div class="card h-100 border border-dark border-2 rounded-4 d-flex justify-content-center align-items-center add-jersey-card text-center" style="border-style: dashed;">
             <div>
               <i class="bi bi-plus-circle fs-1 mb-2"></i>
-              <div class="fw-bold">Ajouter un maillot</div>
+              <div class="fw-bold fs-5">Ajouter un maillot</div>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>

@@ -1,5 +1,7 @@
-<div class="exchange-form-container my-5 desktop-ajouter-un-maillot text-dark">
+<div class="exchange-form-container text-dark mx-auto px-4 py-5" style="max-width: 1000px;">
   <h2 class="mb-4 text-center">Ajouter un maillot</h2>
   <%= render "form", jersey: @jersey, submit_text: "Ajouter le maillot" %>
-  <%= link_to "Retour à la liste", jerseys_path, class: "btn btn-secondary mt-3" %>
+  <div class="text-center mt-4">
+    <%= link_to "← Retour à la liste", jerseys_path, class: "btn btn-outline-dark" %>
+  </div>
 </div>

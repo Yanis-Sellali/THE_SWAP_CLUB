@@ -56,4 +56,26 @@
       font-size: 1rem;
     }
   }
+
+.add-jersey-card {
+  border-style: dashed !important;
+  border-width: 3px !important;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.02);
+  }
+
+  i {
+    color: #333;
+  }
+
+  .fw-bold {
+    color: #333;
+  }
+}
+
+
 }
