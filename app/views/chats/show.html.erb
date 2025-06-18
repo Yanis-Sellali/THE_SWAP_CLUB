@@ -1,11 +1,4 @@
 <div class="container py-4" style="max-width: 700px;">
-  <!-- Redirection auto vers la page de récap si l’échange est finalisé -->
-  <% if @finalized_trade_message %>
-    <script>
-      window.location.href = "<%= recap_trade_path(@finalized_trade_message) %>";
-    </script>
-  <% end %>
-
   <!-- En tete du chat -->
   <div class="d-flex align-items-center mb-4 border-bottom pb-3">
     <% if @other_user.avatar.attached? %>
@@ -14,7 +7,7 @@
       <%= image_tag "default_avatar.jpg", class: "rounded-circle me-3", width: 50, height: 50, alt: "Profil" %>
     <% end %>
     <div>
-      <h5 class="mb-0"><%= @other_user.nom.presence || @other_user.email %></h5>
+      <h5 class="mb-0 text-dark"><%= @other_user.nom.presence || @other_user.email %></h5>
       <small class="text-muted">En ligne</small>
     </div>
   </div>
@@ -33,13 +26,18 @@
     <% end %>
   </div>
 
-  <!-- Formulaire denvoi -->
+  <!-- Formulaire d'envoi de message -->
   <%= form_with model: [@exchange, @chat, @message], local: true, data: { turbo: false }, id: "message-form" do |form| %>
     <div class="input-group">
       <%= form.text_area :content, class: "form-control", rows: 2, placeholder: "Écris ton message..." %>
       <button class="btn btn-primary" type="submit">Envoyer</button>
     </div>
   <% end %>
+
+  <!-- Bouton Swap -->
+  <div class="mt-3">
+    <%= link_to "Swap", propose_swap_exchange_chat_path(@exchange),data: {turbo_method: :post} , class: "btn btn-success"%>
+  </div>
 </div>
 
 <script>
