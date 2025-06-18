@@ -28,7 +28,7 @@
               <%= link_to "Supprimer", jersey_path(@jersey), data: { turbo_method: :delete, turbo_confirm: "Confirmer la suppression ?" }, class: "btn btn-outline-danger btn-sm" %>
             </div>
           <% else %>
-            <%= link_to "Demander un échange", new_exchange_path(jersey_id: @jersey.id), class: "btn btn-dark mt-3 btn-lg rounded-3 w-100" %>
+            <%= link_to "Demander un échange", new_exchange_path(receiver_jersey_id: @jersey.id), class: "btn btn-dark mt-3 btn-lg rounded-3 w-100" %>
           <% end %>
         <% else %>
           <%= link_to "Connectez-vous pour demander un échange", new_user_session_path(redirect_to: request.fullpath), class: "btn btn-dark mt-3 btn-lg rounded-3 w-100" %>

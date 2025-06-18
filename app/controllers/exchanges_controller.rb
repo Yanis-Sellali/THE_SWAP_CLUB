@@ -14,6 +14,10 @@ class ExchangesController < ApplicationController
     @exchange = Exchange.new
     @user_jerseys = Jersey.where(user: current_user)
     @available_jerseys = Jersey.where.not(user: current_user)
+
+    if params[:receiver_jersey_id].present?
+      @exchange.receiver_jersey_id = params[:receiver_jersey_id]
+    end
   end
 
 def create
