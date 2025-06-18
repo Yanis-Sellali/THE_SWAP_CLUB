@@ -1,21 +1,24 @@
-<div class="card h-100 shadow-sm">
+<div class="card h-100 shadow-sm rounded-4 border-0 overflow-hidden">
   <% if jersey.image.attached? %>
-    <%= image_tag url_for(jersey.image), class: "card-img-top", alt: jersey.name, loading: "lazy", style: "max-height: 250px;" %>
+    <%= image_tag url_for(jersey.image), class: "card-img-top", alt: jersey.name, loading: "lazy", style: "height: 240px; object-fit: cover;" %>
   <% else %>
-    <%= image_tag "default_jersey.jpg", class: "card-img-top", alt: "Image par défaut", loading: "lazy", style: "max-height: 250px;" %>
+    <%= image_tag "default_jersey.jpg", class: "card-img-top", alt: "Image par défaut", loading: "lazy", style: "height: 240px; object-fit: cover;" %>
   <% end %>
 
   <div class="card-body text-center">
-    <h5 class="card-title mb-1 fw-bold"><%= jersey.name %></h5>
-    <p class="text-muted mb-1"><%= jersey.team&.name || "Équipe inconnue" %></p>
-    <p class="small text-secondary"><strong>Année :</strong> <%= jersey.year %></p>
-    <p class="small text-secondary"><strong>Taille :</strong> <%= jersey.size %></p>
+    <h6 class="fw-bold text-uppercase mb-1"><%= jersey.name %></h6>
+    <p class="text-muted small mb-1"><%= jersey.team&.name || "Équipe inconnue" %></p>
+    <p class="text-secondary small mb-1"><strong>Année :</strong> <%= jersey.year %></p>
+    <p class="text-secondary small"><strong>Taille :</strong> <%= jersey.size %></p>
 
-    <div class="posted-by">
-      <%= image_tag(jersey.user.avatar.attached? ? url_for(jersey.user.avatar) : "default-avatar.jpg", class: "avatar-bordered") %>
-      <p class="small text-secondary">Posté par : <%= jersey.user.nom %></p>
+    <hr class="my-2">
+
+    <div class="d-flex align-items-center justify-content-center gap-2">
+      <%= image_tag(jersey.user.avatar.attached? ? url_for(jersey.user.avatar) : "default-avatar.jpg",
+                    class: "rounded-circle", style: "width: 32px; height: 32px; object-fit: cover;") %>
+      <small class="text-muted">Par <%= jersey.user.nom %></small>
     </div>
 
-    <%= link_to "Voir le maillot", jersey_path(jersey), class: "btn btn-primary btn-sm mt-2" %>
+    <%= link_to "Voir le maillot", jersey_path(jersey), class: "btn btn-outline-primary btn-sm mt-3 px-4 rounded-pill" %>
   </div>
 </div>
