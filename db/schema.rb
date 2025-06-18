@@ -89,6 +89,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_17_095447) do
     t.string "message_type"
     t.integer "offer_jersey_user1_id"
     t.integer "offer_jersey_user2_id"
+    t.boolean "finalized_by_user1"
+    t.boolean "finalized_by_user2"
     t.boolean "user1_finalized"
     t.boolean "user2_finalized"
     t.index ["chat_id"], name: "index_messages_on_chat_id"
