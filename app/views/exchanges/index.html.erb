@@ -16,7 +16,7 @@
       <tr>
         <td><%= exchange.sender.nom %></td>
         <td><%= exchange.sender_jersey.team.name %> (<%= exchange.sender_jersey.size %>)</td>
-        <td><%= exchange.receiver_jersey.team.name %> (<%= exchange.receiver_jersey.size %>)</td>
+        <td><%= exchange.receiver_jersey.team.name %> (<%= exchange.receiver_jersey.size %>) </td>
         <td><%= exchange.receiver.nom %></td>
         <td>
           <%= link_to "Voir l’échange", exchange_path(exchange), class: "btn btn-primary mb-1" %>
@@ -37,7 +37,7 @@
       </tr>
     <% end %>
   </tbody>
-  
+
 </table>
 
 <%= link_to "Créer un nouvel échange", new_exchange_path, class: "btn btn-secondary mt-3" %>
