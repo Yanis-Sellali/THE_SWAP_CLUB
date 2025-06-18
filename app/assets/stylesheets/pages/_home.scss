@@ -6,3 +6,24 @@
 .avatar-hover:hover {
   transform: scale(1.1);
 }
+
+.banner {
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.team-card {
+  transition: transform 0.2s ease-in-out;
+}
+.team-card:hover {
+  transform: scale(1.02);
+}
+
+.card {
+  transition: transform 0.2s ease;
+}
+.card:hover {
+  transform: scale(1.02);
+}

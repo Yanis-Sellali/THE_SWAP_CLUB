@@ -7,11 +7,16 @@ class ChatsController < ApplicationController
     @message = Message.new
     @messages = @chat.messages.includes(:user).order(:created_at)
 
-    @messages.where.not(user: current_user).where(read: [nil, false]).update_all(read: true)
+    unread_messages = @messages.where.not(user: current_user).where(read: [nil, false])
+    unread_messages.update_all(read: true) if unread_messages.exists?
 
     @other_user = @exchange.sender == current_user ? @exchange.receiver : @exchange.sender
+  end
 
-    if @messages.count == 10 && @messages.none?(&:trade_offer?)
+  def propose_swap
+    @chat = @exchange.chat || @exchange.create_chat
+
+    unless @chat.messages.any?(&:trade_offer?)
       Message.create!(
         chat: @chat,
         user: current_user,
@@ -21,8 +26,9 @@ class ChatsController < ApplicationController
         user1_accepted: false,
         user2_accepted: false
       )
-      @messages = @chat.messages.includes(:user).order(:created_at)
     end
+
+    redirect_to exchange_chat_path(@exchange)
   end
 
   private

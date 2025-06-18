@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
 
     resource :chat, only: [:show, :create] do
+      post :propose_swap, on: :member
       resources :messages, only: [:index, :create]
     end
   end
