@@ -13,7 +13,7 @@
 
   <div class="user-info">
     <span class="rating">⭐ <%= @user.rating %> (<%= @jerseys_number %> swaps)</span><br>
-    <span class="location">📍 <%= @user.localisation %></span>
+    <span class="location">📍<%= @user.localisation %></span>
   </div>
 
   <% if current_user == @user %>
@@ -23,7 +23,7 @@
     </div>
   <% end %>
 
-  <h3 class="section-title mt-5 text-dark">Mes Maillots</h3>
+  <h3 class="section-title mt-5 text-dark"> Maillots du profil</h3>
 
   <div class="row justify-content-center mt-4">
     <% @jerseys.each do |jersey| %>
