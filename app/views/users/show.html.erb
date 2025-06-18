@@ -9,11 +9,11 @@
       <%= image_tag("default_avatar.jpg", class: "user-avatar rounded-circle", width: 150, height: 150) %>
     <% end %>
 
- 
+
 
   <h2 class="user-name"><%= user.nom %></h2>
   <div class="user-info">
-    <span class="rating">⭐ <%= user.rating %> (<%= @jerseys_number %> swaps)</span><br>
+    <span class="rating" >⭐ <%= user.rating %> (<%= @jerseys_number %> swaps)</span><br>
     <span class="location">📍 <%= user.localisation %></span>
   </div>
 
@@ -39,7 +39,7 @@
         </div>
       </div>
     <% end %>
-    
+
     <div class="col-6 col-md-4 col-lg-3 mb-4">
       <div class="add-jersey card h-100 d-flex justify-content-center align-items-center">
         <%= link_to new_jersey_path, class: "text-decoration-none text-muted text-center" do %>
