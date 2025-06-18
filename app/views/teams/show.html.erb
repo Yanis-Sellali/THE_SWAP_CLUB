@@ -12,42 +12,66 @@
   <div class="club-banner-text px-4 py-3 d-flex flex-column justify-content-center">
     <h1 class="fw-bold text-uppercase mb-3"><%= @team.name %></h1>
     <p class="lead text-muted"><%= @team.description %></p>
-    <p class="fw-light text-secondary mt-3">
-    <%= pluralize(@team.jerseys.count, "résultat") %> de recherche
-    </p>
-    <div class="separator-line my-2"></div>
   </div>
 </div>
 
   <%# MAILLOTS AFFICHÉS PAR GROUPE DE 3 %>
-  <div class="container">
-    <% @team.jerseys.each_slice(3).with_index do |group, index| %>
-      <div class="row mb-4 g-3">
-        <% group.each do |jersey| %>
-          <div class="col-md-4">
-            <%= link_to team_jersey_path(@team, jersey), class: "text-decoration-none text-dark" do %>
-              <div class="card shadow-sm rounded-4 h-100">
-                <% if jersey.image.attached? %>
-                  <%= image_tag url_for(jersey.image), class: "card-img-top", style: "height: 300px; object-fit: cover;" %>
-                <% end %>
 
-                <div class="card-body">
-                  <h6 class="fw-bold mb-1"><%= @team.name.upcase %> <%= jersey.year %></h6>
-                  <p class="mb-1 text-muted"><%= jersey.name %></p>
-                  <p class="mb-2"><strong>TAILLE :</strong> <%= jersey.size %></p>
+  <div class="container my-5">
+  <!-- FILTRES -->
+  <div class="card p-3 mb-4 shadow-sm rounded-4">
+    <%= form_with url: team_path, method: :get,
+      data: { controller: "auto-submit" },
+      class: "row g-3 align-items-end" do %>
 
-                  <div class="d-flex align-items-center">
-                    <%= image_tag(jersey.user.avatar.attached? ? url_for(jersey.user.avatar) : "default-avatar.jpg",
-                                  class: "rounded-circle me-2",
-                                  style: "width: 30px; height: 30px; object-fit: cover;") %>
-                    <small class="text-muted">Posté par <%= jersey.user.nom %></small>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
+      <!-- Taille -->
+      <div class="col-sm-6 col-md-3">
+        <%= label_tag :size, "Taille", class: "form-label" %>
+        <%= select_tag :size,
+              options_for_select(@sizes, selected: params[:size]),
+              include_blank: "Toutes les tailles",
+              class: "form-select" %>
+      </div>
+
+      <!-- Année -->
+      <div class="col-sm-6 col-md-3">
+        <%= label_tag :year, "Année", class: "form-label" %>
+        <%= select_tag :year,
+              options_for_select(@years, selected: params[:year]),
+              include_blank: "Toutes les années",
+              class: "form-select" %>
+      </div>
+
+      <!-- Boutons -->
+      <div class="col-sm-6 col-md-3 d-flex gap-2">
+        <%= link_to "Réinitialiser", team_path, class: "btn btn-secondary w-100" %>
       </div>
     <% end %>
   </div>
+
+  <!-- SPINNER -->
+  <div id="loading-spinner" data-spinner-target="spinner" class="text-center my-4 d-none">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Chargement...</span>
+    </div>
+  </div>
+
+  <!-- COMPTEUR -->
+  <%= turbo_frame_tag "jersey_count" do %>
+    <%= render partial: "jerseys/count", locals: {
+      count: @jerseys.count,
+      team: params[:team_id].presence && Team.find_by(id: params[:team_id]),
+      size: params[:size],
+      year: params[:year]
+    } %>
+  <% end %>
+
+  <div class="separator-line my-2"></div>
+
+  <!-- GRILLE DE MAILLOTS -->
+  <%= turbo_frame_tag "jersey_grid", data: { spinner_target: "grid" } do %>
+    <%= render "jerseys/grid", jerseys: @jerseys %>
+  <% end %>
+</div>
+
 </div>

@@ -1,6 +1,6 @@
 <% if jerseys.any? %>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-    <%= render partial: "jersey_card", collection: jerseys, as: :jersey %>
+    <%= render partial: "jerseys/jersey_card", collection: jerseys, as: :jersey %>
   </div>
 <% else %>
   <div class="text-center py-5">

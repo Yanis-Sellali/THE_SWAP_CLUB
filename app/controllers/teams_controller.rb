@@ -6,9 +6,18 @@ class TeamsController < ApplicationController
   end
 
   def show
-     @team = Team.find(params[:id])
+    @team = Team.find(params[:id])
     @jerseys = @team.jerseys
+
+    # Filtres dynamiques
+    @jerseys = @jerseys.where(size: params[:size]) if params[:size].present?
+    @jerseys = @jerseys.where(year: params[:year]) if params[:year].present?
+
+    # Options pour le formulaire
+    @sizes = @team.jerseys.pluck(:size).uniq.compact
+    @years = @team.jerseys.pluck(:year).uniq.compact
   end
+
 
   private
 
