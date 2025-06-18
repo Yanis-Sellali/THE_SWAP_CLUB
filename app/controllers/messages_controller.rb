@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
     @message = @chat.messages.build(message_params.merge(user: current_user))
 
     if @message.save
-     
+
       if @chat.messages.count == 10 && @chat.messages.none?(&:trade_offer?)
         Message.create!(
           chat: @chat,
