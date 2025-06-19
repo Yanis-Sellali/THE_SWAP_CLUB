@@ -3,11 +3,11 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 require "open-uri"
 # Example:
-# Team.destroy_all
 Exchange.destroy_all
 User.destroy_all
 Team.destroy_all
 Jersey.destroy_all
+
 # TEAMS
 team1 = Team.create!(
   name: "PSG",
@@ -120,7 +120,86 @@ user3 = User.create!(
   rating: 3
 )
 
+user4 = User.create!(
+  email: "corentin.meunier@gmail.com",
+  password: "azerty",
+  password_confirmation: "azerty",
+  nom: "Ermining_35",
+  localisation: "Paris",
+  rating: 3
+)
+
 # JERSEYS
+# PSG
+jersey = Jersey.new(
+  name: "PSG Goalkeeper Jersey",
+  flocking: "Lama",
+  year: 1993,
+  description: "Signé de la marque Olympic puis Hummel pendant que les joueurs de champs portaient des maillots Nike, le maillot de gardien et ses taches vertes, rouges, bleues et jaunes reste dans la légende des maillots parisiens",
+  user_id: user4.id,
+  team_id: team1.id,
+  size: "L",
+  condition: "Bon état"
+)
+image_path = Rails.root.join("app/assets/images/jerseys/Maillot-PSG-Lama.jpeg")
+jersey.image.attach(io: File.open(image_path), filename: "Maillot-PSG-Lama.jpeg", content_type: "image/jpeg")
+jersey.save!
+
+jersey = Jersey.new(
+  name: "PSG Home RTL",
+  flocking: "",
+  year: 1981,
+  description: "le maillot blanc sur lequel on retrouve une double bande rouge et bleu a connu les premiers grands titres du club comme notamment le premier titre de champion de France de 1986 et les premières coupes de France en 82 et 83. Un design simple et épuré comme on savait le faire dans les années 80, mais qui serait toujours aussi efficace aujourd’hui.",
+  user_id: user4.id,
+  team_id: team1.id,
+  size: "XL",
+  condition: "Bon état"
+)
+image_path = Rails.root.join("app/assets/images/jerseys/maillot-domicile-PSG-1982-1983.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "maillot-domicile-PSG-1982-1983.jpg", content_type: "image/jpg")
+jersey.save!
+
+jersey = Jersey.new(
+  name: "PSG Home Hetcher",
+  flocking: "",
+  year: 1995,
+  description: "Notamment porté lors de la victoire en Coupe d’Europe des vainqueurs de coupes, le maillot domicile de la saison 1995/96 garde une place de choix dans le coeur des supporters avec son style « Hechter » et ce malgré des couleurs très années 90 et notamment un bleu qui tire largement vers le violet et un large col.",
+  user_id: user4.id,
+  team_id: team1.id,
+  size: "M",
+  condition: "Bon état"
+)
+image_path = Rails.root.join("app/assets/images/jerseys/Maillot-domicile-PSG-1995-1996.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "Maillot-domicile-PSG-1995-1996.jpg", content_type: "image/jpg")
+jersey.save!
+
+jersey = Jersey.new(
+  name: "PSG Home Affelou",
+  flocking: "",
+  year: 1990,
+  description: "Quel symbole plus mythique que la Tour Eiffel pour orner le maillot du Paris Saint-Germain? Utilisé pendant près de 10 ans en tant que maillot principal, le maillot de couleur blanc voit ses deux bandes rouges et bleues se séparer pour former le dessin de la dame de fer",
+  user_id: user4.id,
+  team_id: team1.id,
+  size: "M",
+  condition: "Bon état"
+)
+image_path = Rails.root.join("app/assets/images/jerseys/maillot-paris-saint-germain-1990-1991.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "maillot-paris-saint-germain-1990-1991.jpg", content_type: "image/jpg")
+jersey.save!
+
+jersey = Jersey.new(
+  name: "PSG Home original Hetcher",
+  flocking: "",
+  year: 1973,
+  description: "La première version du maillot « Hechter ». Directement inspirée de la tenue de l’Ajax Amsterdam, la bande rouge entourée de deux traits blanc devient rapidement le graphisme emblématique du club",
+  user_id: user4.id,
+  team_id: team1.id,
+  size: "M",
+  condition: "Bon état"
+)
+image_path = Rails.root.join("app/assets/images/jerseys/maillot-domicile-psg-paris-saint-germain-1973-1974-hechter.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "maillot-domicile-psg-paris-saint-germain-1973-1974-hechter.jpg", content_type: "image/jpg")
+jersey.save!
 
 jersey = Jersey.new(
   name: "PSG 1995-96 Home Jersey",
@@ -136,12 +215,13 @@ image_path = Rails.root.join("app/assets/images/jerseys/jersey-psg-1995-rai.jpg"
 jersey.image.attach(io: File.open(image_path), filename: "jersey-psg-1995-rai.jpg", content_type: "image/jpg")
 jersey.save!
 
+# REAL MADRID
 jersey = Jersey.new(
   name: "Real Madrid 2001-02 Home Jersey",
   flocking: "Zidane",
   year: 2002,
   description: "Maillot porté lors de la 9e Ligue des Champions, but légendaire de Zidane en finale.",
-  user_id: user2.id,
+  user_id: user1.id,
   team_id: team2.id,
   size: "M",
   condition: "Vintage"
@@ -150,6 +230,78 @@ image_path = Rails.root.join("app/assets/images/jerseys/jersey-realmadrid-2002-z
 jersey.image.attach(io: File.open(image_path), filename: "jersey-realmadrid-2002-zidane.jpg", content_type: "image/jpg")
 jersey.save!
 
+jersey = Jersey.new(
+  name: "Real Home Siemens",
+  flocking: "",
+  year: 2002,
+  description: "vamos a la playa, no hablo espagnol",
+  user_id: user1.id,
+  team_id: team2.id,
+  size: "M",
+  condition: "Bon état"
+)
+image_path = Rails.root.join("app/assets/images/jerseys/Maillot-vintage-Real-Madrid.jpeg")
+jersey.image.attach(io: File.open(image_path), filename: "Maillot-vintage-Real-Madrid.jpeg", content_type: "image/jpeg")
+jersey.save!
+
+jersey = Jersey.new(
+  name: "Real Home Bernabeu",
+  flocking: "Raul",
+  year: 2004,
+  description: "vamos a la playa, no hablo espagnol",
+  user_id: user1.id,
+  team_id: team2.id,
+  size: "M",
+  condition: "Bon état"
+)
+image_path = Rails.root.join("app/assets/images/jerseys/Maillot-vintage-raul-Real-Madrid.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "Maillot-vintage-raul-Real-Madrid.jpg", content_type: "image/jpg")
+jersey.save!
+
+jersey = Jersey.new(
+  name: "Real Home Zanussi",
+  flocking: "",
+  year: 1984,
+  description: "Camiseta Retro Real Madrid 1984 – Zanussi x Adidas",
+  user_id: user1.id,
+  team_id: team2.id,
+  size: "M",
+  condition: "Bon état"
+)
+image_path = Rails.root.join("app/assets/images/jerseys/real-zanussi.jpeg")
+jersey.image.attach(io: File.open(image_path), filename: "real-zanussi.jpeg", content_type: "image/jpeg")
+jersey.save!
+
+jersey = Jersey.new(
+  name: "Real Home Zizou",
+  flocking: "Zidane",
+  year: 2001,
+  description: "Maillot vintage Zidane, Real Madrid 2001-2002",
+  user_id: user1.id,
+  team_id: team2.id,
+  size: "XL",
+  condition: "Bon état"
+)
+image_path = Rails.root.join("app/assets/images/jerseys/IMG_6067-2-scaled-600x800.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "IMG_6067-2-scaled-600x800.jpg", content_type: "image/jpg")
+jersey.save!
+
+jersey = Jersey.new(
+  name: "Real Away Black Figo",
+  flocking: "Figo",
+  year: 2001,
+  description: "Maillot vintage Figo, Real Madrid 2001-2002",
+  user_id: user1.id,
+  team_id: team2.id,
+  size: "S",
+  condition: "Bon état"
+)
+image_path = Rails.root.join("app/assets/images/jerseys/figo-real-madrid-2001.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "figo-real-madrid-2001.jpg", content_type: "image/jpg")
+jersey.save!
+
+
+# LIVERPOOL
 jersey = Jersey.new(
   name: "Liverpool 2004-05 Home Jersey",
   flocking: "Gerrard",
@@ -165,6 +317,77 @@ jersey.image.attach(io: File.open(image_path), filename: "jersey-liverpool-2005-
 jersey.save!
 
 jersey = Jersey.new(
+  name: "Liverpool Away vintage Jersey",
+  flocking: "",
+  year: 1993,
+  description: "Maillot rétro vintage liverpool blanc",
+  user_id: user3.id,
+  team_id: team3.id,
+  size: "L",
+  condition: "Bon état"
+)
+image_path = Rails.root.join("app/assets/images/jerseys/Maillot-retro-vintage-Liverpool-Away-1993-1995-1.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "Maillot-retro-vintage-Liverpool-Away-1993-1995-1.jpg", content_type: "image/jpg")
+jersey.save!
+
+jersey = Jersey.new(
+  name: "Liverpool Home vintage Hitachi",
+  flocking: "",
+  year: 1979,
+  description: "Maillot rétro vintage liverpool hitachi",
+  user_id: user3.id,
+  team_id: team3.id,
+  size: "M",
+  condition: "Bon état"
+)
+image_path = Rails.root.join("app/assets/images/jerseys/liverpool-1979-80-8.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "liverpool-1979-80-8.jpg", content_type: "image/jpg")
+jersey.save!
+
+jersey = Jersey.new(
+  name: "Liverpool Home Retro Candy",
+  flocking: "",
+  year: 1989,
+  description: "Maillot rétro vintage liverpool Candy",
+  user_id: user3.id,
+  team_id: team3.id,
+  size: "M",
+  condition: "Bon état"
+)
+image_path = Rails.root.join("app/assets/images/jerseys/maillot-retro-liverpool-1989-1991-Retro-1989-1991-Liverpool-home-1.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "maillot-retro-liverpool-1989-1991-Retro-1989-1991-Liverpool-home-1.jpg", content_type: "image/jpg")
+jersey.save!
+
+jersey = Jersey.new(
+  name: "Liverpool Home 150years",
+  flocking: "Coutinho",
+  year: 2017,
+  description: "Maillot des 150ans du club",
+  user_id: user3.id,
+  team_id: team3.id,
+  size: "M",
+  condition: "Bon état"
+)
+image_path = Rails.root.join("app/assets/images/jerseys/liverpool_coutinho.jpeg")
+jersey.image.attach(io: File.open(image_path), filename: "liverpool_coutinho.jpeg", content_type: "image/jpeg")
+jersey.save!
+
+jersey = Jersey.new(
+  name: "Liverpool Away Fernando",
+  flocking: "Torres",
+  year: 2008,
+  description: "Maillot extérieur blanc",
+  user_id: user3.id,
+  team_id: team3.id,
+  size: "L",
+  condition: "Bon état"
+)
+image_path = Rails.root.join("app/assets/images/jerseys/liverpool-Torres.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "liverpool-Torres.jpg", content_type: "image/jpg")
+jersey.save!
+
+# MILAN AC
+jersey = Jersey.new(
   name: "AC Milan 2006-07 Home Jersey",
   flocking: "Kaká",
   year: 2007,
@@ -178,6 +401,7 @@ image_path = Rails.root.join("app/assets/images/jerseys/jersey-acmilan-2007-kaka
 jersey.image.attach(io: File.open(image_path), filename: "jersey-acmilan-2007-kaka.jpg", content_type: "image/jpg")
 jersey.save!
 
+# MANCHESTER CITY
 jersey = Jersey.new(
   name: "Manchester City 2011-12 Home Jersey",
   flocking: "Aguero",
@@ -192,6 +416,7 @@ image_path = Rails.root.join("app/assets/images/jerseys/jersey-mancity-2012-ague
 jersey.image.attach(io: File.open(image_path), filename: "jersey-mancity-2012-aguero.jpg", content_type: "image/jpg")
 jersey.save!
 
+# BAYERN MUNICH
 jersey = Jersey.new(
   name: "Bayern Munich 2012-13 Home Jersey",
   flocking: "Robben",
@@ -206,6 +431,7 @@ image_path = Rails.root.join("app/assets/images/jerseys/jersey-bayern-2013-robbe
 jersey.image.attach(io: File.open(image_path), filename: "jersey-bayern-2013-robben.jpg", content_type: "image/jpg")
 jersey.save!
 
+# BARCELONE
 jersey = Jersey.new(
   name: "Barcelona 2010-11 Home Jersey",
   flocking: "Messi",
@@ -220,6 +446,7 @@ image_path = Rails.root.join("app/assets/images/jerseys/jersey-barcelona-2011-me
 jersey.image.attach(io: File.open(image_path), filename: "jersey-barcelona-2011-messi.jpg", content_type: "image/jpg")
 jersey.save!
 
+# JUVENTUS
 jersey = Jersey.new(
   name: "Juventus 1996-97 Home Jersey",
   flocking: "Del Piero",
@@ -234,6 +461,7 @@ image_path = Rails.root.join("app/assets/images/jerseys/jersey-juventus-1997-del
 jersey.image.attach(io: File.open(image_path), filename: "jersey-juventus-1997-delpiero.jpg", content_type: "image/jpg")
 jersey.save!
 
+# INTER
 jersey = Jersey.new(
   name: "Inter Milan 2009-10 Home Jersey",
   flocking: "Milito",
@@ -246,4 +474,19 @@ jersey = Jersey.new(
 )
 image_path = Rails.root.join("app/assets/images/jerseys/jersey-inter-2010-milito.jpg")
 jersey.image.attach(io: File.open(image_path), filename: "jersey-inter-2010-milito.jpg", content_type: "image/jpg")
+jersey.save!
+
+# CHELSEA
+jersey = Jersey.new(
+  name: "Chelsea Home Blue Fernando",
+  flocking: "Torres",
+  year: 2011,
+  description: "Maillot Chelsea Fernando Torres",
+  user_id: user2.id,
+  team_id: team3.id,
+  size: "L",
+  condition: "Bon état"
+)
+image_path = Rails.root.join("app/assets/images/jerseys/chelsea-torres.jpg")
+jersey.image.attach(io: File.open(image_path), filename: "chelsea-torres.jpg", content_type: "image/jpg")
 jersey.save!
