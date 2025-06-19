@@ -3,6 +3,8 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 require "open-uri"
 # Example:
+Review.destroy_all
+Message.destroy_all
 Exchange.destroy_all
 User.destroy_all
 Team.destroy_all
