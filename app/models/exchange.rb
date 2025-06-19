@@ -7,6 +7,7 @@ class Exchange < ApplicationRecord
   belongs_to :receiver_jersey, class_name: "Jersey"
 
   has_one :chat, dependent: :destroy
+  has_many :reviews
 
   def offer_for(user)
   offers.find_by(user: user)&.jersey

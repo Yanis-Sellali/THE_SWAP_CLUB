@@ -1,0 +1,31 @@
+<turbo-frame id="review_modal_frame">
+  <div class="modal d-block" style="background-color: rgba(0,0,0,0.6); z-index: 1050;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-4 rounded-4">
+        <h5 class="modal-title mb-3">Évalue ton dernier échange</h5>
+
+        <%= form_with model: @review, url: reviews_path, local: true do |f| %>
+          <%= f.hidden_field :exchange_id, value: @exchange.id %>
+          <%= f.hidden_field :user_id, value: (@exchange.sender == current_user ? @exchange.receiver_id : @exchange.sender_id) %>
+
+          <div class="mb-3">
+            <%= f.label :rating, "Note sur 5", class: "form-label fw-semibold" %>
+            <%= f.select :rating, options_for_select(1..5), {}, class: "form-select" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :comment, "Commentaire", class: "form-label fw-semibold" %>
+            <%= f.text_area :comment, rows: 3, class: "form-control", placeholder: "Ton retour sur l'échange..." %>
+          </div>
+
+          <div class="d-flex justify-content-center gap-2">
+            <%= f.submit "Envoyer", class: "btn btn-dark" %>
+            <button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('review_modal_frame').innerHTML = '';">
+              Plus tard
+            </button>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</turbo-frame>

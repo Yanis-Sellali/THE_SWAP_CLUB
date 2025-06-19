@@ -1,0 +1,26 @@
+<div id="review-popup" class="modal fade" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header">
+        <h5 class="modal-title">Notez votre Swap</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with(model: @new_review, url: reviews_path, method: :post) do |form| %>
+          <%= form.hidden_field :exchange_id, value: @pending_review.id %>
+          <div class="mb-3">
+            <%= form.label :rating, "Note sur 5", class: "form-label" %>
+            <%= form.select :rating, options_for_select(1..5), {}, class: "form-select" %>
+          </div>
+          <div class="mb-3">
+            <%= form.label :comment, "Commentaire (optionnel)", class: "form-label" %>
+            <%= form.text_area :comment, rows: 3, class: "form-control" %>
+          </div>
+          <div class="text-end">
+            <%= form.submit "Envoyer la note", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

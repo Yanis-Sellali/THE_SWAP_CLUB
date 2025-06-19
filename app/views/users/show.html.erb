@@ -12,7 +12,16 @@
   <h2 class="user-name"><%= @user.nom %></h2>
 
   <div class="user-info">
-    <span class="rating">⭐ <%= @user.rating %> (<%= @jerseys_number %> swaps)</span><br>
+    <div class="d-flex align-items-center justify-content-center gap-2 mt-2">
+  <% if @user.average_rating > 0 %>
+    <span class="fs-4 text-warning">⭐</span>
+    <strong><%= @user.average_rating %> / 5</strong>
+    <span class="text-muted">(<%= @user.received_reviews.count %> avis)</span>
+  <% else %>
+    <span class="text-muted fst-italic">Pas encore d’évaluation</span>
+  <% end %>
+</div>
+
     <span class="location">📍<%= @user.localisation %></span>
   </div>
 

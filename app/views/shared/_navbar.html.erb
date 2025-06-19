@@ -3,7 +3,7 @@
 
     <!-- Logo à gauche -->
     <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>
-      <%= image_tag "logo.png", alt: "The Swap Club logo", class: "logo-navbar", style: "height: 60px" %>
+      <%= image_tag "logo.png", alt: "The Swap Club logo", class: "logo-navbar", style: "height: 70px" %>
     <% end %>
 
     <!-- Avatar à droite avec badge et notifications -->
@@ -11,7 +11,7 @@
       <% if user_signed_in? %>
         <!-- Dropdown Messages -->
         <div class="nav-item dropdown position-relative">
-          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="messageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Messages
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="messageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fa-solid fa-bell"></i>
             <i class="bi bi-chat-dots-fill text-white fs-4"></i>
             <span id="notifications-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" data-notifications="<%= current_user.unread_messages_count %>">
               <%= current_user.unread_messages_count %>
@@ -62,9 +62,9 @@
     <!-- Liens centraux -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav w-100 d-flex justify-content-evenly">
-        <li class="nav-item"><%= link_to 'Accueil', root_path, class: 'nav-link' %></li>
-        <li class="nav-item"><%= link_to 'Clubs', teams_path, class: 'nav-link' %></li>
-        <li class="nav-item"><%= link_to 'Maillots', jerseys_path, class: 'nav-link' %></li>
+        <li class="nav-item"><%= link_to 'ACCUEIL', root_path, class: 'nav-link' %></li>
+        <li class="nav-item"><%= link_to 'CLUBS', teams_path, class: 'nav-link' %></li>
+        <li class="nav-item"><%= link_to 'MAILLOTS', jerseys_path, class: 'nav-link' %></li>
       </ul>
     </div>
 
