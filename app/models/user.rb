@@ -22,4 +22,12 @@ class User < ApplicationRecord
            .where.not(user_id: id) # messages pas envoyés par moi (donc reçus)
            .where('exchanges.sender_id = :id OR exchanges.receiver_id = :id', id: id)
   end
+
+  has_many :given_reviews, class_name: "Review", foreign_key: "reviewer_id"
+  has_many :received_reviews, class_name: "Review", foreign_key: "user_id", dependent: :destroy
+
+  def average_rating
+  return 0 if received_reviews.empty?
+  (received_reviews.average(:rating) || 0).round(1)
+ end
 end

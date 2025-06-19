@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_17_095447) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_18_212137) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -89,12 +89,23 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_17_095447) do
     t.string "message_type"
     t.integer "offer_jersey_user1_id"
     t.integer "offer_jersey_user2_id"
-    t.boolean "finalized_by_user1"
-    t.boolean "finalized_by_user2"
     t.boolean "user1_finalized"
     t.boolean "user2_finalized"
     t.index ["chat_id"], name: "index_messages_on_chat_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.text "comment"
+    t.bigint "user_id", null: false
+    t.bigint "exchange_id", null: false
+    t.bigint "reviewer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exchange_id"], name: "index_reviews_on_exchange_id"
+    t.index ["reviewer_id"], name: "index_reviews_on_reviewer_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "solid_cable_messages", force: :cascade do |t|
@@ -140,4 +151,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_17_095447) do
   add_foreign_key "jerseys", "users"
   add_foreign_key "messages", "chats"
   add_foreign_key "messages", "users"
+  add_foreign_key "reviews", "exchanges"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "reviews", "users", column: "reviewer_id"
 end

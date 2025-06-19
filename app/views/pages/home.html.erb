@@ -1,59 +1,83 @@
 <!-- HERO BANNER -->
-<div class="banner position-relative text-center text-white" style="background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url(<%= image_url('shop-banner.jpg') %>) center/cover no-repeat; height: 400px;">
+<div class="banner position-relative text-center text-white" style="background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url(<%= image_url('shop-banner.jpg') %>) center/cover no-repeat; height: 500px;">
   <div class="container h-100 d-flex justify-content-center align-items-center">
     <%= image_tag "logo-banner.png", alt: "The Swap Club", class: "img-fluid" %>
   </div>
 </div>
 
+<!-- POPUP DE NOTATION -->
+<% if user_signed_in? && @pending_review.present? %>
+  <turbo-frame id="review_modal_frame">
+    <div class="modal d-block" tabindex="-1" style="background-color: rgba(0, 0, 0, 0.6); z-index: 1050;">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 shadow">
+          <div class="modal-header">
+            <h5 class="modal-title">Évalue ton dernier Swap</h5>
+          </div>
+          <div class="modal-body">
+            <p>Tu as récemment terminé un échange. Merci de laisser une note à ton Swaper :</p>
+            <ul class="list-unstyled mb-0">
+              <li><strong>Maillot :</strong> <%= @pending_review.sender_id == current_user.id ? @pending_review.receiver_jersey.name : @pending_review.sender_jersey.name %></li>
+              <li><strong>Avec :</strong> <%= @pending_review.sender_id == current_user.id ? @pending_review.receiver.nom : @pending_review.sender.nom %></li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <%= link_to "Noter maintenant", new_review_path(exchange_id: @pending_review.id), class: "btn btn-dark", data: { turbo_frame: "review_modal_frame" } %>
+            <%= link_to "Plus tard", "#", class: "btn btn-outline-secondary", onclick: "document.getElementById('review_modal_frame').remove();" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </turbo-frame>
+<% end %>
 
 
-<section class="py-5">
 
 <!-- MAILLOTS -->
-
-  <h2 class="text-center fw-bold mb-4">TOUS LES MAILLOTS</h2>
+<section class="py-5 bg-light">
+  <h2 class="text-center fw-bold mb-4">LES DERNIERS MAILLOTS</h2>
   <div class="container-fluid px-5">
-    <div class="d-flex flex-row flex-nowrap overflow-auto">
-      <% @jerseys.each do |jersey| %>
-        <div class="me-3" style="min-width: 260px; max-width: 280px;">
-          <%= link_to jersey_path(jersey), class: "text-decoration-none text-dark" do %>
-            <div class="card shadow-sm rounded-4 h-100 d-flex flex-column" style="height: 100%;">
 
+    <div class="d-flex flex-row flex-nowrap overflow-auto pb-2" style="gap: 1rem; scrollbar-width: none;">
+      <% @jerseys.limit(8).each do |jersey| %>
+        <div class="flex-shrink-0" style="width: 320px;">
+          <%= link_to jersey_path(jersey), class: "text-decoration-none text-dark" do %>
+            <div class="card shadow-sm border-0 rounded-4 h-100">
               <% if jersey.image.attached? %>
-                <%= image_tag url_for(jersey.image), class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+                <%= image_tag jersey.image, class: "card-img-top rounded-top-4", style: "height: 280px; object-fit: cover;" %>
               <% else %>
-                <%= image_tag "default_jersey.jpg", class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+                <%= image_tag "default_jersey.jpg", class: "card-img-top rounded-top-4", style: "height: 280px; object-fit: cover;" %>
               <% end %>
 
-              <div class="card-body d-flex flex-column justify-content-between" style="min-height: 200px;">
-                <div>
-                  <h6 class="fw-bold mb-1"><%= jersey.team.name.upcase %> <%= jersey.year %></h6>
-                  <p class="mb-1 text-muted"><%= jersey.name %></p>
-                  <p class="mb-2"><strong>TAILLE :</strong> <%= jersey.size %></p>
-                </div>
+              <div class="card-body">
+                <h6 class="fw-bold text-uppercase mb-1"><%= jersey.team.name %> <%= jersey.year %></h6>
+                <p class="mb-1 text-muted"><%= jersey.name %></p>
+                <p class="mb-2"><strong>TAILLE :</strong> <%= jersey.size %></p>
 
-                <div class="d-flex align-items-center justify-content-end mt-auto pt-2 gap-2">
-                  <small class="text-muted">Posté par <%= jersey.user.nom %></small>
+                <div class="d-flex align-items-center mt-3">
                   <%= image_tag(jersey.user.avatar.attached? ? url_for(jersey.user.avatar) : "default-avatar.jpg",
-                                class: "rounded-circle",
-                                style: "width: 28px; height: 28px; object-fit: cover;") %>
+                    class: "rounded-circle me-2",
+                    style: "width: 28px; height: 28px; object-fit: cover;") %>
+                  <small class="text-muted">
+                    Posté par <%= jersey.user.nom.presence || jersey.user.email %>
+                  </small>
                 </div>
               </div>
-
             </div>
           <% end %>
         </div>
       <% end %>
     </div>
+
+    <!-- BOUTON "VOIR TOUS LES MAILLOTS" -->
+    <div class="text-center mt-4">
+      <%= link_to "Voir tous les maillots", jerseys_path, class: "btn btn-outline-dark px-4 py-2" %>
+    </div>
   </div>
 </section>
 
-
-
-<section class="py-5">
 <!-- CLUBS -->
-
-
+<section class="py-5">
   <h2 class="text-center fw-bold mb-4">LES CLUBS</h2>
   <div class="container custom-clubs-grid">
     <div class="row g-3">

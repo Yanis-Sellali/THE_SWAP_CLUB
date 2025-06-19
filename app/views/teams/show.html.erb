@@ -1,7 +1,5 @@
 <div class="team-page container-fluid p-0">
-
   <!-- Bannière -->
-
   <div class="club-banner d-flex flex-wrap">
     <% normalized_team_name = @team.name.parameterize %>
     <% banner_filename = "teams/#{normalized_team_name}-banner.jpg" %>
@@ -19,8 +17,7 @@
     </div>
   </div>
 
-  <!-- FILTRE -->
-
+  <!-- FILTRES -->
   <div class="container my-5">
     <div class="card p-3 mb-4 shadow-sm rounded-4">
       <%= form_with url: team_path, method: :get,
@@ -71,8 +68,7 @@
 </div>
 
 
-  <!-- MAILLOT -->
-
+  <!-- MAILLOTS -->
   <div class="container my-5">
     <% @team.jerseys.each_slice(3).with_index do |group, index| %>
       <div class="row mb-4 g-4">

@@ -26,6 +26,19 @@
   </head>
 
   <body class="d-flex flex-column min-vh-100">
+
+ <div id="custom-loader" class="custom-loader d-none">
+  <div class="jersey-animation">
+    <i class="fa-solid fa-shirt jersey jersey-left"></i>
+    <div class="arrows">
+      <span class="arrow">&larr;</span>
+      <span class="arrow">&rarr;</span>
+    </div>
+    <i class="fa-solid fa-shirt jersey jersey-right"></i>
+  </div>
+</div>
+
+
     <%= render "shared/navbar" %>
 
     <main class="flex-grow-1">
@@ -43,6 +56,6 @@
         }
       });
     </script>
-    
+
   </body>
 </html>
