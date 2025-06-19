@@ -16,7 +16,7 @@
   <% if @user.average_rating > 0 %>
     <span class="fs-4 text-warning">⭐</span>
     <strong><%= @user.average_rating %> / 5</strong>
-    <span class="text-muted">(<%= @user.received_reviews.count %> avis)</span>
+    <span class="text-muted">(<%= @user.received_reviews.count %> swaps)</span>
   <% else %>
     <span class="text-muted fst-italic">Pas encore d’évaluation</span>
   <% end %>
