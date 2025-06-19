@@ -4,7 +4,7 @@
       <div class="modal-content p-4 rounded-4">
         <h5 class="modal-title mb-3">Évalue ton dernier échange</h5>
 
-        <%= form_with model: @review, url: reviews_path, local: true do |f| %>
+        <%= form_with model: @review, url: reviews_path, local: true, data: { turbo: false } do |f| %>
           <%= f.hidden_field :exchange_id, value: @exchange.id %>
           <%= f.hidden_field :user_id, value: (@exchange.sender == current_user ? @exchange.receiver_id : @exchange.sender_id) %>
 
